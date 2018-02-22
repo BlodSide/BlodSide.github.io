@@ -1,0 +1,7 @@
+.idea/
+heyakun/settings.py
+*.sqlite3
+*.dump
+*.DS_Store
+*.pyc
+*.orig
