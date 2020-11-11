@@ -1,0 +1,1196 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>条款22：当使用Pimpl的时候在实现文件中定义特殊的成员函数 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../RvalueReferencesMoveSemanticsandPerfectForwarding/" />
+    
+    
+    <link rel="prev" href="21-Prefer-std-make_unique-and-std-make_shared-to-direct-use-of-new.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../FromthePublisher/">
+            
+                <a href="../FromthePublisher/">
+            
+                    
+                    出版者的忠告
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../Acknowledgements/">
+            
+                <a href="../Acknowledgements/">
+            
+                    
+                    致谢
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../Introduction/">
+            
+                <a href="../Introduction/">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../DeducingTypes/">
+            
+                <a href="../DeducingTypes/">
+            
+                    
+                    第一章 类型推导
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../DeducingTypes/1-Understand-template-type-deduction.html">
+            
+                <a href="../DeducingTypes/1-Understand-template-type-deduction.html">
+            
+                    
+                    条款1：理解模板类型推导
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../DeducingTypes/2-Understand-auto-type-deduction.html">
+            
+                <a href="../DeducingTypes/2-Understand-auto-type-deduction.html">
+            
+                    
+                    条款2：理解auto类型推导
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../DeducingTypes/3-Understand-decltype.html">
+            
+                <a href="../DeducingTypes/3-Understand-decltype.html">
+            
+                    
+                    条款3：理解decltype
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../DeducingTypes/4-Know-how-to-view-deduced-types.html">
+            
+                <a href="../DeducingTypes/4-Know-how-to-view-deduced-types.html">
+            
+                    
+                    条款4：知道如何查看类型推导
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../auto/">
+            
+                <a href="../auto/">
+            
+                    
+                    第二章 auto关键字
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../auto/5-Prefer-auto-to-explicit-type-declarations.html">
+            
+                <a href="../auto/5-Prefer-auto-to-explicit-type-declarations.html">
+            
+                    
+                    条款5：优先使用auto而非显式类型声明
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../auto/6-Use-the-explicitly-typed-initializer-idiom-when-auto-deduces-undesired-types.html">
+            
+                <a href="../auto/6-Use-the-explicitly-typed-initializer-idiom-when-auto-deduces-undesired-types.html">
+            
+                    
+                    条款6：当auto推导出非预期类型时应当使用显式的类型初始化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../MovingtoModernC++/README.md">
+            
+                <span>
+            
+                    
+                    第三章 使用现代C++
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../MovingtoModernC++/7-Distinguish-between-xxx-when-creating-objects.html">
+            
+                <a href="../MovingtoModernC++/7-Distinguish-between-xxx-when-creating-objects.html">
+            
+                    
+                    条款7：创建对象时区分()和{}
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../MovingtoModernC++/8-Prefer-nullptr-to-0-and-NULL.html">
+            
+                <a href="../MovingtoModernC++/8-Prefer-nullptr-to-0-and-NULL.html">
+            
+                    
+                    条款8：优先使用nullptr而不是0或者NULL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../MovingtoModernC++/9-Prefer-alias-declarations-to-typedefs.html">
+            
+                <a href="../MovingtoModernC++/9-Prefer-alias-declarations-to-typedefs.html">
+            
+                    
+                    条款9：优先使用声明别名而不是typedef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../MovingtoModernC++/10-Prefer-scoped-enum-to-unscoped-enums.html">
+            
+                <a href="../MovingtoModernC++/10-Prefer-scoped-enum-to-unscoped-enums.html">
+            
+                    
+                    条款10：优先使用作用域限制的enmu而不是无作用域的enum
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="../MovingtoModernC++/11-Prefer-deleted-functions-to-private-undefined-ones.html">
+            
+                <a href="../MovingtoModernC++/11-Prefer-deleted-functions-to-private-undefined-ones.html">
+            
+                    
+                    条款11：优先使用delete关键字删除函数而不是private却又不实现的函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6" data-path="../MovingtoModernC++/12-Declare-overriding-functions-override.html">
+            
+                <a href="../MovingtoModernC++/12-Declare-overriding-functions-override.html">
+            
+                    
+                    条款12：使用override关键字声明覆盖的函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.7" data-path="../MovingtoModernC++/13-Prefer-const_iterators-to-iterators.html">
+            
+                <a href="../MovingtoModernC++/13-Prefer-const_iterators-to-iterators.html">
+            
+                    
+                    条款13：优先使用const_iterator而不是iterator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.8" data-path="../MovingtoModernC++/14-Declare-functions-noexcept-if-they-won’t-emit-exceptions.md">
+            
+                <span>
+            
+                    
+                    条款14：使用noexcept修饰不想抛出异常的函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.9" data-path="../MovingtoModernC++/15-Use-constexpr-whenever-possible.md">
+            
+                <span>
+            
+                    
+                    条款15：尽可能的使用constexpr
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.10" data-path="../MovingtoModernC++/16-Make-const-member-functions-thread-safe.md">
+            
+                <span>
+            
+                    
+                    条款16：保证const成员函数线程安全
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.11" data-path="../MovingtoModernC++/17-Understand-special-member-function-generation.md">
+            
+                <span>
+            
+                    
+                    条款17：理解特殊成员函数的生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第四章 智能指针
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="18-Use-std-unique_ptr-for-exclusive-ownership-resource-management.html">
+            
+                <a href="18-Use-std-unique_ptr-for-exclusive-ownership-resource-management.html">
+            
+                    
+                    条款18：使用std::unique_ptr管理独占资源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="19-Use-std-shared_ptr-for-shared-ownership-resource-management.html">
+            
+                <a href="19-Use-std-shared_ptr-for-shared-ownership-resource-management.html">
+            
+                    
+                    条款19：使用std::shared_ptr管理共享资源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="20-Use-std-weak_ptr-for-std-shared_ptr-like-pointers-that-can-dangle.html">
+            
+                <a href="20-Use-std-weak_ptr-for-std-shared_ptr-like-pointers-that-can-dangle.html">
+            
+                    
+                    条款20：在std::shared_ptr类似指针可以悬挂时使用std::weak_ptr
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="21-Prefer-std-make_unique-and-std-make_shared-to-direct-use-of-new.html">
+            
+                <a href="21-Prefer-std-make_unique-and-std-make_shared-to-direct-use-of-new.html">
+            
+                    
+                    条款21：优先使用std::make_unique和std::make_shared而不是直接使用new
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.8.5" data-path="22-When-using-the-Pimpl-Idiom-define-special-member-functions-in-the-implementation-file.html">
+            
+                <a href="22-When-using-the-Pimpl-Idiom-define-special-member-functions-in-the-implementation-file.html">
+            
+                    
+                    条款22：当使用Pimpl的时候在实现文件中定义特殊的成员函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/">
+            
+                <a href="../RvalueReferencesMoveSemanticsandPerfectForwarding/">
+            
+                    
+                    第五章 右值引用、移动语义和完美转发
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/23-Understand-std-move-and-std-forward.html">
+            
+                <a href="../RvalueReferencesMoveSemanticsandPerfectForwarding/23-Understand-std-move-and-std-forward.html">
+            
+                    
+                    条款23：理解std::move和std::forward
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/24-Distinguish-universal-references-from-rvalue-references.html">
+            
+                <a href="../RvalueReferencesMoveSemanticsandPerfectForwarding/24-Distinguish-universal-references-from-rvalue-references.html">
+            
+                    
+                    条款24：区分通用引用和右值引用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/25-Use-std-move-on-rvalue-references-std-forward-on-universal-references.md">
+            
+                <span>
+            
+                    
+                    条款25：在右值引用上使用std::move 在通用引用上使用std::forward
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/26-Avoid-overloading-on-universal-references.md">
+            
+                <span>
+            
+                    
+                    条款26：避免在通用引用上重定义函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/27-Familiarize-yourself-with-alternatives-to-overloading-on-universal-references.md">
+            
+                <span>
+            
+                    
+                    条款27：熟悉通用引用上重定义函数的其他选择
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.6" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/28-Understand-reference-collapsing.md">
+            
+                <span>
+            
+                    
+                    条款28：理解引用折叠
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.7" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/29-Assume-that-move-operations-are-not-present-not-cheap-and-not-used.md">
+            
+                <span>
+            
+                    
+                    条款29：假定移动操作不存在，不廉价，不使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.8" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/30-Familiarize-yourself-with-perfect-forwarding-failure-cases.md">
+            
+                <span>
+            
+                    
+                    条款30：熟悉完美转发和失败的情况
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../LambdaExpressions/README.md">
+            
+                <span>
+            
+                    
+                    第六章 Lambda表达式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../LambdaExpressions/31-Avoid-default-capture-modes.md">
+            
+                <span>
+            
+                    
+                    条款31：避免默认的参数捕捉
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../LambdaExpressions/32-Use-init-capture-to-move-objects-into-closures.md">
+            
+                <span>
+            
+                    
+                    条款32：使用init捕捉来移动对象到闭包
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../LambdaExpressions/33-Use-decltype-on-auto&&-parameters-to-std-forward-them.md">
+            
+                <span>
+            
+                    
+                    条款33：在auto&&参数上使用decltype当std::forward auto&&参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../LambdaExpressions/34-Prefer-lambdas-to-std-bind.md">
+            
+                <span>
+            
+                    
+                    条款34：优先使用lambda而不是std::bind
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../TheConcurrencyAPI/README.md">
+            
+                <span>
+            
+                    
+                    第七章 并发API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../TheConcurrencyAPI/35-Prefer-task-based-programming-to-thread-based.md">
+            
+                <span>
+            
+                    
+                    条款35：优先使用task-based而不是thread-based
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../TheConcurrencyAPI/36-Specify-std-launch-async-if-asynchronicity-is-essential.md">
+            
+                <span>
+            
+                    
+                    条款36：当异步是必要的时声明std::launch::async
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../TheConcurrencyAPI/37-Make-std-threads-unjoinable-on-all-paths.md">
+            
+                <span>
+            
+                    
+                    条款37：使得std::thread在所有的路径下无法join
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../TheConcurrencyAPI/38-Be-aware-of-varying-thread-handle-destructor-behavior.md">
+            
+                <span>
+            
+                    
+                    条款38：注意线程句柄析构的行为
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="../TheConcurrencyAPI/39-Consider-void-futures-for-one-shot-event-communication.md">
+            
+                <span>
+            
+                    
+                    条款39：考虑在一次性事件通信上void的特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.6" data-path="../TheConcurrencyAPI/40-Use-std-atomic-for-concurrency-volatile-for-special-memory.md">
+            
+                <span>
+            
+                    
+                    条款40：在并发时使用std::atomic 在特殊内存上使用volatile
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../Tweaks/README.md">
+            
+                <span>
+            
+                    
+                    第八章 改进
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../Tweaks/41-Consider-pass-by-value-for-copyable-parameters-that-are-cheap-to-move-and-always-copied.md">
+            
+                <span>
+            
+                    
+                    条款41：考虑对拷贝参数按值传递移动廉价，那就尽量拷贝
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../Tweaks/42-Consider-emplacement-instead-of-insertion.md">
+            
+                <span>
+            
+                    
+                    条款42：考虑使用emplace代替insert
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >条款22：当使用Pimpl的时候在实现文件中定义特殊的成员函数</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="item-22&#x5F53;&#x4F7F;&#x7528;pimpl&#x7684;&#x65F6;&#x5019;&#x5728;&#x5B9E;&#x73B0;&#x6587;&#x4EF6;&#x4E2D;&#x5B9A;&#x4E49;&#x7279;&#x6B8A;&#x7684;&#x6210;&#x5458;&#x51FD;&#x6570;">Item 22:&#x5F53;&#x4F7F;&#x7528;Pimpl&#x7684;&#x65F6;&#x5019;&#x5728;&#x5B9E;&#x73B0;&#x6587;&#x4EF6;&#x4E2D;&#x5B9A;&#x4E49;&#x7279;&#x6B8A;&#x7684;&#x6210;&#x5458;&#x51FD;&#x6570;</h1>
+<p>&#x5982;&#x679C;&#x4F60;&#x66FE;&#x7ECF;&#x56E0;&#x4E3A;&#x7A0B;&#x5E8F;&#x8FC7;&#x591A;&#x7684;build&#x6B21;&#x6570;&#x5934;&#x75BC;&#x8FC7;&#xFF0C;&#x4F60;&#x80AF;&#x5B9A;&#x5BF9;&#x4E8E;Pimpl(pointer to implementation)&#x505A;&#x6CD5;&#x5F88;&#x719F;&#x6089;&#x3002;&#x5B83;&#x7684;&#x505A;&#x6CD5;&#x662F;&#xFF1A;&#x628A;&#x5BF9;&#x8C61;&#x7684;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x66FF;&#x6362;&#x4E3A;&#x4E00;&#x4E2A;&#x6307;&#x5411;&#x5DF2;&#x7ECF;&#x5B9E;&#x73B0;&#x7C7B;(&#x6216;&#x8005;&#x662F;&#x7ED3;&#x6784;&#x4F53;)&#x7684;&#x6307;&#x9488;.&#x5C06;&#x66FE;&#x7ECF;&#x5728;&#x4E3B;&#x7C7B;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x6210;&#x5458;&#x8F6C;&#x79FB;&#x5230;&#x8BE5;&#x5B9E;&#x73B0;&#x7C7B;&#x4E2D;&#xFF0C;&#x901A;&#x8FC7;&#x6307;&#x9488;&#x6765;&#x95F4;&#x63A5;&#x7684;&#x8BBF;&#x95EE;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x6210;&#x5458;&#x3002;&#x4E3E;&#x4E2A;&#x5217;&#x5B50;&#xFF0C;&#x5047;&#x8BBE;Widget&#x770B;&#x8D77;&#x6765;&#x50CF;&#x662F;&#x8FD9;&#x6837;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">class</span> Widget{            <span class="hljs-comment">//in header &quot;widget.h&quot;</span>
+<span class="hljs-keyword">public</span>:
+    Widget();
+    ...
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> name;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt; data:
+    Gadget g1,g2,g3;            
+    <span class="hljs-comment">//Gadget is some user-defined  type</span>
+}
+</code></pre>
+<p>&#x56E0;&#x4E3A;Widget&#x7684;&#x6570;&#x636E;&#x6210;&#x5458;&#x662F;std::string, std::vector&#x4EE5;&#x53CA;Gadget&#x7C7B;&#x578B;&#xFF0C;&#x4E3A;&#x4E86;&#x7F16;&#x8BD1;Widget,&#x8FD9;&#x4E9B;&#x7C7B;&#x578B;&#x7684;&#x5934;&#x6587;&#x4EF6;&#x5FC5;&#x987B;&#x88AB;&#x5305;&#x542B;&#x8FDB;&#x6765;,&#x4F7F;&#x7528;Widget&#x7684;&#x5BA2;&#x6237;&#x5FC5;&#x987B;#include <string>,<vector>,&#x4EE5;&#x53CA;gadget.h&#x3002;&#x8FD9;&#x4E9B;&#x5934;&#x6587;&#x4EF6;&#x589E;&#x52A0;&#x4E86;&#x4F7F;&#x7528;Widget&#x7684;&#x5BA2;&#x6237;&#x7684;&#x7F16;&#x8BD1;&#x65F6;&#x95F4;&#xFF0C;&#x5E76;&#x4E14;&#x8BA9;&#x5BA2;&#x6237;&#x4F9D;&#x8D56;&#x8FD9;&#x4E9B;&#x5934;&#x6587;&#x4EF6;&#x7684;&#x5185;&#x5BB9;&#x3002;&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x5934;&#x6587;&#x4EF6;&#x91CC;&#x7684;&#x5185;&#x5BB9;&#x53D1;&#x751F;&#x4E86;&#x6539;&#x53D8;&#xFF0C;&#x4F7F;&#x7528;Widget&#x7684;&#x5BA2;&#x6237;&#x5FC5;&#x987B;&#x88AB;&#x91CD;&#x65B0;&#x7F16;&#x8BD1;&#x3002;&#x867D;&#x7136;&#x6807;&#x51C6;&#x7684;&#x5934;&#x6587;&#x4EF6;<string>&#x548C;<vector>&#x4E0D;&#x600E;&#x4E48;&#x53D1;&#x751F;&#x53D8;&#x5316;&#xFF0C;&#x4F46;gadget.h&#x7684;&#x5934;&#x6587;&#x4EF6;&#x53EF;&#x80FD;&#x7ECF;&#x5E38;&#x53D8;&#x5316;&#x3002;</vector></string></vector></string></p>
+<p>&#x5E94;&#x7528;C++ 98&#x7684;Pimpl&#x505A;&#x6CD5;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x6570;&#x636E;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x66FF;&#x6362;&#x4E3A;&#x4E00;&#x4E2A;&#x539F;&#x751F;&#x6307;&#x9488;&#xFF0C;&#x6307;&#x5411;&#x4E86;&#x4E00;&#x4E2A;&#x53EA;&#x662F;&#x58F0;&#x660E;&#x5E76;&#x6CA1;&#x6709;&#x88AB;&#x5B9A;&#x4E49;&#x7684;&#x7ED3;&#x6784;&#x4F53;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">class</span> Widget{            <span class="hljs-comment">//still in header &quot;widget.h&quot;</span>
+<span class="hljs-keyword">public</span>:
+    Widget();
+    ~Widget();    <span class="hljs-comment">//dtor is needed-see below</span>
+    ...
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-keyword">struct</span> Impl;        <span class="hljs-comment">//declare implementation struct</span>
+    Impl *pImpl;        <span class="hljs-comment">//and pointer to it</span>
+}
+</code></pre>
+<p>Widget&#x5DF2;&#x7ECF;&#x4E0D;&#x518D;&#x5F15;&#x7528;std::string,std::vector&#x4EE5;&#x53CA;gadget&#x7C7B;&#x578B;&#xFF0C;&#x4F7F;&#x7528;Widget&#x7684;&#x5BA2;&#x6237;&#x5C31;&#x53EF;&#x4EE5;&#x4E0D;#include&#x8FD9;&#x4E9B;&#x5934;&#x6587;&#x4EF6;&#x4E86;&#x3002;&#x8FD9;&#x52A0;&#x5FEB;&#x4E86;&#x7F16;&#x8BD1;&#x901F;&#x5EA6;&#xFF0C;&#x5E76;&#x4E14;Widget&#x7684;&#x5BA2;&#x6237;&#x4E5F;&#x4E0D;&#x53D7;&#x5230;&#x5F71;&#x54CD;&#x3002;</p>
+<p>&#x4E00;&#x79CD;&#x53EA;&#x58F0;&#x660E;&#x4E0D;&#x5B9A;&#x4E49;&#x7684;&#x7C7B;&#x578B;&#x88AB;&#x79F0;&#x4F5C;incomplete type.Widget::Impl&#x5C31;&#x662F;incomplete type&#x3002;&#x5BF9;&#x4E8E;incomplete type,&#x6211;&#x4EEC;&#x80FD;&#x505A;&#x7684;&#x4E8B;&#x60C5;&#x5F88;&#x5C11;&#xFF0C;&#x4F46;&#x662F;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x6307;&#x5411;&#x5B83;&#x7684;&#x6307;&#x9488;&#x3002;Pimpl&#x505A;&#x6CD5;&#x5C31;&#x662F;&#x5229;&#x7528;&#x4E86;&#x8FD9;&#x4E00;&#x70B9;&#x3002;</p>
+<p>Pimpl&#x505A;&#x6CD5;&#x7684;&#x7B2C;&#x4E00;&#x6B65;&#x662F;&#xFF1A;&#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF0C;&#x5B83;&#x662F;&#x4E00;&#x4E2A;&#x6307;&#x5411;incomplete type&#x7684;&#x6307;&#x9488;&#x3002;&#x7B2C;&#x4E8C;&#x6B65;&#x662F;&#xFF0C;&#x4E3A;&#x5305;&#x542B;&#x4EE5;&#x524D;&#x5728;&#x539F;&#x59CB;&#x7C7B;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x6210;&#x5458;&#x7684;&#x5BF9;&#x8C61;(&#x672C;&#x4F8B;&#x4E2D;&#x7684;*pImpl)&#x505A;&#x52A8;&#x6001;&#x5206;&#x914D;&#x5185;&#x5B58;&#x548C;&#x56DE;&#x6536;&#x5185;&#x5B58;&#x3002;&#x5206;&#x914D;&#x4EE5;&#x53CA;&#x56DE;&#x6536;&#x7684;&#x4EE3;&#x7801;&#x5728;&#x5B9E;&#x73B0;&#x6587;&#x4EF6;&#x4E2D;&#x3002;&#x672C;&#x4F8B;&#x4E2D;&#xFF0C;&#x5BF9;&#x4E8E;Widget&#x800C;&#x8A00;,&#x8FD9;&#x4E9B;&#x64CD;&#x4F5C;&#x5728;widget.cpp&#x4E2D;&#x8FDB;&#x884C;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-string">&quot;widget.h&quot;</span>            //in impl,file <span class="hljs-string">&quot;widget.cpp&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-string">&quot;gadget.h&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span>
+
+<span class="hljs-keyword">struct</span> Widget::Impl{
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> name;            <span class="hljs-comment">//definition of Widget::Impl with data members formerly in Widget</span>
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt; data;
+    Gadget g1,g2,g3;
+}
+
+Widget::Widget():pImpl(<span class="hljs-keyword">new</span> Impl)    <span class="hljs-comment">//allocate data members for this Widget object</span>
+{}
+
+Widget::~Widget()    <span class="hljs-comment">//destroy data members for this object</span>
+{
+    <span class="hljs-keyword">delete</span> pImpl;
+}
+</code></pre>
+<p>&#x5728;&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x6211;&#x8FD8;&#x662F;&#x4F7F;&#x7528;&#x4E86;#include&#x6307;&#x4EE4;&#xFF0C;&#x8868;&#x660E;&#x5BF9;&#x4E8E;std::string,std::vector&#x4EE5;&#x53CA;Gadget&#x5934;&#x6587;&#x4EF6;&#x7684;&#x4F9D;&#x8D56;&#x8FD8;&#x7EE7;&#x7EED;&#x5B58;&#x5728;&#x3002;&#x7136;&#x540E;&#xFF0C;&#x8FD9;&#x4E9B;&#x4F9D;&#x8D56;&#x4ECE;widget.h(&#x88AB;&#x4F7F;&#x7528;Widget&#x7684;&#x5BA2;&#x6237;&#x6240;&#x4F7F;&#x7528;&#xFF0C;&#x5BF9;&#x5B83;&#x4EEC;&#x53EF;&#x89C1;)&#x8F6C;&#x79FB;&#x5230;&#x4E86;widget.cpp(&#x53EA;&#x5BF9;Widget&#x7684;&#x5B9E;&#x73B0;&#x8005;&#x53EF;&#x89C1;)&#x4E2D;&#xFF0C;&#x6211;&#x5DF2;&#x7ECF;&#x9AD8;&#x4EAE;&#x4E86;(&#x4E0D;&#x597D;&#x610F;&#x601D;&#xFF0C;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#x9AD8;&#x4EAE;&#x8FD9;&#x79CD;&#x8BED;&#x6CD5;&#x4FFA;&#x505A;&#x4E0D;&#x5230;&#x554A;---&#x8BD1;&#x8005;&#x6CE8;)&#x5206;&#x914D;&#x548C;&#x56DE;&#x6536;Impl&#x5BF9;&#x8C61;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x56E0;&#x4E3A;&#x9700;&#x8981;&#x5728;Widget&#x6790;&#x6784;&#x662F;&#xFF0C;&#x5BF9;Impl&#x5BF9;&#x8C61;&#x7684;&#x5185;&#x5B58;&#x8FDB;&#x884C;&#x56DE;&#x6536;&#xFF0C;&#x6240;&#x4EE5;Widget&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x662F;&#x5FC5;&#x987B;&#x8981;&#x5199;&#x7684;&#x3002;</p>
+<p>&#x4F46;&#x662F;&#x6211;&#x7ED9;&#x4F60;&#x5C55;&#x793A;&#x7684;&#x662F;C++ 98&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x6563;&#x53D1;&#x7740;&#x4E0A;&#x4E2A;&#x4E16;&#x7EAA;&#x7684;&#x4E0A;&#x53E4;&#x6C14;&#x606F;.&#x4F7F;&#x7528;&#x4E86;&#x539F;&#x751F;&#x6307;&#x9488;&#xFF0C;&#x539F;&#x751F;&#x7684;new&#x548C;&#x539F;&#x751F;&#x7684;delete&#xFF0C;&#x5168;&#x90FD;&#x662F;&#x539F;&#x751F;&#x7684;&#x554A;&#xFF01;&#x672C;&#x7AE0;&#x7684;&#x5185;&#x5BB9;&#x662F;&#x56F4;&#x7ED5;&#x7740;&#x201C;&#x667A;&#x80FD;&#x6307;&#x9488;&#x5927;&#x6CD5;&#x597D;,&#x9000;&#x539F;&#x751F;&#x6307;&#x9488;&#x4FDD;&#x5E73;&#x5B89;&#x201D;&#x7684;&#x7406;&#x5FF5;&#x3002;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x5728;&#x4E00;&#x4E2A;Widget&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x52A8;&#x6001;&#x5206;&#x914D;&#x4E00;&#x4E2A;Widget::Impl&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x4E14;&#x5728;Widget&#x6790;&#x6784;&#x65F6;&#xFF0C;&#x4E5F;&#x6790;&#x6784;Widget::Impl&#x5BF9;&#x8C61;&#x3002;&#x90A3;&#x4E48;std::unique_ptr(&#x8BF7;&#x770B;Item 18)&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x7684;&#x6700;&#x5408;&#x9002;&#x7684;&#x5DE5;&#x5177;&#x3002;&#x5C06;&#x539F;&#x751F;pImpl&#x6307;&#x9488;&#x66FF;&#x6362;&#x4E3A;std::unique_ptr&#x3002;&#x5934;&#x6587;&#x4EF6;&#x7684;&#x5185;&#x5BB9;&#x53D8;&#x4E3A;&#x8FD9;&#x6837;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">class</span> Widget{
+<span class="hljs-keyword">public</span>:
+    Widget();
+    ...
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-keyword">struct</span> Impl;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">unique_ptr</span>&lt;Impl&gt; pImpl;<span class="hljs-comment">//use smart pointer</span>
+    <span class="hljs-comment">//instead of raw pointer</span>
+}
+</code></pre>
+<p>&#x5B9E;&#x73B0;&#x6587;&#x4EF6;&#x7684;&#x5185;&#x5BB9;&#x5219;&#x53D8;&#x6210;&#x4E86;&#x8FD9;&#x6837;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-string">&quot;widget.h&quot;</span>            //in <span class="hljs-string">&quot;widget.cpp&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-string">&quot;gadget.h&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span>
+
+<span class="hljs-keyword">struct</span> Widget::Impl{
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> name;            <span class="hljs-comment">//as before</span>
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt; data;
+    Gadget g1,g2,g3;
+}
+
+Widget::Widget()
+:pImpl(<span class="hljs-built_in">std</span>::make_unique&lt;Impl&gt;())    <span class="hljs-comment">//per Item 21,create</span>
+{}                                        <span class="hljs-comment">//std::unique_ptr</span>
+                                        <span class="hljs-comment">//via std::make_unique</span>
+</code></pre>
+<p>&#x4F60;&#x4F1A;&#x53D1;&#x73B0;Widget&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x4E0D;&#x590D;&#x5B58;&#x5728;&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x4E0D;&#x9700;&#x8981;&#x5728;&#x6790;&#x6784;&#x51FD;&#x6570;&#x91CC;&#x9762;&#x5199;&#x4EFB;&#x4F55;&#x4EE3;&#x7801;&#x4E86;&#x3002;std::unique_ptr&#x5728;&#x81EA;&#x8EAB;&#x9500;&#x6BC1;&#x65F6;&#x81EA;&#x52A8;&#x6790;&#x6784;&#x5B83;&#x6307;&#x5411;&#x7684;&#x533A;&#x57DF;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x4E0D;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x56DE;&#x6536;&#x4EFB;&#x4F55;&#x4E1C;&#x897F;&#x3002;&#x8FD9;&#x5C31;&#x662F;&#x667A;&#x80FD;&#x6307;&#x9488;&#x7684;&#x4E00;&#x9879;&#x4F18;&#x70B9;&#xFF1A;&#x5B83;&#x4EEC;&#x6D88;&#x9664;&#x4E86;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x624B;&#x52A8;&#x91CA;&#x653E;&#x8D44;&#x6E90;&#x7684;&#x9EBB;&#x70E6;&#x3002;</p>
+<p>&#x4F46;&#x662F;&#x5462;&#xFF0C;&#x4F7F;&#x7528;Widget&#x7684;&#x5BA2;&#x6237;&#x7684;&#x4E00;&#x53E5;&#x5F88;&#x5E73;&#x51E1;&#x7684;&#x7528;&#x6CD5;&#xFF0C;&#x5C31;&#x7F16;&#x8BD1;&#x51FA;&#x9519;&#x4E86;&#x554A;</p>
+<pre><code class="lang-cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-string">&quot;widget.h&quot;</span></span>
+Widget w; <span class="hljs-comment">//error</span>
+</code></pre>
+<p>&#x4F60;&#x6240;&#x53D7;&#x5230;&#x7684;&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#x5185;&#x5BB9;&#x4F9D;&#x8D56;&#x4E8E;&#x4F60;&#x6240;&#x4F7F;&#x7528;&#x7684;&#x7F16;&#x8BD1;&#x5668;&#x7C7B;&#x578B;&#xFF0C;&#x4F46;&#x662F;&#x4EA7;&#x751F;&#x7684;&#x5185;&#x5BB9;&#x5927;&#x81F4;&#x90FD;&#x662F;&#xFF1A;&#x5728;incomplete type&#x4E0A;&#x4F7F;&#x7528;&#x4E86;sizeof&#x548C;delete.&#x8FD9;&#x4E9B;&#x64CD;&#x4F5C;&#x5728;&#x8BE5;&#x7C7B;&#x578B;&#x4E0A;&#x662F;&#x7981;&#x6B62;&#x7684;&#x3002;</p>
+<p>Pimpl&#x505A;&#x6CD5;&#x7ED3;&#x5408;std::unique_ptr&#x7ADF;&#x7136;&#x4F1A;&#x4EA7;&#x751F;&#x9519;&#x8BEF;&#xFF0C;&#x8FD9;&#x5F88;&#x8BA9;&#x4EBA;&#x9707;&#x60CA;&#x554A;&#x3002;&#x56E0;&#x4E3A;(1)std::unique_ptr&#x81EA;&#x8EAB;&#x6807;&#x699C;&#x652F;&#x6301;incomplete type.(2)Pimpl&#x505A;&#x6CD5;&#x662F;std::unique_ptr&#x4F17;&#x591A;&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;&#x4E4B;&#x4E00;&#x3002;&#x5E78;&#x8FD0;&#x7684;&#x662F;&#xFF0C;&#x8BA9;&#x4EE3;&#x7801;&#x5DE5;&#x4F5C;&#x8D77;&#x6765;&#x4E5F;&#x662F;&#x5F88;&#x7B80;&#x5355;&#x5730;&#x3002;&#x6211;&#x4EEC;&#x9996;&#x5148;&#x9700;&#x8981;&#x7406;&#x89E3;&#x4E3A;&#x5565;&#x4F1A;&#x51FA;&#x9519;&#x3002;</p>
+<p>&#x5728;&#x6267;&#x884C;w&#x88AB;&#x6790;&#x6784;(&#x5982;&#x5F53;&#x51FA;&#x4F5C;&#x7528;&#x57DF;&#x65F6;)&#x7684;&#x4EE3;&#x7801;&#x65F6;&#xFF0C;&#x62A5;&#x4E86;&#x9519;&#x8BEF;&#x3002;&#x5728;&#x6B64;&#x65F6;&#xFF0C;Widget&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x88AB;&#x8C03;&#x7528;&#x3002;&#x5728;&#x5B9A;&#x4E49;&#x4F7F;&#x7528;std::unique_ptr&#x7684;Widget&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x5E76;&#x6CA1;&#x6709;&#x58F0;&#x660E;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x4E0D;&#x9700;&#x8981;&#x5728;Widget&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x5185;&#x5199;&#x4EFB;&#x4F55;&#x4EE3;&#x7801;&#x3002;&#x4F9D;&#x636E;&#x7F16;&#x8BD1;&#x5668;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x7279;&#x6B8A;&#x6210;&#x5458;&#x51FD;&#x6570;(&#x8BF7;&#x770B;Item 17)&#x7684;&#x666E;&#x901A;&#x89C4;&#x5219;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4E3A;&#x6211;&#x4EEC;&#x751F;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x6790;&#x6784;&#x51FD;&#x6570;&#x3002;&#x5728;&#x90A3;&#x4E2A;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x63D2;&#x5165;&#x4EE3;&#x7801;&#xFF0C;&#x8C03;&#x7528;Widget&#x7684;&#x6570;&#x636E;&#x6210;&#x5458;pImpl&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x3002;pImpl&#x662F;&#x4E00;&#x4E2A;<code>std::unique_ptr&lt;Widget::Impl&gt;</code>,&#x5373;&#xFF0C;&#x4E00;&#x4E2A;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;deleter&#x7684;std::unique_ptr.&#x9ED8;&#x8BA4;deleter&#x662F;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x5BF9;std::unique_ptr&#x91CC;&#x9762;&#x7684;&#x539F;&#x751F;&#x6307;&#x9488;&#x8C03;&#x7528;delete.&#x7136;&#x800C;&#xFF0C;&#x5728;&#x8C03;&#x7528;delete&#x4E4B;&#x524D;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x901A;&#x5E38;&#x4F1A;&#x8BA9;&#x9ED8;&#x8BA4;deleter&#x5148;&#x4F7F;&#x7528;C++ 11&#x7684;static_assert&#x6765;&#x786E;&#x4FDD;&#x539F;&#x751F;&#x6307;&#x9488;&#x6307;&#x5411;&#x7684;&#x7C7B;&#x578B;&#x4E0D;&#x662F;imcomplete type(staticassert&#x7F16;&#x8BD1;&#x65F6;&#x5019;&#x68C0;&#x67E5;,assert&#x8FD0;&#x884C;&#x65F6;&#x68C0;&#x67E5;---&#x8BD1;&#x8005;&#x6CE8;).&#x5F53;&#x7F16;&#x8BD1;&#x5668;&#x751F;&#x6210;Widget w&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x8C03;&#x7528;&#x7684;static_assert&#x68C0;&#x67E5;&#x5C31;&#x4F1A;&#x5931;&#x8D25;&#xFF0C;&#x5BFC;&#x81F4;&#x51FA;&#x73B0;&#x4E86;&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#x3002;&#x5728;w&#x88AB;&#x9500;&#x6BC1;&#x65F6;&#xFF0C;&#x8FD9;&#x4E9B;&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#x624D;&#x4F1A;&#x51FA;&#x73B0;&#xFF0C;&#x4F46;&#x662F;&#x56E0;&#x4E3A;&#x4E0E;&#x5176;&#x4ED6;&#x7684;&#x7F16;&#x8BD1;&#x5668;&#x751F;&#x6210;&#x7684;&#x7279;&#x6B8A;&#x6210;&#x5458;&#x51FD;&#x6570;&#x76F8;&#x540C;&#xFF0C;Widget&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x4E5F;&#x662F;inline&#x7684;&#x3002;&#x51FA;&#x9519;&#x6307;&#x5411;w&#x88AB;&#x521B;&#x5EFA;&#x7684;&#x90A3;&#x4E00;&#x884C;&#xFF0C;&#x56E0;&#x4E3A;&#x6539;&#x884C;&#x521B;&#x5EFA;&#x4E86;w,&#x5BFC;&#x81F4;&#x540E;&#x6765;(w&#x51FA;&#x4F5C;&#x7528;&#x57DF;&#x65F6;)w&#x88AB;&#x9690;&#x6027;&#x9500;&#x6BC1;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x4FEE;&#x590D;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x786E;&#x4FDD;&#xFF0C;&#x5728;&#x4EA7;&#x751F;&#x9500;&#x6BC1;<code>std::unique_ptr&lt;Widget::Impl&gt;</code>&#x7684;&#x4EE3;&#x7801;&#x65F6;&#xFF0C;Widget::Impl&#x662F;&#x5B8C;&#x6574;&#x7684;&#x7C7B;&#x578B;&#x3002;&#x5F53;&#x5B83;&#x7684;&#x5B9A;&#x4E49;&#x88AB;&#x7F16;&#x8BD1;&#x5668;&#x770B;&#x5230;&#x65F6;&#xFF0C;&#x5B83;&#x5C31;&#x662F;&#x5B8C;&#x6574;&#x7C7B;&#x578B;&#x4E86;&#x3002;&#x800C;Widget::Impl&#x5728;widget.cpp&#x4E2D;&#x88AB;&#x5B9A;&#x4E49;&#x3002;&#x6240;&#x4EE5;&#x7F16;&#x8BD1;&#x6210;&#x529F;&#x7684;&#x5173;&#x952E;&#x5728;&#x4E8E;&#xFF0C;&#x8BA9;&#x7F16;&#x8BD1;&#x5668;&#x53EA;&#x5728;widget.cpp&#x5185;&#xFF0C;&#x5728;widget::Impl&#x88AB;&#x5B9A;&#x4E49;&#x4E4B;&#x540E;&#xFF0C;&#x770B;&#x5230;Widget&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x4F53;(&#x8BE5;&#x51FD;&#x6570;&#x4F53;&#x5C31;&#x662F;&#x653E;&#x7F6E;&#x7F16;&#x8BD1;&#x5668;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x9500;&#x6BC1;std::unique_ptr&#x6570;&#x636E;&#x6210;&#x5458;&#x7684;&#x4EE3;&#x7801;&#x7684;&#x5730;&#x65B9;)&#x3002;</p>
+<p>&#x50CF;&#x90A3;&#x6837;&#x5B89;&#x6392;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x5728;widget.h&#x4E2D;&#x58F0;&#x660E;Widget&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x8981;&#x5728;&#x5176;&#x4E2D;&#x5B9A;&#x4E49;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">class</span> Widget{            <span class="hljs-comment">//as before, in &quot;widget.h&quot;</span>
+<span class="hljs-keyword">public</span>:
+    Widget();
+    ~Widget();        <span class="hljs-comment">//declaration only</span>
+    ...
+<span class="hljs-keyword">private</span>:                <span class="hljs-comment">//as before</span>
+    <span class="hljs-keyword">struct</span> Impl;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">unique_ptr</span>&lt;Impl&gt; pImpl;    
+}
+</code></pre>
+<p>&#x5728;widget.cpp&#x91CC;&#x9762;&#x7684;Widget::Impl&#x5B9A;&#x4E49;&#x4E4B;&#x540E;&#x518D;&#x5B9A;&#x4E49;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-string">&quot;widget.h&quot;</span>            //as before in <span class="hljs-string">&quot;widget.cpp&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-string">&quot;gadget.h&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span>
+
+<span class="hljs-keyword">struct</span> Widget::Impl{
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> name;            <span class="hljs-comment">//as before definition of</span>
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt; data;    <span class="hljs-comment">//Widget::Impl</span>
+    Gadget g1,g2,g3;
+}
+
+Widget::Widget()
+:pImpl(<span class="hljs-built_in">std</span>::make_unique&lt;Impl&gt;())    <span class="hljs-comment">//as before</span>
+
+Widget::~Widget(){}    <span class="hljs-comment">//~Widget definition</span>
+</code></pre>
+<p>&#x8FD9;&#x6837;&#x7684;&#x8BDD;&#x5C31;&#x6CA1;&#x95EE;&#x9898;&#x4E86;&#xFF0C;&#x589E;&#x52A0;&#x7684;&#x4EE3;&#x7801;&#x91CF;&#x4E5F;&#x5F88;&#x5C11;&#x3002;&#x4F46;&#x662F;&#x5982;&#x679C;&#x4F60;&#x60F3;&#x8981;&#x5F3A;&#x8C03;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x751F;&#x6210;&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x4F1A;&#x505A;&#x6B63;&#x786E;&#x7684;&#x4E8B;&#x60C5;&#xFF0C;&#x4F60;&#x58F0;&#x660E;&#x6790;&#x6784;&#x51FD;&#x6570;&#x7684;&#x552F;&#x4E00;&#x539F;&#x56E0;&#x662F;&#xFF0C;&#x60F3;&#x8981;&#x5728;Widget.cpp&#x4E2D;&#x751F;&#x6210;&#x5B83;&#x7684;&#x5B9A;&#x4E49;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x7528;&#x201C;=default&#x201D;&#x5B9A;&#x4E49;&#x6790;&#x6784;&#x51FD;&#x6570;&#x4F53;&#xFF1A;</p>
+<pre><code class="lang-cpp">Widget::~Widget()=<span class="hljs-keyword">default</span>;        <span class="hljs-comment">//same effect as above</span>
+</code></pre>
+<p>&#x4F7F;&#x7528;Pimpl&#x505A;&#x6CD5;&#x7684;&#x7C7B;&#x662F;&#x81EA;&#x5E26;&#x652F;&#x6301;move&#x8BED;&#x4E49;&#x7684;&#x5019;&#x9009;&#x8005;&#xFF0C;&#x56E0;&#x4E3A;&#x7F16;&#x8BD1;&#x5668;&#x751F;&#x6210;&#x7684;move&#x64CD;&#x4F5C;&#x6B63;&#x662F;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x7684;&#xFF1A;&#x5BF9;&#x6F5C;&#x5728;&#x7684;std::unique_ptr&#x4E0A;&#x6267;&#x884C;move&#x64CD;&#x4F5C;&#x3002;&#x5C31;&#x50CF;Item 17&#x89E3;&#x91CA;&#x7684;&#x90A3;&#x6837;&#xFF0C;Widget&#x58F0;&#x660E;&#x4E86;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x5C31;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x751F;&#x6210;move&#x64CD;&#x4F5C;&#x4E86;&#x3002;&#x6240;&#x4EE5;&#x5982;&#x679C;&#x4F60;&#x60F3;&#x8981;&#x652F;&#x6301;move,&#x4F60;&#x5FC5;&#x987B;&#x81EA;&#x5DF1;&#x53BB;&#x58F0;&#x660E;&#x8FD9;&#x4E9B;&#x51FD;&#x6570;&#x3002;&#x9274;&#x4E8E;&#x7F16;&#x8BD1;&#x5668;&#x751F;&#x6210;&#x7684;&#x7248;&#x672C;&#x5C31;&#x53EF;&#x4EE5;&#x80DC;&#x4EFB;&#xFF0C;&#x4F60;&#x53EF;&#x80FD;&#x4F1A;&#x50CF;&#x4E0B;&#x9762;&#x90A3;&#x6837;&#x5B9E;&#x73B0;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">class</span> Widget{            <span class="hljs-comment">//still in &quot;widget.h&quot;</span>
+<span class="hljs-keyword">public</span>:
+    Widget();
+    ~Widget();
+    ...
+    Widget(Widget&amp;&amp; rhs) = <span class="hljs-keyword">default</span>;        <span class="hljs-comment">//right idea,</span>
+    Widget&amp; <span class="hljs-keyword">operator</span>=(Widget&amp;&amp; rhs) = <span class="hljs-keyword">default</span> <span class="hljs-comment">//wrong code!</span>
+    ...
+<span class="hljs-keyword">private</span>:                <span class="hljs-comment">//as before</span>
+    <span class="hljs-keyword">struct</span> Impl;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">unique_ptr</span>&lt;Impl&gt; pImpl;    
+};
+</code></pre>
+<p>&#x8FD9;&#x6837;&#x7684;&#x505A;&#x6CD5;&#x4F1A;&#x4EA7;&#x751F;&#x548C;&#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x6CA1;&#x6709;&#x6790;&#x6784;&#x51FD;&#x6570;&#x7684;class&#x4E00;&#x6837;&#xFF0C;&#x4EA7;&#x751F;&#x540C;&#x6837;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x4EA7;&#x751F;&#x95EE;&#x9898;&#x7684;&#x539F;&#x56E0;&#x672C;&#x8D28;&#x4E5F;&#x4E00;&#x6837;&#x3002;&#x5BF9;&#x4E8E;&#x7F16;&#x8BD1;&#x5668;&#x751F;&#x6210;&#x7684;move&#x8D4B;&#x503C;&#x64CD;&#x4F5C;&#x7B26;&#xFF0C;&#x5B83;&#x5BF9;pImpl&#x518D;&#x8D4B;&#x503C;&#x4E4B;&#x524D;&#xFF0C;&#x9700;&#x8981;&#x5148;&#x9500;&#x6BC1;&#x5B83;&#x6240;&#x6307;&#x5411;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x7136;&#x800C;&#x5728;Widget&#x5934;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;pImpl&#x6307;&#x5411;&#x7684;&#x4ECD;&#x662F;&#x4E00;&#x4E2A;incomplete type.&#x5BF9;&#x4E8E;&#x7F16;&#x8BD1;&#x5668;&#x751F;&#x6210;&#x7684;move&#x6784;&#x9020;&#x51FD;&#x6570;&#x3002;&#x95EE;&#x9898;&#x5728;&#x4E8E;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x5728;move&#x6784;&#x9020;&#x51FD;&#x6570;&#x5185;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x7684;&#x4E8B;&#x4EF6;&#x4E2D;&#xFF0C;&#x751F;&#x6210;&#x6790;&#x6784;pImpl&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x5BF9;pImpl&#x6790;&#x6784;(destroying pImpl)&#x9700;&#x8981;Impl&#x7684;&#x7C7B;&#x578B;&#x662F;&#x5B8C;&#x6574;&#x7684;&#x3002;</p>
+<p>&#x95EE;&#x9898;&#x4E00;&#x6837;&#xFF0C;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x81EA;&#x7136;&#x4E5F;&#x4E00;&#x6837;&#xFF1A;&#x5C06;move&#x64CD;&#x4F5C;&#x7684;&#x5B9A;&#x4E49;&#x5199;&#x5728;&#x5B9E;&#x73B0;&#x6587;&#x4EF6;widget.cpp&#x4E2D;&#xFF1A;
+widget.h:</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">class</span> Widget{            <span class="hljs-comment">//still in &quot;widget.h&quot;</span>
+<span class="hljs-keyword">public</span>:
+    Widget();
+    ~Widget();
+    ...
+    Widget(Widget&amp;&amp; rhs);                <span class="hljs-comment">//declarations</span>
+    Widget&amp; <span class="hljs-keyword">operator</span>=(Widget&amp;&amp; rhs); <span class="hljs-comment">//only</span>
+    ...
+<span class="hljs-keyword">private</span>:                <span class="hljs-comment">//as before</span>
+    <span class="hljs-keyword">struct</span> Impl;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">unique_ptr</span>&lt;Impl&gt; pImpl;    
+};
+</code></pre>
+<p>widget.cpp</p>
+<pre><code class="lang-cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span>            //as before,</span>
+...                                <span class="hljs-comment">//in &quot;widget.cpp&quot;</span>
+sturct:Widget::Impl {...}; <span class="hljs-comment">//as before</span>
+
+Widget::Widget()                <span class="hljs-comment">//as before</span>
+:pImpl(<span class="hljs-built_in">std</span>::make_unique&lt;Impl&gt;())
+{}
+
+Widget::~Widget() = <span class="hljs-keyword">default</span>; <span class="hljs-comment">//as before</span>
+
+Widget::Widget(Widget&amp;&amp; rhs) = <span class="hljs-keyword">default</span>;
+Widget&amp; Widget::<span class="hljs-keyword">operator</span>=(Widget&amp;&amp; rhs) = <span class="hljs-keyword">default</span>:
+<span class="hljs-comment">//definitions</span>
+</code></pre>
+<p>Pimpl&#x505A;&#x6CD5;&#x662F;&#x4E00;&#x79CD;&#x51CF;&#x5C11;class&#x7684;&#x5B9E;&#x73B0;&#x548C;class&#x7684;&#x4F7F;&#x7528;&#x4E4B;&#x95F4;&#x7F16;&#x8BD1;&#x4F9D;&#x8D56;&#x7684;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#xFF0C;&#x4F46;&#x662F;&#xFF0C;&#x4ECE;&#x6982;&#x5FF5;&#x4E0A;&#x6765;&#x8BB2;&#xFF0C;&#x8FD9;&#x79CD;&#x505A;&#x6CD5;&#x5E76;&#x4E0D;&#x6539;&#x53D8;&#x7C7B;&#x7684;&#x8868;&#x73B0;&#x65B9;&#x5F0F;&#x3002;&#x539F;&#x6765;&#x7684;Widget&#x7C7B;&#x5305;&#x542B;&#x4E86;std::string,std::vector&#x4EE5;&#x53CA;Gadget&#x6570;&#x636E;&#x6210;&#x5458;&#xFF0C;&#x5E76;&#x4E14;&#xFF0C;&#x5047;&#x8BBE;Gadget&#xFF0C;&#x50CF;std::string&#x548C;std::vector&#x90A3;&#x6837;&#xFF0C;&#x53EF;&#x4EE5;&#x88AB;&#x62F7;&#x8D1D;&#x3002;&#x6240;&#x4EE5;&#x6309;&#x7406;&#x8BF4;Widget&#x4E5F;&#x8981;&#x652F;&#x6301;&#x62F7;&#x8D1D;&#x64CD;&#x4F5C;&#x3002;&#x6211;&#x4EEC;&#x5FC5;&#x987B;&#x8981;&#x81EA;&#x5DF1;&#x624B;&#x5199;&#x8FD9;&#x4E9B;&#x62F7;&#x8D1D;&#x51FD;&#x6570;&#x4E86;&#xFF0C;&#x56E0;&#x4E3A;(1)&#x5BF9;&#x4E8E;&#x5E26;&#x6709;move-only&#x7C7B;&#x578B;(&#x50CF;std::unique_ptr)&#x7684;&#x7C7B;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4E0D;&#x4F1A;&#x751F;&#x6210;&#x62F7;&#x8D1D;&#x64CD;&#x4F5C;&#x7684;&#x4EE3;&#x7801;.(2)&#x5373;&#x4F7F;&#x751F;&#x6210;&#x4E86;&#xFF0C;&#x751F;&#x6210;&#x7684;&#x4EE3;&#x7801;&#x53EA;&#x4F1A;&#x62F7;&#x8D1D;std::unique_ptr(&#x5373;&#xFF0C;&#x6267;&#x884C;&#x6D45;&#x62F7;&#x8D1D;)&#xFF0C;&#x800C;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x7684;&#x662F;&#x62F7;&#x8D1D;&#x6307;&#x9488;&#x6240;&#x6307;&#x5411;&#x7684;&#x8D44;&#x6E90;(&#x5373;&#xFF0C;&#x6267;&#x884C;&#x6DF1;&#x62F7;&#x8D1D;)&#x3002;</p>
+<p>&#x73B0;&#x5728;&#x7684;&#x505A;&#x6CD5;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x719F;&#x6089;&#x4E86;&#xFF0C;&#x5728;&#x5934;&#x6587;&#x4EF6;&#x4E2D;&#x58F0;&#x660E;&#x8FD9;&#x4E9B;&#x51FD;&#x6570;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x5B9E;&#x73B0;&#x6587;&#x4EF6;&#x4E2D;&#x5B9E;&#x73B0;&#x8FD9;&#x4E9B;&#x51FD;&#x6570;&#xFF1B;</p>
+<p>widget.h:</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">class</span> Widget{            <span class="hljs-comment">//still in &quot;widget.h&quot;</span>
+<span class="hljs-keyword">public</span>:
+    ...                    <span class="hljs-comment">//other funcs, as before</span>
+    Widget(<span class="hljs-keyword">const</span> Widget&amp; rhs);                <span class="hljs-comment">//declarations</span>
+    Widget&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> Widget&amp; rhs); <span class="hljs-comment">//only</span>
+<span class="hljs-keyword">private</span>:                <span class="hljs-comment">//as before</span>
+    <span class="hljs-keyword">struct</span> Impl;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">unique_ptr</span>&lt;Impl&gt; pImpl;    
+};
+</code></pre>
+<p>widget.cpp</p>
+<pre><code class="lang-cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span>            //as before,</span>
+...                                <span class="hljs-comment">//in &quot;widget.cpp&quot;</span>
+sturct:Widget::Impl {...}; <span class="hljs-comment">//as before</span>
+
+Widget::~Widget() = <span class="hljs-keyword">default</span>; <span class="hljs-comment">//other funcs,as before</span>
+
+Widget::Widget(<span class="hljs-keyword">const</span> Widget&amp; rhs); <span class="hljs-comment">//copy ctor</span>
+: pImpl(<span class="hljs-built_in">std</span>::make_unique&lt;Impl&gt;(*rhs.pImpl))
+{}
+
+Widget&amp; Widget::<span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> Widget&amp; rhs)<span class="hljs-comment">//copy operator=</span>
+{
+    *pImpl = *rhs.pImpl;
+    <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;
+}
+</code></pre>
+<p>&#x4E24;&#x4E2A;&#x51FD;&#x6570;&#x7684;&#x5B9E;&#x73B0;&#x90FD;&#x6BD4;&#x8F83;&#x5E38;&#x89C1;&#x3002;&#x6BCF;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6211;&#x4EEC;&#x90FD;&#x662F;&#x4ECE;&#x6E90;&#x5BF9;&#x8C61;(rhs)&#x5230;&#x76EE;&#x7684;&#x5BF9;&#x8C61;(*this)&#xFF0C;&#x7B80;&#x5355;&#x7684;&#x62F7;&#x8D1D;&#x4E86;Impl&#x7684;&#x7ED3;&#x6784;&#x4F53;&#x7684;&#x5185;&#x5BB9;.&#x6211;&#x4EEC;&#x5229;&#x7528;&#x4E86;&#x8FD9;&#x6837;&#x7684;&#x4E8B;&#x5B9E;&#xFF1A;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x4E3A;Impl&#x751F;&#x6210;&#x62F7;&#x8D1D;&#x64CD;&#x4F5C;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x8FD9;&#x4E9B;&#x64CD;&#x4F5C;&#x4F1A;&#x81EA;&#x52A8;&#x5C06;stuct&#x7684;&#x5185;&#x5BB9;&#x9010;&#x9879;&#x62F7;&#x8D1D;&#xFF0C;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x6211;&#x4EEC;&#x624B;&#x52A8;&#x6765;&#x505A;&#x4E86;&#x3002;&#x6211;&#x4EEC;&#x56E0;&#x6B64;&#x901A;&#x8FC7;&#x8C03;&#x7528;Widget::Impl&#x7684;&#x7F16;&#x8BD1;&#x5668;&#x751F;&#x6210;&#x7684;&#x62F7;&#x8D1D;&#x64CD;&#x4F5C;&#x7B26;&#x6765;&#x5B9E;&#x73B0;&#x4E86;Widget&#x62F7;&#x8D1D;&#x64CD;&#x4F5C;&#x7B26;&#x3002;&#x5728;copy&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x6CE8;&#x610F;&#x5230;&#x6211;&#x4EEC;&#x9075;&#x5FAA;&#x4E86;Item 21&#x7684;&#x5EFA;&#x8BAE;&#xFF0C;&#x4E0D;&#x76F4;&#x63A5;&#x4F7F;&#x7528;new&#xFF0C;&#x800C;&#x662F;&#x4F18;&#x5148;&#x4F7F;&#x7528;&#x4E86;std::make_unique.</p>
+<p>&#x5728;&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x4E3A;&#x4E86;&#x5B9E;&#x73B0;Pimpl&#x505A;&#x6CD5;&#xFF0C;std::unique_ptr&#x662F;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x7684;&#x667A;&#x80FD;&#x6307;&#x9488;&#x7C7B;&#x578B;&#xFF0C;&#x56E0;&#x4E3A;&#x5BF9;&#x8C61;&#x5185;(&#x5728;Widget&#x5185;)&#x7684;pImpl&#x5BF9;&#x5BF9;&#x5E94;&#x7684;&#x5B9E;&#x73B0;&#x5BF9;&#x8C61;(Widget::Impl&#x5BF9;&#x8C61;)&#x62E5;&#x6709;&#x72EC;&#x5360;&#x6240;&#x6709;&#x6743;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5F88;&#x6709;&#x610F;&#x601D;&#x7684;&#x662F;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x5BF9;pImpl&#x4F7F;&#x7528;std::shared_ptr&#x6765;&#x66FF;&#x4EE3;std::unique_ptr,&#x6211;&#x4EEC;&#x53D1;&#x73B0;&#x672C;Item&#x7684;&#x5EFA;&#x8BAE;&#x4E0D;&#x518D;&#x9002;&#x7528;&#x4E86;&#x3002;&#x6CA1;&#x5FC5;&#x8981;&#x5728;Widget.h&#x4E2D;&#x58F0;&#x660E;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C;&#x6CA1;&#x6709;&#x4E86;&#x7528;&#x6237;&#x81EA;&#x5DF1;&#x58F0;&#x660E;&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x5F88;&#x4E50;&#x610F;&#x751F;&#x6210;move&#x64CD;&#x4F5C;&#x4EE3;&#x7801;&#xFF0C;&#x800C;&#x4E14;&#x751F;&#x6210;&#x7684;&#x4EE3;&#x7801;&#x8868;&#x73B0;&#x7684;&#x884C;&#x4E3A;&#x6B63;&#x5408;&#x6211;&#x4EEC;&#x610F;&#x3002;widget.h&#x53D8;&#x5F97;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">class</span> Widget{                    <span class="hljs-comment">//in &quot;widget.h&quot;</span>
+<span class="hljs-keyword">public</span>:
+    Widget();
+    ...                        <span class="hljs-comment">//no declarations for dtor</span>
+                            <span class="hljs-comment">//or move operations</span>
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-keyword">struct</span> Impl;                        <span class="hljs-comment">//std::shared_ptr</span>
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;Impl&gt; pImpl;    <span class="hljs-comment">//instead of std::unique_ptr</span>
+};
+</code></pre>
+<p><code>#include widget.h</code>&#x7684;&#x5BA2;&#x6237;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-cpp">Widget w1;
+auto w2(std::move(w1));            //move-consturct w2
+
+w1 = std::move(w2);                //move-assign w1
+</code></pre>
+<p>&#x6240;&#x6709;&#x4EE3;&#x7801;&#x90FD;&#x4F1A;&#x5982;&#x6211;&#x4EEC;&#x6240;&#x613F;&#x901A;&#x8FC7;&#x7F16;&#x8BD1;&#xFF0C;w1&#x4F1A;&#x88AB;&#x9ED8;&#x8BA4;&#x6784;&#x9020;&#xFF0C;&#x5B83;&#x7684;&#x503C;&#x4F1A;&#x88AB;move&#x5230;w2,&#x4E4B;&#x540E;w2&#x7684;&#x503C;&#x53C8;&#x88AB;move&#x56DE;w1.&#x6700;&#x540E;w1&#x548C;w2&#x90FD;&#x5F97;&#x5230;&#x6790;&#x6784;(&#x8FD9;&#x4F7F;&#x5F97;&#x6307;&#x5411;&#x7684;Widget::Impl&#x5BF9;&#x8C61;&#x88AB;&#x6790;&#x6784;)</p>
+<p>&#x5BF9;pImpl&#x5E94;&#x7528;std::unique_ptr&#x548C;std::shared_ptr&#x7684;&#x8868;&#x73B0;&#x884C;&#x4E3A;&#x4E0D;&#x540C;&#x7684;&#x539F;&#x56E0;&#x662F;&#xFF1A;&#x5B83;&#x4EEC;&#x4E4B;&#x95F4;&#x652F;&#x6301;&#x81EA;&#x5B9A;&#x4E49;&#x7684;deleter&#x7684;&#x65B9;&#x5F0F;&#x4E0D;&#x540C;&#x3002;&#x5BF9;&#x4E8E;std::unique_ptr&#xFF0C;deleter&#x7684;&#x7C7B;&#x578B;&#x662F;&#x667A;&#x80FD;&#x6307;&#x9488;&#x7684;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x8FD9;&#x5C31;&#x4F7F;&#x5F97;&#x7F16;&#x8BD1;&#x5668;&#x751F;&#x6210;&#x66F4;&#x5C0F;&#x7684;&#x8FD0;&#x884C;&#x65F6;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x4EE5;&#x53CA;&#x66F4;&#x5FEB;&#x7684;&#x8FD0;&#x884C;&#x65F6;&#x4EE3;&#x7801;&#x6210;&#x4E3A;&#x53EF;&#x80FD;&#x3002;&#x66F4;&#x597D;&#x7684;&#x6548;&#x7387;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x8981;&#x6C42;&#x5F53;&#x7F16;&#x8BD1;&#x5668;&#x751F;&#x6210;&#x7279;&#x6B8A;&#x51FD;&#x6570;(&#x5982;&#x6790;&#x6784;&#x4EE5;&#x53CA;move&#x64CD;&#x4F5C;)&#x88AB;&#x4F7F;&#x7528;&#x65F6;&#xFF0C;std::unique_ptr&#x6240;&#x6307;&#x5411;&#x7684;&#x7C7B;&#x578B;&#x5FC5;&#x987B;&#x662F;&#x5B8C;&#x6574;&#x7684;&#x3002;&#x5BF9;&#x4E8E;std::shared_ptr&#x6765;&#x8BF4;&#xFF0C;deleter&#x7684;&#x7C7B;&#x578B;&#x4E0D;&#x662F;&#x667A;&#x80FD;&#x6307;&#x9488;&#x7684;&#x4E00;&#x90E8;&#x5206;&#x3002;&#x867D;&#x7136;&#x4F1A;&#x9020;&#x6210;&#x6BD4;&#x8F83;&#x5927;&#x7684;&#x8FD0;&#x884C;&#x65F6;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x548C;&#x6162;&#x4E00;&#x4E9B;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x4F46;&#x662F;&#x5728;&#x8C03;&#x7528;&#x7F16;&#x8BD1;&#x5668;&#x751F;&#x6210;&#x7684;&#x7279;&#x6B8A;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x6307;&#x5411;&#x7684;&#x7C7B;&#x578B;&#x4E0D;&#x9700;&#x8981;&#x662F;&#x5B8C;&#x6574;&#x7684;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;Pimpl&#x505A;&#x6CD5;&#xFF0C;&#x5728;<code>std::unique_ptr</code>&#x548C;<code>std::shared_ptr</code>&#x7684;&#x7279;&#x70B9;&#x4E4B;&#x95F4;&#xFF0C;&#x5176;&#x5B9E;&#x5E76;&#x6CA1;&#x6709;&#x4E00;&#x4E2A;&#x771F;&#x6B63;&#x7684;&#x6743;&#x8861;&#x3002;&#x56E0;&#x4E3A;Widget&#x548C;Widget::Impl&#x4E4B;&#x95F4;&#x662F;&#x72EC;&#x5360;&#x7684;&#x62E5;&#x6709;&#x5173;&#x7CFB;&#xFF0C;<code>std::unique_ptr</code>&#x5728;&#x6B64;&#x9879;&#x5DE5;&#x4F5C;&#x4E2D;&#x5F88;&#x5408;&#x9002;&#x3002;&#x7136;&#x800C;&#xFF0C;&#x5728;&#x4E00;&#x4E9B;&#x5176;&#x4ED6;&#x7684;&#x573A;&#x666F;&#x4E2D;&#xFF0C;&#x5171;&#x4EAB;&#x5F0F;&#x62E5;&#x6709;&#x5173;&#x7CFB;&#x5B58;&#x5728;&#xFF0C;<code>std::shared_ptr</code>&#x624D;&#x662F;&#x4E00;&#x4E2A;&#x5408;&#x9002;&#x7684;&#x9009;&#x62E9;&#xFF0C;&#x5C31;&#x6CA1;&#x5FC5;&#x8981;&#x50CF;&#x4F9D;&#x9760;<code>std::unique_ptr</code>&#x8FD9;&#x6837;&#x7684;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#x7684;&#x505A;&#x6CD5;&#x4E86;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x8981;&#x8BB0;&#x4F4F;&#x7684;&#x4E1C;&#x897F;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Pimpl&#x505A;&#x6CD5;&#x901A;&#x8FC7;&#x51CF;&#x5C11;&#x7C7B;&#x7684;&#x5B9E;&#x73B0;&#x548C;&#x7C7B;&#x7684;&#x4F7F;&#x7528;&#x4E4B;&#x95F4;&#x7684;&#x7F16;&#x8BD1;&#x4F9D;&#x8D56;&#x51CF;&#x5C11;&#x4E86;build&#x6B21;&#x6570;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5BF9;&#x4E8E;<code>std::unique_ptr</code> pImpl&#x6307;&#x9488;&#xFF0C;&#x5728;class&#x7684;&#x5934;&#x6587;&#x4EF6;&#x4E2D;&#x58F0;&#x660E;&#x8FD9;&#x4E9B;&#x7279;&#x6B8A;&#x7684;&#x6210;&#x5458;&#x51FD;&#x6570;&#xFF0C;&#x5728;class&#x7684;&#x5B9E;&#x73B0;&#x6587;&#x4EF6;&#x4E2D;&#x5B9A;&#x4E49;&#x5B83;&#x4EEC;&#x3002;&#x5373;&#x4F7F;&#x9ED8;&#x8BA4;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;(&#x7F16;&#x8BD1;&#x5668;&#x751F;&#x6210;&#x7684;&#x65B9;&#x5F0F;)&#x53EF;&#x4EE5;&#x80DC;&#x4EFB;&#x4E5F;&#x8981;&#x8FD9;&#x4E48;&#x505A;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x4E0A;&#x8FF0;&#x5EFA;&#x8BAE;&#x9002;&#x7528;&#x4E8E;<code>std::unique_ptr</code>,&#x5BF9;<code>std::shared_ptr</code>&#x65E0;&#x7528;</td>
+</tr>
+</tbody>
+</table>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="21-Prefer-std-make_unique-and-std-make_shared-to-direct-use-of-new.html" class="navigation navigation-prev " aria-label="Previous page: 条款21：优先使用std::make_unique和std::make_shared而不是直接使用new">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../RvalueReferencesMoveSemanticsandPerfectForwarding/" class="navigation navigation-next " aria-label="Next page: 第五章 右值引用、移动语义和完美转发">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"条款22：当使用Pimpl的时候在实现文件中定义特殊的成员函数","level":"1.8.5","depth":2,"next":{"title":"第五章 右值引用、移动语义和完美转发","level":"1.9","depth":1,"path":"RvalueReferencesMoveSemanticsandPerfectForwarding/README.md","ref":"RvalueReferencesMoveSemanticsandPerfectForwarding/README.md","articles":[{"title":"条款23：理解std::move和std::forward","level":"1.9.1","depth":2,"path":"RvalueReferencesMoveSemanticsandPerfectForwarding/23-Understand-std-move-and-std-forward.md","ref":"RvalueReferencesMoveSemanticsandPerfectForwarding/23-Understand-std-move-and-std-forward.md","articles":[]},{"title":"条款24：区分通用引用和右值引用","level":"1.9.2","depth":2,"path":"RvalueReferencesMoveSemanticsandPerfectForwarding/24-Distinguish-universal-references-from-rvalue-references.md","ref":"RvalueReferencesMoveSemanticsandPerfectForwarding/24-Distinguish-universal-references-from-rvalue-references.md","articles":[]},{"title":"条款25：在右值引用上使用std::move 在通用引用上使用std::forward","level":"1.9.3","depth":2,"path":"RvalueReferencesMoveSemanticsandPerfectForwarding/25-Use-std-move-on-rvalue-references-std-forward-on-universal-references.md","ref":"RvalueReferencesMoveSemanticsandPerfectForwarding/25-Use-std-move-on-rvalue-references-std-forward-on-universal-references.md","articles":[]},{"title":"条款26：避免在通用引用上重定义函数","level":"1.9.4","depth":2,"path":"RvalueReferencesMoveSemanticsandPerfectForwarding/26-Avoid-overloading-on-universal-references.md","ref":"RvalueReferencesMoveSemanticsandPerfectForwarding/26-Avoid-overloading-on-universal-references.md","articles":[]},{"title":"条款27：熟悉通用引用上重定义函数的其他选择","level":"1.9.5","depth":2,"path":"RvalueReferencesMoveSemanticsandPerfectForwarding/27-Familiarize-yourself-with-alternatives-to-overloading-on-universal-references.md","ref":"RvalueReferencesMoveSemanticsandPerfectForwarding/27-Familiarize-yourself-with-alternatives-to-overloading-on-universal-references.md","articles":[]},{"title":"条款28：理解引用折叠","level":"1.9.6","depth":2,"path":"RvalueReferencesMoveSemanticsandPerfectForwarding/28-Understand-reference-collapsing.md","ref":"RvalueReferencesMoveSemanticsandPerfectForwarding/28-Understand-reference-collapsing.md","articles":[]},{"title":"条款29：假定移动操作不存在，不廉价，不使用","level":"1.9.7","depth":2,"path":"RvalueReferencesMoveSemanticsandPerfectForwarding/29-Assume-that-move-operations-are-not-present-not-cheap-and-not-used.md","ref":"RvalueReferencesMoveSemanticsandPerfectForwarding/29-Assume-that-move-operations-are-not-present-not-cheap-and-not-used.md","articles":[]},{"title":"条款30：熟悉完美转发和失败的情况","level":"1.9.8","depth":2,"path":"RvalueReferencesMoveSemanticsandPerfectForwarding/30-Familiarize-yourself-with-perfect-forwarding-failure-cases.md","ref":"RvalueReferencesMoveSemanticsandPerfectForwarding/30-Familiarize-yourself-with-perfect-forwarding-failure-cases.md","articles":[]}]},"previous":{"title":"条款21：优先使用std::make_unique和std::make_shared而不是直接使用new","level":"1.8.4","depth":2,"path":"SmartPointers/21-Prefer-std-make_unique-and-std-make_shared-to-direct-use-of-new.md","ref":"SmartPointers/21-Prefer-std-make_unique-and-std-make_shared-to-direct-use-of-new.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"SmartPointers/22-When-using-the-Pimpl-Idiom-define-special-member-functions-in-the-implementation-file.md","mtime":"2020-11-11T15:39:05.202Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-11T15:55:21.177Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

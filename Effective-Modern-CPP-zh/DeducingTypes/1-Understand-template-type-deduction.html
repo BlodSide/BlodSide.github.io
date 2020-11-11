@@ -1,0 +1,1211 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>条款1：理解模板类型推导 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="2-Understand-auto-type-deduction.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../FromthePublisher/">
+            
+                <a href="../FromthePublisher/">
+            
+                    
+                    出版者的忠告
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../Acknowledgements/">
+            
+                <a href="../Acknowledgements/">
+            
+                    
+                    致谢
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../Introduction/">
+            
+                <a href="../Introduction/">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第一章 类型推导
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.5.1" data-path="1-Understand-template-type-deduction.html">
+            
+                <a href="1-Understand-template-type-deduction.html">
+            
+                    
+                    条款1：理解模板类型推导
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="2-Understand-auto-type-deduction.html">
+            
+                <a href="2-Understand-auto-type-deduction.html">
+            
+                    
+                    条款2：理解auto类型推导
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="3-Understand-decltype.html">
+            
+                <a href="3-Understand-decltype.html">
+            
+                    
+                    条款3：理解decltype
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="4-Know-how-to-view-deduced-types.html">
+            
+                <a href="4-Know-how-to-view-deduced-types.html">
+            
+                    
+                    条款4：知道如何查看类型推导
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../auto/">
+            
+                <a href="../auto/">
+            
+                    
+                    第二章 auto关键字
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../auto/5-Prefer-auto-to-explicit-type-declarations.html">
+            
+                <a href="../auto/5-Prefer-auto-to-explicit-type-declarations.html">
+            
+                    
+                    条款5：优先使用auto而非显式类型声明
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../auto/6-Use-the-explicitly-typed-initializer-idiom-when-auto-deduces-undesired-types.html">
+            
+                <a href="../auto/6-Use-the-explicitly-typed-initializer-idiom-when-auto-deduces-undesired-types.html">
+            
+                    
+                    条款6：当auto推导出非预期类型时应当使用显式的类型初始化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../MovingtoModernC++/README.md">
+            
+                <span>
+            
+                    
+                    第三章 使用现代C++
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../MovingtoModernC++/7-Distinguish-between-xxx-when-creating-objects.html">
+            
+                <a href="../MovingtoModernC++/7-Distinguish-between-xxx-when-creating-objects.html">
+            
+                    
+                    条款7：创建对象时区分()和{}
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../MovingtoModernC++/8-Prefer-nullptr-to-0-and-NULL.html">
+            
+                <a href="../MovingtoModernC++/8-Prefer-nullptr-to-0-and-NULL.html">
+            
+                    
+                    条款8：优先使用nullptr而不是0或者NULL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../MovingtoModernC++/9-Prefer-alias-declarations-to-typedefs.html">
+            
+                <a href="../MovingtoModernC++/9-Prefer-alias-declarations-to-typedefs.html">
+            
+                    
+                    条款9：优先使用声明别名而不是typedef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../MovingtoModernC++/10-Prefer-scoped-enum-to-unscoped-enums.html">
+            
+                <a href="../MovingtoModernC++/10-Prefer-scoped-enum-to-unscoped-enums.html">
+            
+                    
+                    条款10：优先使用作用域限制的enmu而不是无作用域的enum
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="../MovingtoModernC++/11-Prefer-deleted-functions-to-private-undefined-ones.html">
+            
+                <a href="../MovingtoModernC++/11-Prefer-deleted-functions-to-private-undefined-ones.html">
+            
+                    
+                    条款11：优先使用delete关键字删除函数而不是private却又不实现的函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6" data-path="../MovingtoModernC++/12-Declare-overriding-functions-override.html">
+            
+                <a href="../MovingtoModernC++/12-Declare-overriding-functions-override.html">
+            
+                    
+                    条款12：使用override关键字声明覆盖的函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.7" data-path="../MovingtoModernC++/13-Prefer-const_iterators-to-iterators.html">
+            
+                <a href="../MovingtoModernC++/13-Prefer-const_iterators-to-iterators.html">
+            
+                    
+                    条款13：优先使用const_iterator而不是iterator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.8" data-path="../MovingtoModernC++/14-Declare-functions-noexcept-if-they-won’t-emit-exceptions.md">
+            
+                <span>
+            
+                    
+                    条款14：使用noexcept修饰不想抛出异常的函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.9" data-path="../MovingtoModernC++/15-Use-constexpr-whenever-possible.md">
+            
+                <span>
+            
+                    
+                    条款15：尽可能的使用constexpr
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.10" data-path="../MovingtoModernC++/16-Make-const-member-functions-thread-safe.md">
+            
+                <span>
+            
+                    
+                    条款16：保证const成员函数线程安全
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.11" data-path="../MovingtoModernC++/17-Understand-special-member-function-generation.md">
+            
+                <span>
+            
+                    
+                    条款17：理解特殊成员函数的生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../SmartPointers/">
+            
+                <a href="../SmartPointers/">
+            
+                    
+                    第四章 智能指针
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../SmartPointers/18-Use-std-unique_ptr-for-exclusive-ownership-resource-management.html">
+            
+                <a href="../SmartPointers/18-Use-std-unique_ptr-for-exclusive-ownership-resource-management.html">
+            
+                    
+                    条款18：使用std::unique_ptr管理独占资源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../SmartPointers/19-Use-std-shared_ptr-for-shared-ownership-resource-management.html">
+            
+                <a href="../SmartPointers/19-Use-std-shared_ptr-for-shared-ownership-resource-management.html">
+            
+                    
+                    条款19：使用std::shared_ptr管理共享资源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../SmartPointers/20-Use-std-weak_ptr-for-std-shared_ptr-like-pointers-that-can-dangle.html">
+            
+                <a href="../SmartPointers/20-Use-std-weak_ptr-for-std-shared_ptr-like-pointers-that-can-dangle.html">
+            
+                    
+                    条款20：在std::shared_ptr类似指针可以悬挂时使用std::weak_ptr
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../SmartPointers/21-Prefer-std-make_unique-and-std-make_shared-to-direct-use-of-new.html">
+            
+                <a href="../SmartPointers/21-Prefer-std-make_unique-and-std-make_shared-to-direct-use-of-new.html">
+            
+                    
+                    条款21：优先使用std::make_unique和std::make_shared而不是直接使用new
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="../SmartPointers/22-When-using-the-Pimpl-Idiom-define-special-member-functions-in-the-implementation-file.html">
+            
+                <a href="../SmartPointers/22-When-using-the-Pimpl-Idiom-define-special-member-functions-in-the-implementation-file.html">
+            
+                    
+                    条款22：当使用Pimpl的时候在实现文件中定义特殊的成员函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/">
+            
+                <a href="../RvalueReferencesMoveSemanticsandPerfectForwarding/">
+            
+                    
+                    第五章 右值引用、移动语义和完美转发
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/23-Understand-std-move-and-std-forward.html">
+            
+                <a href="../RvalueReferencesMoveSemanticsandPerfectForwarding/23-Understand-std-move-and-std-forward.html">
+            
+                    
+                    条款23：理解std::move和std::forward
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/24-Distinguish-universal-references-from-rvalue-references.html">
+            
+                <a href="../RvalueReferencesMoveSemanticsandPerfectForwarding/24-Distinguish-universal-references-from-rvalue-references.html">
+            
+                    
+                    条款24：区分通用引用和右值引用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/25-Use-std-move-on-rvalue-references-std-forward-on-universal-references.md">
+            
+                <span>
+            
+                    
+                    条款25：在右值引用上使用std::move 在通用引用上使用std::forward
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/26-Avoid-overloading-on-universal-references.md">
+            
+                <span>
+            
+                    
+                    条款26：避免在通用引用上重定义函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/27-Familiarize-yourself-with-alternatives-to-overloading-on-universal-references.md">
+            
+                <span>
+            
+                    
+                    条款27：熟悉通用引用上重定义函数的其他选择
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.6" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/28-Understand-reference-collapsing.md">
+            
+                <span>
+            
+                    
+                    条款28：理解引用折叠
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.7" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/29-Assume-that-move-operations-are-not-present-not-cheap-and-not-used.md">
+            
+                <span>
+            
+                    
+                    条款29：假定移动操作不存在，不廉价，不使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.8" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/30-Familiarize-yourself-with-perfect-forwarding-failure-cases.md">
+            
+                <span>
+            
+                    
+                    条款30：熟悉完美转发和失败的情况
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../LambdaExpressions/README.md">
+            
+                <span>
+            
+                    
+                    第六章 Lambda表达式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../LambdaExpressions/31-Avoid-default-capture-modes.md">
+            
+                <span>
+            
+                    
+                    条款31：避免默认的参数捕捉
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../LambdaExpressions/32-Use-init-capture-to-move-objects-into-closures.md">
+            
+                <span>
+            
+                    
+                    条款32：使用init捕捉来移动对象到闭包
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../LambdaExpressions/33-Use-decltype-on-auto&&-parameters-to-std-forward-them.md">
+            
+                <span>
+            
+                    
+                    条款33：在auto&&参数上使用decltype当std::forward auto&&参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../LambdaExpressions/34-Prefer-lambdas-to-std-bind.md">
+            
+                <span>
+            
+                    
+                    条款34：优先使用lambda而不是std::bind
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../TheConcurrencyAPI/README.md">
+            
+                <span>
+            
+                    
+                    第七章 并发API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../TheConcurrencyAPI/35-Prefer-task-based-programming-to-thread-based.md">
+            
+                <span>
+            
+                    
+                    条款35：优先使用task-based而不是thread-based
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../TheConcurrencyAPI/36-Specify-std-launch-async-if-asynchronicity-is-essential.md">
+            
+                <span>
+            
+                    
+                    条款36：当异步是必要的时声明std::launch::async
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../TheConcurrencyAPI/37-Make-std-threads-unjoinable-on-all-paths.md">
+            
+                <span>
+            
+                    
+                    条款37：使得std::thread在所有的路径下无法join
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../TheConcurrencyAPI/38-Be-aware-of-varying-thread-handle-destructor-behavior.md">
+            
+                <span>
+            
+                    
+                    条款38：注意线程句柄析构的行为
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="../TheConcurrencyAPI/39-Consider-void-futures-for-one-shot-event-communication.md">
+            
+                <span>
+            
+                    
+                    条款39：考虑在一次性事件通信上void的特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.6" data-path="../TheConcurrencyAPI/40-Use-std-atomic-for-concurrency-volatile-for-special-memory.md">
+            
+                <span>
+            
+                    
+                    条款40：在并发时使用std::atomic 在特殊内存上使用volatile
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../Tweaks/README.md">
+            
+                <span>
+            
+                    
+                    第八章 改进
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../Tweaks/41-Consider-pass-by-value-for-copyable-parameters-that-are-cheap-to-move-and-always-copied.md">
+            
+                <span>
+            
+                    
+                    条款41：考虑对拷贝参数按值传递移动廉价，那就尽量拷贝
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../Tweaks/42-Consider-emplacement-instead-of-insertion.md">
+            
+                <span>
+            
+                    
+                    条款42：考虑使用emplace代替insert
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >条款1：理解模板类型推导</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x6761;&#x6B3E;1&#xFF1A;&#x7406;&#x89E3;&#x6A21;&#x677F;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;">&#x6761;&#x6B3E;1&#xFF1A;&#x7406;&#x89E3;&#x6A21;&#x677F;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;</h1>
+<h2 id="understand-template-type-deduction">Understand template type deduction.</h2>
+<p>&#x5F53;&#x4E00;&#x4E2A;&#x590D;&#x6742;&#x7CFB;&#x7EDF;&#x7684;&#x7528;&#x6237;&#x5FFD;&#x7565;&#x8FD9;&#x4E2A;&#x7CFB;&#x7EDF;&#x662F;&#x5982;&#x4F55;&#x5DE5;&#x4F5C;&#x7684;&#xFF0C;&#x90A3;&#x5C31;&#x518D;&#x597D;&#x4E0D;&#x8FC7;&#x4E86;&#xFF0C;&#x56E0;&#x4E3A;&#x201C;&#x5982;&#x4F55;&#x201D;&#x626F;&#x4E86;&#x4E00;&#x5806;&#x7CFB;&#x7EDF;&#x7684;&#x8BBE;&#x8BA1;&#x7EC6;&#x8282;&#x3002;&#x4ECE;&#x8FD9;&#x4E2A;&#x65B9;&#x9762;&#x6765;&#x5EA6;&#x91CF;&#xFF0C;C++&#x7684;&#x6A21;&#x677F;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x662F;&#x4E2A;&#x5DE8;&#x5927;&#x7684;&#x6210;&#x529F;&#x3002;&#x6210;&#x767E;&#x4E0A;&#x4E07;&#x7684;&#x7A0B;&#x5E8F;&#x733F;&#x7ED9;&#x6A21;&#x677F;&#x51FD;&#x6570;&#x4F20;&#x9012;&#x5B8C;&#x5168;&#x7C7B;&#x578B;&#x5339;&#x914D;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x5C3D;&#x7BA1;&#x6709;&#x5F88;&#x591A;&#x7684;&#x7A0B;&#x5E8F;&#x733F;&#x4F1A;&#x66F4;&#x52A0;&#x82DB;&#x523B;&#x7684;&#x7ED9;&#x4E8E;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x63A8;&#x5BFC;&#x7684;&#x7C7B;&#x578B;&#x7684;&#x4E25;&#x683C;&#x63CF;&#x8FF0;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4E0A;&#x9762;&#x7684;&#x63CF;&#x8FF0;&#x5305;&#x62EC;&#x4F60;&#xFF0C;&#x90A3;&#x6211;&#x6709;&#x597D;&#x6D88;&#x606F;&#x4E5F;&#x6709;&#x574F;&#x6D88;&#x606F;&#x3002;&#x597D;&#x6D88;&#x606F;&#x5C31;&#x662F;&#x6A21;&#x677F;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x662F;&#x73B0;&#x4EE3;C++&#x7684;&#x6700;&#x5F15;&#x4EBA;&#x6CE8;&#x76EE;&#x7684;&#x7279;&#x6027;&#xFF1A;<code>auto</code>&#x3002;&#x5982;&#x679C;&#x4F60;&#x559C;&#x6B22;C++98&#x6A21;&#x677F;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#xFF0C;&#x90A3;&#x4E48;&#x4F60;&#x4F1A;&#x559C;&#x6B22;&#x4E0A;C++11&#x7684;<code>auto</code>&#x5BF9;&#x5E94;&#x7684;&#x6A21;&#x677F;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x3002;&#x574F;&#x6D88;&#x606F;&#x5C31;&#x662F;&#x6A21;&#x677F;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x7684;&#x6CD5;&#x5219;&#x662F;&#x53D7;&#x9650;&#x4E8E;<code>auto</code>&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x7684;&#xFF0C;&#x6709;&#x65F6;&#x5019;&#x770B;&#x8D77;&#x6765;&#x5E94;&#x7528;&#x5230;&#x6A21;&#x677F;&#x4E0A;&#x4E0D;&#x662F;&#x90A3;&#x4E48;&#x76F4;&#x89C2;&#x3002;&#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x539F;&#x56E0;&#xFF0C;&#x771F;&#x6B63;&#x7684;&#x7406;&#x89E3;&#x6A21;&#x677F;<code>auto</code>&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x662F;&#x5F88;&#x91CD;&#x8981;&#x7684;&#x3002;&#x8FD9;&#x6761;&#x6761;&#x6B3E;&#x56CA;&#x62EC;&#x4E86;&#x4F60;&#x7684;&#x6240;&#x9700;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x60F3;&#x5927;&#x81F4;&#x770B;&#x4E00;&#x6BB5;&#x4F2A;&#x7801;&#xFF0C;&#x4E00;&#x6BB5;&#x51FD;&#x6570;&#x6A21;&#x677F;&#x770B;&#x8D77;&#x6765;&#x4F1A;&#x662F;&#x8FD9;&#x6837;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">(ParamType param)</span></span>;
+</code></pre>
+<p>&#x8C03;&#x7528;&#x4F1A;&#x662F;&#x8FD9;&#x6837;&#xFF1A;</p>
+<pre><code class="lang-cpp">f(expr);                    <span class="hljs-comment">// &#x7528;&#x4E00;&#x4E9B;&#x8868;&#x8FBE;&#x5F0F;&#x6765;&#x8C03;&#x7528;f</span>
+</code></pre>
+<p>&#x5728;&#x7F16;&#x8BD1;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x901A;&#x8FC7;<code>expr</code>&#x6765;&#x8FDB;&#x884C;&#x63A8;&#x5BFC;&#x51FA;&#x4E24;&#x4E2A;&#x7C7B;&#x578B;&#xFF1A;&#x4E00;&#x4E2A;&#x662F;<code>T</code>&#x7684;&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x662F;<code>ParamType</code>&#x3002;&#x901A;&#x5E38;&#x6765;&#x8BF4;&#x8FD9;&#x4E9B;&#x7C7B;&#x578B;&#x662F;&#x4E0D;&#x540C;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;<code>ParamType</code>&#x901A;&#x5E38;&#x5305;&#x542B;&#x4E00;&#x4E9B;&#x7C7B;&#x578B;&#x7684;&#x88C5;&#x9970;&#xFF0C;&#x6BD4;&#x5982;<code>const</code>&#x6216;&#x5F15;&#x7528;&#x7279;&#x6027;&#x3002;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;&#x6A21;&#x677F;&#x901A;&#x5E38;&#x91C7;&#x7528;&#x5982;&#x4E0B;&#x58F0;&#x660E;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-keyword">const</span> T&amp; param)</span></span>;        <span class="hljs-comment">// ParamType &#x662F; const T&amp;</span>
+</code></pre>
+<p>&#x5982;&#x679C;&#x6709;&#x8FD9;&#x6837;&#x7684;&#x8C03;&#x7528;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>&#xFF1B;
+
+f(x)&#xFF1B;                        <span class="hljs-comment">// &#x4F7F;&#x7528;int&#x8C03;&#x7528;f</span>
+</code></pre>
+<p><code>T</code>&#x88AB;&#x63A8;&#x5BFC;&#x6210;<code>int</code>&#xFF0C;<code>ParamType</code>&#x88AB;&#x63A8;&#x5BFC;&#x6210;<code>const int&amp;</code>&#x3002;</p>
+<p>&#x4E00;&#x822C;&#x4F1A;&#x5F88;&#x81EA;&#x7136;&#x7684;&#x671F;&#x671B;<code>T</code>&#x7684;&#x7C7B;&#x578B;&#x548C;&#x4F20;&#x9012;&#x7ED9;&#x4ED6;&#x7684;&#x53C2;&#x6570;&#x7684;&#x7C7B;&#x578B;&#x4E00;&#x81F4;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;<code>T</code>&#x7684;&#x7C7B;&#x578B;&#x5C31;&#x662F;<code>expr</code>&#x7684;&#x7C7B;&#x578B;&#x3002;&#x5728;&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;<code>x</code>&#x662F;&#x4E00;&#x4E2A;<code>int</code>&#xFF0C;<code>T</code>&#x4E5F;&#x5C31;&#x88AB;&#x63A8;&#x5BFC;&#x6210;<code>int</code>&#x3002;&#x4F46;&#x662F;&#x5E76;&#x4E0D;&#x662F;&#x6240;&#x6709;&#x7684;&#x60C5;&#x51B5;&#x90FD;&#x662F;&#x5982;&#x6B64;&#x3002;<code>T</code>&#x7684;&#x7C7B;&#x578B;&#x4E0D;&#x4EC5;&#x548C;<code>expr</code>&#x7684;&#x7C7B;&#x578B;&#x72EC;&#x7ACB;&#xFF0C;&#x800C;&#x4E14;&#x8FD8;&#x548C;<code>ParamType</code>&#x7684;&#x5F62;&#x5F0F;&#x72EC;&#x7ACB;&#x3002;&#x4E0B;&#x9762;&#x662F;&#x4E09;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<ul>
+<li><p><code>ParamType</code>&#x662F;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#x6216;&#x8005;&#x662F;&#x4E00;&#x4E2A;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#xFF0C;&#x4F46;&#x5E76;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x901A;&#x7528;&#x7684;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#xFF08;&#x901A;&#x7528;&#x7684;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x7684;&#x5185;&#x5BB9;&#x5728;&#x6761;&#x6B3E;24&#x3002;&#x6B64;&#x65F6;&#xFF0C;&#x4F60;&#x8981;&#x77E5;&#x9053;&#x4F8B;&#x5916;&#x60C5;&#x51B5;&#x4F1A;&#x51FA;&#x73B0;&#x7684;&#xFF0C;&#x4ED6;&#x4EEC;&#x7684;&#x7C7B;&#x578B;&#x5E76;&#x4E0D;&#x548C;&#x5DE6;&#x503C;&#x5E94;&#x7528;&#x6216;&#x8005;&#x53F3;&#x503C;&#x5F15;&#x7528;&#xFF09;&#x3002;</p>
+</li>
+<li><p><code>ParamType</code>&#x662F;&#x4E00;&#x4E2A;&#x901A;&#x7528;&#x7684;&#x5F15;&#x7528;</p>
+</li>
+<li><p><code>ParamType</code>&#x65E2;&#x4E0D;&#x662F;&#x6307;&#x9488;&#x4E5F;&#x4E0D;&#x662F;&#x5F15;&#x7528;</p>
+</li>
+</ul>
+<p>&#x8FD9;&#x6837;&#x7684;&#x8BDD;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x6709;&#x4E86;&#x4E09;&#x79CD;&#x7C7B;&#x578B;&#x9700;&#x8981;&#x68C0;&#x67E5;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x573A;&#x666F;&#x3002;&#x6BCF;&#x4E00;&#x79CD;&#x90FD;&#x662F;&#x57FA;&#x4E8E;&#x6211;&#x4EEC;&#x961F;&#x6A21;&#x677F;&#x7684;&#x901A;&#x7528;&#x7684;&#x8C03;&#x7528;&#x5C01;&#x88C5;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">(ParamType param)</span></span>;
+
+f(expr);                    <span class="hljs-comment">// &#x4ECE;expr&#x63A8;&#x5BFC;&#x51FA;T&#x548C;ParamType&#x7684;&#x7C7B;&#x578B;</span>
+</code></pre>
+<h3 id="&#x7B2C;&#x4E00;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;paramtype&#x662F;&#x4E2A;&#x975E;&#x901A;&#x7528;&#x7684;&#x5F15;&#x7528;&#x6216;&#x8005;&#x662F;&#x4E00;&#x4E2A;&#x6307;&#x9488;">&#x7B2C;&#x4E00;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;<code>ParamType</code>&#x662F;&#x4E2A;&#x975E;&#x901A;&#x7528;&#x7684;&#x5F15;&#x7528;&#x6216;&#x8005;&#x662F;&#x4E00;&#x4E2A;&#x6307;&#x9488;</h3>
+<p>&#x6700;&#x7B80;&#x5355;&#x7684;&#x60C5;&#x51B5;&#x662F;&#x5F53;<code>ParamType</code>&#x662F;&#x4E00;&#x4E2A;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x6216;&#x8005;&#x662F;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#xFF0C;&#x4F46;&#x5E76;&#x975E;&#x662F;&#x901A;&#x7528;&#x7684;&#x5F15;&#x7528;&#x3002;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x7684;&#x8FC7;&#x7A0B;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ol>
+<li><p>&#x5982;&#x679C;<code>expr</code>&#x7684;&#x7C7B;&#x578B;&#x662F;&#x4E2A;&#x5F15;&#x7528;&#xFF0C;&#x5FFD;&#x7565;&#x5F15;&#x7528;&#x7684;&#x90E8;&#x5206;&#x3002;</p>
+</li>
+<li><p>&#x7136;&#x540E;&#x5229;&#x7528;<code>expr</code>&#x7684;&#x7C7B;&#x578B;&#x548C;<code>ParamType</code>&#x5BF9;&#x6BD4;&#x53BB;&#x5224;&#x65AD;<code>T</code>&#x7684;&#x7C7B;&#x578B;&#x3002;</p>
+</li>
+</ol>
+<p>&#x4E3E;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;&#x5982;&#x679C;&#x8FD9;&#x4E2A;&#x662F;&#x6211;&#x4EEC;&#x7684;&#x6A21;&#x677F;&#xFF0C;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">(T&amp; param)</span></span>;           <span class="hljs-comment">// param&#x662F;&#x4E00;&#x4E2A;&#x5F15;&#x7528;&#x7C7B;&#x578B;</span>
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x6709;&#x8FD9;&#x6837;&#x7684;&#x4EE3;&#x7801;&#x53D8;&#x91CF;&#x58F0;&#x660E;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">int</span> x = <span class="hljs-number">27</span>;                 <span class="hljs-comment">// x&#x662F;&#x4E00;&#x4E2A;int</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> cx = x;           <span class="hljs-comment">// cx&#x662F;&#x4E00;&#x4E2A;const int</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>&amp; rx = x;          <span class="hljs-comment">// rx&#x662F;const int&#x7684;&#x5F15;&#x7528;</span>
+</code></pre>
+<p><code>param</code>&#x548C;<code>T</code>&#x5728;&#x4E0D;&#x540C;&#x7684;&#x8C03;&#x7528;&#x4E0B;&#x9762;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-cpp">f(x);                       <span class="hljs-comment">// T&#x662F;int&#xFF0C;param&#x7684;&#x7C7B;&#x578B;&#x65F6;int&amp;</span>
+
+f(cx);                      <span class="hljs-comment">// T&#x662F;const int&#xFF0C;</span>
+                            <span class="hljs-comment">// param&#x7684;&#x7C7B;&#x578B;&#x662F;const int&amp;</span>
+f(rx);                      <span class="hljs-comment">// T&#x662F;const int</span>
+                            <span class="hljs-comment">// param&#x7684;&#x7C7B;&#x578B;&#x65F6;const int&amp;</span>
+</code></pre>
+<p>&#x5728;&#x7B2C;&#x4E8C;&#x548C;&#x7B2C;&#x4E09;&#x90E8;&#x5206;&#x7684;&#x8C03;&#x7528;&#xFF0C;&#x6CE8;&#x610F;<code>cx</code>&#x548C;<code>rx</code>&#x7531;&#x4E8E;&#x88AB;&#x6307;&#x5B9A;&#x4E3A;<code>const</code>&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#xFF0C;<code>T</code>&#x88AB;&#x63A8;&#x5BFC;&#x6210;<code>const int</code>&#xFF0C;&#x8FD9;&#x4E5F;&#x5C31;&#x5BFC;&#x81F4;&#x4E86;&#x53C2;&#x6570;&#x7684;&#x7C7B;&#x578B;&#x88AB;&#x63A8;&#x5BFC;&#x4E3A;<code>const int&amp;</code>&#x3002;&#x8FD9;&#x5BF9;&#x8C03;&#x7528;&#x8005;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x3002;&#x5F53;&#x4F20;&#x9012;&#x4E00;&#x4E2A;<code>const</code>&#x5BF9;&#x8C61;&#x7ED9;&#x4E00;&#x4E2A;&#x5F15;&#x7528;&#x53C2;&#x6570;&#xFF0C;&#x4ED6;&#x4EEC;&#x671F;&#x671B;&#x5BF9;&#x8C61;&#x4F1A;&#x4FDD;&#x7559;&#x5E38;&#x91CF;&#x7279;&#x6027;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x53C2;&#x6570;&#x53D8;&#x6210;&#x4E86;<code>const</code>&#x7684;&#x5F15;&#x7528;&#x3002;&#x8FD9;&#x4E5F;&#x5C31;&#x662F;&#x4E3A;&#x4EC0;&#x4E48;&#x7ED9;&#x4E00;&#x4E2A;&#x4EE5;<code>T&amp;</code>&#x4E3A;&#x53C2;&#x6570;&#x7684;&#x6A21;&#x677F;&#x4F20;&#x9012;&#x4E00;&#x4E2A;<code>const</code>&#x5BF9;&#x8C61;&#x662F;&#x5B89;&#x5168;&#x7684;&#xFF1A;&#x5BF9;&#x8C61;&#x7684;<code>const</code>&#x7279;&#x6027;&#x662F;<code>T</code>&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x7684;&#x4E00;&#x90E8;&#x5206;&#x3002;</p>
+<p>&#x5728;&#x7B2C;&#x4E09;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x6CE8;&#x610F;&#x5C3D;&#x7BA1;<code>rx</code>&#x7684;&#x7C7B;&#x578B;&#x662F;&#x4E00;&#x4E2A;&#x5F15;&#x7528;&#xFF0C;<code>T</code>&#x4ECD;&#x7136;&#x88AB;&#x63A8;&#x5BFC;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x975E;&#x5F15;&#x7528;&#x7684;&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;<code>rx</code>&#x7684;&#x5F15;&#x7528;&#x7279;&#x6027;&#x4F1A;&#x88AB;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x6240;&#x5FFD;&#x7565;&#x3002;</p>
+<p>&#x8FD9;&#x4E9B;&#x4F8B;&#x5B50;&#x5C55;&#x793A;&#x4E86;&#x5DE6;&#x503C;&#x5F15;&#x7528;&#x53C2;&#x6570;&#x7684;&#x5904;&#x7406;&#x65B9;&#x5F0F;&#xFF0C;&#x4F46;&#x662F;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x5728;&#x53F3;&#x503C;&#x5F15;&#x7528;&#x4E0A;&#x4E5F;&#x662F;&#x5982;&#x6B64;&#x3002;&#x5F53;&#x7136;&#xFF0C;&#x53F3;&#x503C;&#x53C2;&#x6570;&#x53EA;&#x53EF;&#x80FD;&#x4F20;&#x9012;&#x7ED9;&#x53F3;&#x503C;&#x5F15;&#x7528;&#x53C2;&#x6570;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x4E2A;&#x9650;&#x5236;&#x548C;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x6CA1;&#x6709;&#x5173;&#x7CFB;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x628A;<code>f</code>&#x7684;&#x53C2;&#x6570;&#x7C7B;&#x578B;&#x4ECE;<code>T&amp;</code>&#x53D8;&#x6210;<code>const T&amp;</code>&#xFF0C;&#x60C5;&#x51B5;&#x5C31;&#x4F1A;&#x53D1;&#x751F;&#x53D8;&#x5316;&#xFF0C;&#x4F46;&#x662F;&#x5E76;&#x4E0D;&#x4F1A;&#x4EE4;&#x4EBA;&#x60CA;&#x8BB6;&#x3002;&#x7531;&#x4E8E;<code>param</code>&#x7684;&#x58F0;&#x660E;&#x662F;<code>const</code>&#x5F15;&#x7528;&#x7684;&#xFF0C;<code>cx</code>&#x548C;<code>rx</code>&#x7684;<code>const</code>&#x7279;&#x6027;&#x4F1A;&#x88AB;&#x4FDD;&#x7559;&#xFF0C;&#x8FD9;&#x6837;&#x7684;&#x8BDD;<code>T</code>&#x7684;<code>const</code>&#x7279;&#x6027;&#x5C31;&#x6CA1;&#x6709;&#x5FC5;&#x8981;&#x4E86;&#x3002;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-keyword">const</span> T&amp; param)</span></span>;     <span class="hljs-comment">// param&#x73B0;&#x5728;&#x662F;const&#x7684;&#x5F15;&#x7528;</span>
+
+<span class="hljs-keyword">int</span> x = <span class="hljs-number">27</span>;                 <span class="hljs-comment">// &#x548C;&#x4E4B;&#x524D;&#x4E00;&#x6837;</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> cx = x;           <span class="hljs-comment">// &#x548C;&#x4E4B;&#x524D;&#x4E00;&#x6837;</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>&amp; rx = x;          <span class="hljs-comment">// &#x548C;&#x4E4B;&#x524D;&#x4E00;&#x6837;</span>
+
+f(x);                       <span class="hljs-comment">// T&#x662F;int&#xFF0C;param&#x7684;&#x7C7B;&#x578B;&#x662F;const int&amp;</span>
+
+f(cx);                      <span class="hljs-comment">// T&#x662F;int&#xFF0C;param&#x7684;&#x7C7B;&#x578B;&#x662F;const int&amp;</span>
+
+f(rx);                      <span class="hljs-comment">// T&#x662F;int&#xFF0C;param&#x7684;&#x7C7B;&#x578B;&#x662F;const int&amp;</span>
+</code></pre>
+<p>&#x548C;&#x4E4B;&#x524D;&#x4E00;&#x6837;&#xFF0C;<code>rx</code>&#x7684;&#x5F15;&#x7528;&#x7279;&#x6027;&#x5728;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x4F1A;&#x88AB;&#x5FFD;&#x7565;&#x3002;</p>
+<p>&#x5982;&#x679C;<code>param</code>&#x662F;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#xFF08;&#x6216;&#x8005;&#x6307;&#x5411;<code>const</code>&#x7684;&#x6307;&#x9488;&#xFF09;&#x800C;&#x4E0D;&#x662F;&#x5F15;&#x7528;&#xFF0C;&#x60C5;&#x51B5;&#x4E5F;&#x662F;&#x7C7B;&#x4F3C;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">(T* param)</span></span>;           <span class="hljs-comment">// param&#x662F;&#x4E00;&#x4E2A;&#x6307;&#x9488;</span>
+
+<span class="hljs-keyword">int</span> x = <span class="hljs-number">27</span>;                 <span class="hljs-comment">// &#x548C;&#x4E4B;&#x524D;&#x4E00;&#x6837;</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> *px = &amp;x;         <span class="hljs-comment">// px&#x662F;&#x4E00;&#x4E2A;&#x6307;&#x5411;const int x&#x7684;&#x6307;&#x9488;</span>
+
+f(&amp;x);                      <span class="hljs-comment">// T&#x662F;int&#xFF0C;param&#x7684;&#x7C7B;&#x578B;&#x662F;int*</span>
+
+f(px);                      <span class="hljs-comment">// T&#x662F;const int</span>
+                            <span class="hljs-comment">// param&#x7684;&#x7C7B;&#x578B;&#x65F6;const int*</span>
+</code></pre>
+<p>&#x5230;&#x76EE;&#x524D;&#x4E3A;&#x6B62;&#xFF0C;&#x4F60;&#x6216;&#x8BB8;&#x778C;&#x7761;&#x4E86;&#xFF0C;&#x56E0;&#x4E3A;C++&#x5728;&#x5F15;&#x7528;&#x548C;&#x6307;&#x9488;&#x4E0A;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x6CD5;&#x5219;&#x662F;&#x5982;&#x6B64;&#x7684;&#x81EA;&#x7136;&#xFF0C;&#x6211;&#x5199;&#x51FA;&#x6765;&#x8BFB;&#x8005;&#x770B;&#x663E;&#x5F97;&#x5F88;&#x6CA1;&#x610F;&#x601D;&#x3002;&#x6240;&#x6709;&#x7684;&#x4E8B;&#x60C5;&#x90FD;&#x8FD9;&#x4E48;&#x660E;&#x663E;&#xFF01;&#x8FD9;&#x5C31;&#x662F;&#x8BFB;&#x8005;&#x6240;&#x671F;&#x671B;&#x7684;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x7CFB;&#x7EDF;&#x5427;&#x3002;</p>
+<h3 id="&#x7B2C;&#x4E8C;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;paramtype&#x662F;&#x4E2A;&#x901A;&#x7528;&#x7684;&#x5F15;&#x7528;&#xFF08;universal-reference&#xFF09;">&#x7B2C;&#x4E8C;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;<code>ParamType</code>&#x662F;&#x4E2A;&#x901A;&#x7528;&#x7684;&#x5F15;&#x7528;&#xFF08;Universal Reference&#xFF09;</h3>
+<p>&#x5BF9;&#x4E8E;&#x901A;&#x7528;&#x7684;&#x5F15;&#x7528;&#x53C2;&#x6570;&#xFF0C;&#x60C5;&#x51B5;&#x5C31;&#x53D8;&#x5F97;&#x4E0D;&#x662F;&#x90A3;&#x4E48;&#x660E;&#x663E;&#x4E86;&#x3002;&#x8FD9;&#x4E9B;&#x53C2;&#x6570;&#x88AB;&#x58F0;&#x660E;&#x6210;&#x53F3;&#x503C;&#x5F15;&#x7528;&#xFF08;&#x4E5F;&#x5C31;&#x662F;&#x51FD;&#x6570;&#x6A21;&#x677F;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x7C7B;&#x578B;&#x53C2;&#x6570;<code>T</code>&#xFF0C;&#x4E00;&#x4E2A;&#x901A;&#x7528;&#x7684;&#x5F15;&#x7528;&#x53C2;&#x6570;&#x7684;&#x7533;&#x660E;&#x7C7B;&#x578B;&#x662F;<code>T&amp;&amp;</code>&#xFF09;&#xFF0C;&#x4F46;&#x662F;&#x5F53;&#x4F20;&#x9012;&#x8FDB;&#x53BB;&#x53F3;&#x503C;&#x53C2;&#x6570;&#x60C5;&#x51B5;&#x53D8;&#x5F97;&#x4E0D;&#x4E00;&#x6837;&#x3002;&#x5B8C;&#x6574;&#x7684;&#x8BA8;&#x8BBA;&#x8BF7;&#x53C2;&#x8003;&#x6761;&#x6B3E;24&#xFF0C;&#x8FD9;&#x91CC;&#x662F;&#x5148;&#x884C;&#x7248;&#x672C;&#x3002;</p>
+<ul>
+<li><p>&#x5982;&#x679C;<code>expr</code>&#x662F;&#x4E00;&#x4E2A;&#x5DE6;&#x503C;&#xFF0C;<code>T</code>&#x548C;<code>ParamType</code>&#x90FD;&#x4F1A;&#x88AB;&#x63A8;&#x5BFC;&#x6210;&#x5DE6;&#x503C;&#x5F15;&#x7528;&#x3002;&#x8FD9;&#x6709;&#x4E9B;&#x4E0D;&#x540C;&#x5BFB;&#x5E38;&#x3002;&#x7B2C;&#x4E00;&#xFF0C;&#x8FD9;&#x662F;&#x6A21;&#x677F;&#x7C7B;&#x578B;<code>T</code>&#x88AB;&#x63A8;&#x5BFC;&#x6210;&#x4E00;&#x4E2A;&#x5F15;&#x7528;&#x7684;&#x552F;&#x4E00;&#x60C5;&#x51B5;&#x3002;&#x7B2C;&#x4E8C;&#xFF0C;&#x5C3D;&#x7BA1;<code>ParamType</code>&#x5229;&#x7528;&#x53F3;&#x503C;&#x5F15;&#x7528;&#x7684;&#x8BED;&#x6CD5;&#x6765;&#x8FDB;&#x884C;&#x63A8;&#x5BFC;&#xFF0C;&#x4F46;&#x662F;&#x4ED6;&#x6700;&#x7EC8;&#x63A8;&#x5BFC;&#x51FA;&#x6765;&#x7684;&#x7C7B;&#x578B;&#x662F;&#x5DE6;&#x503C;&#x5F15;&#x7528;&#x3002;</p>
+</li>
+<li><p>&#x5982;&#x679C;<code>expr</code>&#x662F;&#x4E00;&#x4E2A;&#x53F3;&#x503C;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x6267;&#x884C;&#x201C;&#x666E;&#x901A;&#x201D;&#x7684;&#x6CD5;&#x5219;&#xFF08;&#x7B2C;&#x4E00;&#x79CD;&#x60C5;&#x51B5;&#xFF09;</p>
+</li>
+</ul>
+<p>&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">(T&amp;&amp; param)</span></span>;            <span class="hljs-comment">// param&#x73B0;&#x5728;&#x662F;&#x4E00;&#x4E2A;&#x901A;&#x7528;&#x7684;&#x5F15;&#x7528;</span>
+
+<span class="hljs-keyword">int</span> x = <span class="hljs-number">27</span>;                 <span class="hljs-comment">// &#x548C;&#x4E4B;&#x524D;&#x4E00;&#x6837;</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> cx = x;           <span class="hljs-comment">// &#x548C;&#x4E4B;&#x524D;&#x4E00;&#x6837;</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>&amp; rx = x;          <span class="hljs-comment">// &#x548C;&#x4E4B;&#x524D;&#x4E00;&#x6837;</span>
+
+f(x);                        <span class="hljs-comment">// x&#x662F;&#x5DE6;&#x503C;&#xFF0C;&#x6240;&#x4EE5;T&#x662F;int&amp;</span>
+                            <span class="hljs-comment">// param&#x7684;&#x7C7B;&#x578B;&#x4E5F;&#x662F;int&amp;</span>
+
+f(cx);                        <span class="hljs-comment">// cx&#x662F;&#x5DE6;&#x503C;&#xFF0C;&#x6240;&#x4EE5;T&#x662F;const int&amp;</span>
+                            <span class="hljs-comment">// param&#x7684;&#x7C7B;&#x578B;&#x4E5F;&#x662F;const int&amp;</span>
+
+f(rx);                        <span class="hljs-comment">// rx&#x662F;&#x5DE6;&#x503C;&#xFF0C;&#x6240;&#x4EE5;T&#x662F;const int&amp;</span>
+                            <span class="hljs-comment">// param&#x7684;&#x7C7B;&#x578B;&#x4E5F;&#x662F;const int&amp;</span>
+
+f(<span class="hljs-number">27</span>);                        <span class="hljs-comment">// 27&#x662F;&#x53F3;&#x503C;&#xFF0C;&#x6240;&#x4EE5;T&#x662F;int</span>
+                            <span class="hljs-comment">// &#x6240;&#x4EE5;param&#x7684;&#x7C7B;&#x578B;&#x662F;int&amp;&amp;</span>
+</code></pre>
+<p>&#x6761;&#x6B3E;23&#x89E3;&#x91CA;&#x4E86;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x63A8;&#x5BFC;&#x7684;&#x539F;&#x56E0;&#x3002;&#x5173;&#x952E;&#x7684;&#x5730;&#x65B9;&#x5728;&#x4E8E;&#x901A;&#x7528;&#x5F15;&#x7528;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x6CD5;&#x5219;&#x548C;&#x5DE6;&#x503C;&#x5F15;&#x7528;&#x6216;&#x8005;&#x53F3;&#x503C;&#x5F15;&#x7528;&#x7684;&#x6CD5;&#x5219;&#x5927;&#x4E0D;&#x76F8;&#x540C;&#x3002;&#x7279;&#x6B8A;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5F53;&#x4F7F;&#x7528;&#x4E86;&#x901A;&#x7528;&#x7684;&#x5F15;&#x7528;&#xFF0C;&#x5DE6;&#x503C;&#x53C2;&#x6570;&#x548C;&#x53F3;&#x503C;&#x53C2;&#x6570;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x5927;&#x4E0D;&#x76F8;&#x540C;&#x3002;&#x8FD9;&#x5728;&#x975E;&#x901A;&#x7528;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x5230;&#x4E0A;&#x9762;&#x7EDD;&#x5BF9;&#x4E0D;&#x4F1A;&#x53D1;&#x751F;&#x3002;</p>
+<h3 id="&#x7B2C;&#x4E09;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;paramtype&#x65E2;&#x4E0D;&#x662F;&#x6307;&#x9488;&#x4E5F;&#x4E0D;&#x662F;&#x5F15;&#x7528;">&#x7B2C;&#x4E09;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;<code>ParamType</code>&#x65E2;&#x4E0D;&#x662F;&#x6307;&#x9488;&#x4E5F;&#x4E0D;&#x662F;&#x5F15;&#x7528;</h3>
+<p>&#x5F53;<code>ParamType</code>&#x65E2;&#x4E0D;&#x662F;&#x6307;&#x9488;&#x4E5F;&#x4E0D;&#x662F;&#x5F15;&#x7528;&#xFF0C;&#x6211;&#x4EEC;&#x628A;&#x5B83;&#x5904;&#x7406;&#x6210;pass-by-value&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">(T param)</span></span>;            <span class="hljs-comment">// param&#x73B0;&#x5728;&#x662F;pass-by-value</span>
+</code></pre>
+<p>&#x8FD9;&#x5C31;&#x610F;&#x5473;&#x7740;<code>param</code>&#x5C31;&#x662F;&#x5B8C;&#x5168;&#x4F20;&#x7ED9;&#x4ED6;&#x7684;&#x53C2;&#x6570;&#x7684;&#x4E00;&#x4EFD;&#x62F7;&#x8D1D;&#x2014;&#x2014;&#x4E00;&#x4E2A;&#x5B8C;&#x5168;&#x65B0;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x57FA;&#x4E8E;&#x8FD9;&#x4E2A;&#x4E8B;&#x5B9E;&#x53EF;&#x4EE5;&#x4ECE;<code>expr</code>&#x7ED9;&#x51FA;&#x63A8;&#x5BFC;&#x7684;&#x6CD5;&#x5219;&#xFF1A;</p>
+<ol>
+<li><p>&#x548C;&#x4E4B;&#x524D;&#x4E00;&#x6837;&#xFF0C;&#x5982;&#x679C;<code>expr</code>&#x7684;&#x7C7B;&#x578B;&#x662F;&#x4E2A;&#x5F15;&#x7528;&#xFF0C;&#x5C06;&#x4F1A;&#x5FFD;&#x7565;&#x5F15;&#x7528;&#x7684;&#x90E8;&#x5206;&#x3002;</p>
+</li>
+<li><p>&#x5982;&#x679C;&#x5728;&#x5FFD;&#x7565;<code>expr</code>&#x7684;&#x5F15;&#x7528;&#x7279;&#x6027;&#xFF0C;<code>expr</code>&#x662F;&#x4E2A;<code>const</code>&#x7684;&#xFF0C;&#x4E5F;&#x8981;&#x5FFD;&#x7565;&#x6389;<code>const</code>&#x3002;&#x5982;&#x679C;&#x662F;<code>volatile</code>&#xFF0C;&#x7167;&#x6837;&#x4E5F;&#x8981;&#x5FFD;&#x7565;&#x6389;&#xFF08;<code>volatile</code>&#x5BF9;&#x8C61;&#x5E76;&#x4E0D;&#x5E38;&#x89C1;&#x3002;&#x5B83;&#x4EEC;&#x5E38;&#x5E38;&#x88AB;&#x7528;&#x5728;&#x5B9E;&#x73B0;&#x8BBE;&#x5907;&#x9A71;&#x52A8;&#x4E0A;&#x9762;&#x3002;&#x67E5;&#x770B;&#x66F4;&#x591A;&#x7684;&#x7EC6;&#x8282;&#xFF0C;&#x8BF7;&#x53C2;&#x8003;&#x6761;&#x6B3E;40&#x3002;&#xFF09;</p>
+</li>
+</ol>
+<p>&#x8FD9;&#x6837;&#x7684;&#x8BDD;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">int</span> x = <span class="hljs-number">27</span>;                 <span class="hljs-comment">// &#x548C;&#x4E4B;&#x524D;&#x4E00;&#x6837;</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> cx = x;           <span class="hljs-comment">// &#x548C;&#x4E4B;&#x524D;&#x4E00;&#x6837;</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>&amp; rx = x;          <span class="hljs-comment">// &#x548C;&#x4E4B;&#x524D;&#x4E00;&#x6837;</span>
+
+f(x);                       <span class="hljs-comment">// T&#x548C;param&#x7684;&#x7C7B;&#x578B;&#x90FD;&#x662F;int</span>
+
+f(cx);                      <span class="hljs-comment">// T&#x548C;param&#x7684;&#x7C7B;&#x578B;&#x4E5F;&#x90FD;&#x662F;int</span>
+
+f(rx);                      <span class="hljs-comment">// T&#x548C;param&#x7684;&#x7C7B;&#x578B;&#x8FD8;&#x90FD;&#x662F;int</span>
+</code></pre>
+<p>&#x6CE8;&#x610F;&#x5C3D;&#x7BA1;<code>cx</code>&#x548C;<code>rx</code>&#x90FD;&#x662F;<code>const</code>&#x7C7B;&#x578B;&#xFF0C;<code>param</code>&#x5374;&#x4E0D;&#x662F;<code>const</code>&#x7684;&#x3002;&#x8FD9;&#x662F;&#x6709;&#x9053;&#x7406;&#x7684;&#x3002;<code>param</code>&#x662F;&#x4E00;&#x4E2A;&#x548C;<code>cx</code>&#x548C;<code>rx</code>&#x72EC;&#x7ACB;&#x7684;&#x5BF9;&#x8C61;&#x2014;&#x2014;&#x4E00;&#x4E2A;<code>cx</code>&#x548C;<code>rx</code>&#x7684;&#x62F7;&#x8D1D;&#x3002;<code>cx</code>&#x548C;<code>rx</code>&#x4E0D;&#x80FD;&#x88AB;&#x4FEE;&#x6539;&#x548C;<code>param</code>&#x80FD;&#x4E0D;&#x80FD;&#x88AB;&#x4FEE;&#x6539;&#x662F;&#x6CA1;&#x6709;&#x5173;&#x7CFB;&#x7684;&#x3002;&#x8FD9;&#x5C31;&#x662F;&#x4E3A;&#x4EC0;&#x4E48;<code>expr</code>&#x7684;&#x5E38;&#x91CF;&#x7279;&#x6027;&#xFF08;&#x6216;&#x8005;&#x662F;&#x6613;&#x53D8;&#x6027;&#xFF09;&#xFF08;&#x5728;&#x5F88;&#x591A;&#x7684;C++&#x4E66;&#x7C4D;&#x4E0A;&#x9762;<code>const</code>&#x7279;&#x6027;&#x548C;<code>volatile</code>&#x7279;&#x6027;&#x88AB;&#x79F0;&#x4E4B;&#x4E3A;CV&#x7279;&#x6027;&#x2014;&#x2014;&#x8BD1;&#x8005;&#x6CE8;&#xFF09;&#x5728;&#x63A8;&#x5BFC;<code>param</code>&#x7684;&#x7C7B;&#x578B;&#x7684;&#x65F6;&#x5019;&#x88AB;&#x5FFD;&#x7565;&#x6389;&#x4E86;&#xFF1A;<code>expr</code>&#x4E0D;&#x80FD;&#x88AB;&#x4FEE;&#x6539;&#x5E76;&#x4E0D;&#x610F;&#x5473;&#x7740;&#x5B83;&#x7684;&#x4E00;&#x4EFD;&#x62F7;&#x8D1D;&#x4E0D;&#x80FD;&#x88AB;&#x4FEE;&#x6539;&#x3002;</p>
+<p>&#x8BA4;&#x8BC6;&#x5230;<code>const</code>&#xFF08;&#x548C;<code>volatile</code>&#xFF09;&#x5728;&#x6309;&#x503C;&#x4F20;&#x9012;&#x53C2;&#x6570;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x88AB;&#x5FFD;&#x7565;&#x6389;&#x3002;&#x6B63;&#x5982;&#x6211;&#x4EEC;&#x6240;&#x89C1;&#xFF0C;&#x5F15;&#x7528;&#x7684;<code>const</code>&#x6216;&#x8005;&#x662F;&#x6307;&#x9488;&#x6307;&#x5411;<code>const</code>&#xFF0C;<code>expr</code>&#x7684;<code>const</code>&#x7279;&#x6027;&#x5728;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x4F1A;&#x88AB;&#x4FDD;&#x7559;&#x3002;&#x4F46;&#x662F;&#x8003;&#x8651;&#x5230;<code>expr</code>&#x662F;&#x4E00;&#x4E2A;<code>const</code>&#x7684;&#x6307;&#x9488;&#x6307;&#x5411;&#x4E00;&#x4E2A;<code>const</code>&#x5BF9;&#x8C61;&#xFF0C;&#x800C;&#x4E14;<code>expr</code>&#x88AB;&#x901A;&#x8FC7;&#x6309;&#x503C;&#x4F20;&#x9012;&#x4F20;&#x9012;&#x7ED9;<code>param</code>&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">(T param)</span></span>;            <span class="hljs-comment">// param&#x4ECD;&#x7136;&#x662F;&#x6309;&#x503C;&#x4F20;&#x9012;&#x7684;&#xFF08;pass by value&#xFF09;</span>
+
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* <span class="hljs-keyword">const</span> ptr =     <span class="hljs-comment">// ptr&#x662F;&#x4E00;&#x4E2A;const&#x6307;&#x9488;&#xFF0C;&#x6307;&#x5411;&#x4E00;&#x4E2A;const&#x5BF9;&#x8C61;</span>
+  <span class="hljs-string">&quot;Fun with pointers&quot;</span>;
+
+f(ptr);                     <span class="hljs-comment">// &#x7ED9;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7684;&#x662F;&#x4E00;&#x4E2A;const char * const&#x7C7B;&#x578B;</span>
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#xFF0C;&#x4F4D;&#x4E8E;&#x661F;&#x53F7;&#x53F3;&#x8FB9;&#x7684;<code>const</code>&#x662F;&#x8868;&#x660E;&#x6307;&#x9488;&#x662F;&#x5E38;&#x91CF;<code>const</code>&#x7684;&#xFF1A;<code>ptr</code>&#x4E0D;&#x80FD;&#x88AB;&#x4FEE;&#x6539;&#x6307;&#x5411;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x5730;&#x5740;&#xFF0C;&#x5E76;&#x4E14;&#x4E5F;&#x4E0D;&#x80FD;&#x7F6E;&#x6210;<code>null</code>&#x3002;&#xFF08;&#x661F;&#x53F7;&#x5DE6;&#x8FB9;&#x7684;<code>const</code>&#x8868;&#x660E;<code>ptr</code>&#x6307;&#x5411;&#x7684;&#x2014;&#x2014;&#x5B57;&#x7B26;&#x4E32;&#x2014;&#x2014;&#x662F;<code>const</code>&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x5B57;&#x7B26;&#x4E32;&#x4E0D;&#x80FD;&#x88AB;&#x4FEE;&#x6539;&#x3002;&#xFF09;&#x5F53;&#x8FD9;&#x4E2A;<code>ptr</code>&#x4F20;&#x9012;&#x7ED9;<code>f</code>&#xFF0C;&#x7EC4;&#x6210;&#x8FD9;&#x4E2A;&#x6307;&#x9488;&#x7684;&#x5185;&#x5B58;bit&#x88AB;&#x62F7;&#x8D1D;&#x7ED9;<code>param</code>&#x3002;&#x8FD9;&#x6837;&#x7684;&#x8BDD;&#xFF0C;&#x6307;&#x9488;&#x81EA;&#x5DF1;&#xFF08;<code>ptr</code>&#xFF09;&#x672C;&#x8EAB;&#x662F;&#x88AB;&#x6309;&#x503C;&#x4F20;&#x9012;&#x7684;&#x3002;&#x6309;&#x7167;&#x6309;&#x503C;&#x4F20;&#x9012;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x6CD5;&#x5219;&#xFF0C;<code>ptr</code>&#x7684;<code>const</code>&#x7279;&#x6027;&#x4F1A;&#x88AB;&#x5FFD;&#x7565;&#xFF0C;&#x8FD9;&#x6837;<code>param</code>&#x7684;&#x63A8;&#x5BFC;&#x51FA;&#x6765;&#x7684;&#x7C7B;&#x578B;&#x5C31;&#x662F;<code>const char*</code>&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x88AB;&#x4FEE;&#x6539;&#x7684;&#x6307;&#x9488;&#xFF0C;&#x6307;&#x5411;&#x4E00;&#x4E2A;<code>const</code>&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;<code>ptr</code>&#x6307;&#x5411;&#x7684;&#x4E1C;&#x897F;&#x7684;<code>const</code>&#x7279;&#x6027;&#x88AB;&#x52A0;&#x4EE5;&#x4FDD;&#x7559;&#xFF0C;&#x4F46;&#x662F;<code>ptr</code>&#x81EA;&#x5DF1;&#x672C;&#x8EAB;&#x7684;<code>const</code>&#x7279;&#x6027;&#x4F1A;&#x88AB;&#x5FFD;&#x7565;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x8981;&#x88AB;&#x91CD;&#x65B0;&#x590D;&#x5236;&#x4E00;&#x4EFD;&#x800C;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x6307;&#x9488;<code>param</code>&#x3002;</p>
+<h2 id="&#x6570;&#x7EC4;&#x53C2;&#x6570;">&#x6570;&#x7EC4;&#x53C2;&#x6570;</h2>
+<p>&#x8FD9;&#x4E3B;&#x8981;&#x51FA;&#x73B0;&#x5728;mainstream&#x7684;&#x6A21;&#x677F;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x91CC;&#x9762;&#xFF0C;&#x4F46;&#x662F;&#x6709;&#x4E00;&#x79CD;&#x60C5;&#x51B5;&#x9700;&#x8981;&#x7279;&#x522B;&#x52A0;&#x4EE5;&#x6CE8;&#x610F;&#x3002;&#x5C31;&#x662F;&#x6570;&#x7EC4;&#x7C7B;&#x578B;&#x548C;&#x6307;&#x9488;&#x7C7B;&#x578B;&#x662F;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x5C3D;&#x7BA1;&#x5B83;&#x4EEC;&#x901A;&#x5E38;&#x770B;&#x8D77;&#x6765;&#x662F;&#x53EF;&#x4EE5;&#x66FF;&#x6362;&#x7684;&#x3002;&#x4E00;&#x4E2A;&#x6700;&#x57FA;&#x672C;&#x7684;&#x5E7B;&#x89C9;&#x5C31;&#x662F;&#x5728;&#x5F88;&#x591A;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x4F1A;&#x88AB;&#x9000;&#x5316;&#x6210;&#x4E00;&#x4E2A;&#x6307;&#x5411;&#x5176;&#x7B2C;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x6307;&#x9488;&#x3002;&#x8FD9;&#x4E2A;&#x9000;&#x5316;&#x7684;&#x4EE3;&#x7801;&#x5E38;&#x5E38;&#x5982;&#x6B64;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> name[] = <span class="hljs-string">&quot;J. P. Briggs&quot;</span>;     <span class="hljs-comment">// name&#x7684;&#x7C7B;&#x578B;&#x662F;const char[13]</span>
+
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * ptrToName = name;          <span class="hljs-comment">// &#x6570;&#x7EC4;&#x88AB;&#x9000;&#x5316;&#x6210;&#x6307;&#x9488;</span>
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x91CC;&#xFF0C;<code>const char*</code>&#x6307;&#x9488;<code>ptrToName</code>&#x4F7F;&#x7528;<code>name</code>&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x5B9E;&#x9645;&#x7684;<code>name</code>&#x7684;&#x7C7B;&#x578B;&#x662F;<code>const char[13]</code>&#x3002;&#x8FD9;&#x4E9B;&#x7C7B;&#x578B;&#xFF08;<code>const char*</code>&#x548C;<code>const char[13]</code>&#xFF09;&#x662F;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x56E0;&#x4E3A;&#x6570;&#x7EC4;&#x5230;&#x6307;&#x9488;&#x7684;&#x9000;&#x5316;&#x89C4;&#x5219;&#xFF0C;&#x4EE3;&#x7801;&#x4F1A;&#x88AB;&#x6B63;&#x5E38;&#x7F16;&#x8BD1;&#x3002;</p>
+<p>&#x4F46;&#x662F;&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x4F20;&#x9012;&#x7ED9;&#x4E00;&#x4E2A;&#x5B89;&#x7F6E;&#x4F20;&#x9012;&#x7684;&#x6A21;&#x677F;&#x53C2;&#x6570;&#x91CC;&#x9762;&#x60C5;&#x51B5;&#x4F1A;&#x5982;&#x4F55;&#xFF1F;&#x4F1A;&#x53D1;&#x751F;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">(T param)</span></span>;            <span class="hljs-comment">// &#x6A21;&#x677F;&#x62E5;&#x6709;&#x4E00;&#x4E2A;&#x6309;&#x503C;&#x4F20;&#x9012;&#x7684;&#x53C2;&#x6570;</span>
+
+f(name);                    <span class="hljs-comment">// T&#x548C;param&#x7684;&#x7C7B;&#x578B;&#x4F1A;&#x88AB;&#x63A8;&#x5230;&#x6210;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;</span>
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x4ECE;&#x4E00;&#x4E2A;&#x6CA1;&#x6709;&#x6A21;&#x677F;&#x53C2;&#x6570;&#x7684;&#x51FD;&#x6570;&#x5F00;&#x59CB;&#x3002;&#x662F;&#x7684;&#xFF0C;&#x662F;&#x7684;&#xFF0C;&#x8BED;&#x6CD5;&#x662F;&#x5408;&#x6CD5;&#x7684;&#xFF0C;</p>
+<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunc</span><span class="hljs-params">(<span class="hljs-keyword">int</span> param[])</span></span>;       <span class="hljs-comment">// &#x548C;&#x4E0A;&#x9762;&#x7684;&#x51FD;&#x6570;&#x76F8;&#x540C;</span>
+</code></pre>
+<p>&#x4F46;&#x662F;&#x4EE5;&#x6570;&#x7EC4;&#x58F0;&#x660E;&#xFF0C;&#x4F46;&#x662F;&#x8FD8;&#x662F;&#x628A;&#x5B83;&#x5F53;&#x6210;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#x58F0;&#x660E;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;<code>myFunc</code>&#x53EF;&#x4EE5;&#x548C;&#x4E0B;&#x9762;&#x7684;&#x58F0;&#x660E;&#x7B49;&#x4EF7;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunc</span><span class="hljs-params">(<span class="hljs-keyword">int</span>* param)</span></span>;        <span class="hljs-comment">// &#x548C;&#x4E0A;&#x9762;&#x7684;&#x51FD;&#x6570;&#x662F;&#x4E00;&#x6837;&#x7684;</span>
+</code></pre>
+<p>&#x8FD9;&#x6837;&#x7684;&#x6570;&#x7EC4;&#x548C;&#x6307;&#x9488;&#x7B49;&#x4EF7;&#x7684;&#x58F0;&#x660E;&#x7ECF;&#x5E38;&#x4F1A;&#x5728;&#x4EE5;C&#x8BED;&#x8A00;&#x4E3A;&#x57FA;&#x7840;&#x7684;C++&#x91CC;&#x9762;&#x51FA;&#x73B0;&#xFF0C;&#x8FD9;&#x4E5F;&#x5C31;&#x5BFC;&#x81F4;&#x4E86;&#x6570;&#x7EC4;&#x548C;&#x6307;&#x9488;&#x662F;&#x7B49;&#x4EF7;&#x7684;&#x9519;&#x89C9;&#x3002;</p>
+<p>&#x56E0;&#x4E3A;&#x6570;&#x7EC4;&#x53C2;&#x6570;&#x58F0;&#x660E;&#x4F1A;&#x88AB;&#x5F53;&#x505A;&#x6307;&#x9488;&#x53C2;&#x6570;&#xFF0C;&#x4F20;&#x9012;&#x7ED9;&#x6A21;&#x677F;&#x51FD;&#x6570;&#x7684;&#x6309;&#x503C;&#x4F20;&#x9012;&#x7684;&#x6570;&#x7EC4;&#x53C2;&#x6570;&#x4F1A;&#x88AB;&#x9000;&#x5316;&#x6210;&#x6307;&#x9488;&#x7C7B;&#x578B;&#x3002;&#x8FD9;&#x5C31;&#x610F;&#x5473;&#x7740;&#x5728;&#x6A21;&#x677F;<code>f</code>&#x7684;&#x8C03;&#x7528;&#x4E2D;&#xFF0C;&#x6A21;&#x677F;&#x53C2;&#x6570;<code>T</code>&#x88AB;&#x63A8;&#x5BFC;&#x6210;<code>const char*</code>&#xFF1A;</p>
+<pre><code class="lang-cpp">f(name);                    <span class="hljs-comment">// name&#x662F;&#x4E2A;&#x6570;&#x7EC4;&#xFF0C;&#x4F46;&#x662F;T&#x88AB;&#x63A8;&#x5BFC;&#x6210;const char*</span>
+</code></pre>
+<p>&#x4F46;&#x662F;&#x6765;&#x4E00;&#x4E2A;&#x7279;&#x4F8B;&#x3002;&#x5C3D;&#x7BA1;&#x51FD;&#x6570;&#x4E0D;&#x80FD;&#x88AB;&#x771F;&#x6B63;&#x7684;&#x5B9A;&#x4E49;&#x6210;&#x53C2;&#x6570;&#x4E3A;&#x6570;&#x7EC4;&#xFF0C;&#x4F46;&#x662F;&#x53EF;&#x4EE5;&#x58F0;&#x660E;&#x53C2;&#x6570;&#x662F;&#x6570;&#x7EC4;&#x7684;&#x5F15;&#x7528;&#xFF01;&#x6240;&#x4EE5;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x4FEE;&#x6539;&#x6A21;&#x677F;<code>f</code>&#x7684;&#x53C2;&#x6570;&#x6210;&#x5F15;&#x7528;&#xFF0C;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">(T&amp; param)</span></span>;           <span class="hljs-comment">// &#x5F15;&#x7528;&#x53C2;&#x6570;&#x7684;&#x6A21;&#x677F;</span>
+</code></pre>
+<p>&#x7136;&#x540E;&#x4F20;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x7ED9;&#x4ED6;</p>
+<pre><code class="lang-cpp">f(name);                    <span class="hljs-comment">// &#x4F20;&#x9012;&#x6570;&#x7EC4;&#x7ED9;f</span>
+</code></pre>
+<p><code>T</code>&#x6700;&#x540E;&#x63A8;&#x5BFC;&#x51FA;&#x6765;&#x7684;&#x5B9E;&#x9645;&#x7684;&#x7C7B;&#x578B;&#x5C31;&#x662F;&#x6570;&#x7EC4;&#xFF01;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x5305;&#x62EC;&#x4E86;&#x6570;&#x7EC4;&#x7684;&#x957F;&#x5EA6;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x91CC;&#x9762;&#xFF0C;<code>T</code>&#x88AB;&#x63A8;&#x5BFC;&#x6210;&#x4E86;<code>const char [13]</code>&#xFF0C;&#x51FD;&#x6570;<code>f</code>&#x7684;&#x53C2;&#x6570;&#xFF08;&#x6570;&#x7EC4;&#x7684;&#x5F15;&#x7528;&#xFF09;&#x88AB;&#x63A8;&#x5BFC;&#x6210;&#x4E86;<code>const char (&amp;)[13]</code>&#x3002;&#x662F;&#x7684;&#xFF0C;&#x8BED;&#x6CD5;&#x770B;&#x8D77;&#x6765;&#x602A;&#x602A;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x7406;&#x89E3;&#x4E86;&#x8FD9;&#x4E9B;&#x53EF;&#x4EE5;&#x5347;&#x534E;&#x4F60;&#x7684;&#x7CBE;&#x795E;&#xFF08;&#x539F;&#x6587;knowing it will score you mondo points with those few souls who care&#x6D89;&#x53CA;&#x5230;&#x4E86;&#x51E0;&#x4E2A;&#x5B97;&#x6559;&#x8BCD;&#x6C47;&#x2014;&#x2014;&#x8BD1;&#x8005;&#x6CE8;&#xFF09;&#x3002;</p>
+<p>&#x6709;&#x8DA3;&#x7684;&#x662F;&#xFF0C;&#x58F0;&#x660E;&#x6570;&#x7EC4;&#x7684;&#x5F15;&#x7528;&#x53EF;&#x4EE5;&#x4F7F;&#x7684;&#x521B;&#x9020;&#x51FA;&#x4E00;&#x4E2A;&#x63A8;&#x5BFC;&#x51FA;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x5305;&#x542B;&#x7684;&#x5143;&#x7D20;&#x957F;&#x5EA6;&#x7684;&#x6A21;&#x677F;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-comment">// &#x5728;&#x7F16;&#x8BD1;&#x7684;&#x65F6;&#x5019;&#x8FD4;&#x56DE;&#x6570;&#x7EC4;&#x7684;&#x957F;&#x5EA6;&#xFF08;&#x6570;&#x7EC4;&#x53C2;&#x6570;&#x6CA1;&#x6709;&#x540D;&#x5B57;&#xFF0C;</span>
+<span class="hljs-comment">// &#x56E0;&#x4E3A;&#x53EA;&#x5173;&#x5FC3;&#x6570;&#x7EC4;&#x5305;&#x542B;&#x7684;&#x5143;&#x7D20;&#x7684;&#x4E2A;&#x6570;&#xFF09;</span>
+<span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T, <span class="hljs-built_in">std</span>::<span class="hljs-keyword">size_t</span> N&gt;
+<span class="hljs-keyword">constexpr</span> <span class="hljs-built_in">std</span>::<span class="hljs-keyword">size_t</span> arraySize(T (&amp;)[N]) <span class="hljs-keyword">noexcept</span>
+{
+    <span class="hljs-keyword">return</span> N;                   <span class="hljs-comment">// constexpr&#x548C;noexcept&#x5728;&#x968F;&#x540E;&#x7684;&#x6761;&#x6B3E;&#x4E2D;&#x4ECB;&#x7ECD;</span>
+}
+</code></pre>
+<p>&#xFF08;<code>constexpr</code>&#x662F;&#x4E00;&#x79CD;&#x6BD4;<code>const</code>&#x66F4;&#x52A0;&#x4E25;&#x683C;&#x7684;&#x5E38;&#x91CF;&#x5B9A;&#x4E49;&#xFF0C;<code>noexcept</code>&#x662F;&#x8BF4;&#x660E;&#x51FD;&#x6570;&#x6C38;&#x8FDC;&#x90FD;&#x4E0D;&#x4F1A;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x2014;&#x2014;&#x8BD1;&#x8005;&#x6CE8;&#xFF09;</p>
+<p>&#x6B63;&#x5982;&#x6761;&#x6B3E;15&#x6240;&#x8FF0;&#xFF0C;&#x5B9A;&#x4E49;&#x4E3A;<code>constexpr</code>&#x8BF4;&#x660E;&#x51FD;&#x6570;&#x53EF;&#x4EE5;&#x5728;&#x7F16;&#x8BD1;&#x7684;&#x65F6;&#x5019;&#x5F97;&#x5230;&#x5176;&#x8FD4;&#x56DE;&#x503C;&#x3002;&#x8FD9;&#x5C31;&#x4F7F;&#x5F97;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x548C;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x957F;&#x5EA6;&#x76F8;&#x540C;&#x7684;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#xFF0C;&#x5176;&#x957F;&#x5EA6;&#x53EF;&#x4EE5;&#x4ECE;&#x62EC;&#x53F7;&#x521D;&#x59CB;&#x5316;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">int</span> keyVals[] = { <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span>, <span class="hljs-number">11</span>, <span class="hljs-number">22</span>, <span class="hljs-number">35</span> };     <span class="hljs-comment">// keyVals&#x6709;&#x4E03;&#x4E2A;&#x5143;&#x7D20;</span>
+
+<span class="hljs-keyword">int</span> mappedVals[arraySize(keyVals)];             <span class="hljs-comment">// mappedVals&#x957F;&#x5EA6;&#x4E5F;&#x662F;&#x4E03;</span>
+</code></pre>
+<p>&#x5F53;&#x7136;&#xFF0C;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x73B0;&#x4EE3;&#x7684;C++&#x5F00;&#x53D1;&#x8005;&#xFF0C;&#x5E94;&#x8BE5;&#x4F18;&#x5148;&#x9009;&#x62E9;&#x5185;&#x5EFA;&#x7684;<code>std::array</code>&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">array</span>&lt;<span class="hljs-keyword">int</span>, arraySize(keyVals)&gt; mappedVals; <span class="hljs-comment">// mappedVals&#x957F;&#x5EA6;&#x662F;&#x4E03;</span>
+</code></pre>
+<p>&#x7531;&#x4E8E;<code>arraySize</code>&#x88AB;&#x58F0;&#x660E;&#x79F0;<code>noexcept</code>&#xFF0C;&#x8FD9;&#x4F1A;&#x5E2E;&#x52A9;&#x7F16;&#x8BD1;&#x5668;&#x751F;&#x6210;&#x66F4;&#x52A0;&#x4F18;&#x5316;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x53EF;&#x4EE5;&#x4ECE;&#x6761;&#x6B3E;14&#x67E5;&#x770B;&#x66F4;&#x591A;&#x8BE6;&#x60C5;&#x3002;</p>
+<h2 id="&#x51FD;&#x6570;&#x53C2;&#x6570;">&#x51FD;&#x6570;&#x53C2;&#x6570;</h2>
+<p>&#x6570;&#x7EC4;&#x5E76;&#x4E0D;&#x662F;C++&#x552F;&#x4E00;&#x53EF;&#x4EE5;&#x9000;&#x5316;&#x6210;&#x6307;&#x9488;&#x7684;&#x4E1C;&#x897F;&#x3002;&#x51FD;&#x6570;&#x7C7B;&#x578B;&#x53EF;&#x4EE5;&#x88AB;&#x9000;&#x5316;&#x6210;&#x51FD;&#x6570;&#x6307;&#x9488;&#xFF0C;&#x548C;&#x6211;&#x4EEC;&#x4E4B;&#x524D;&#x8BA8;&#x8BBA;&#x7684;&#x6570;&#x7EC4;&#x7684;&#x63A8;&#x5BFC;&#x7C7B;&#x4F3C;&#xFF0C;&#x51FD;&#x6570;&#x53EF;&#x4EE5;&#x88AB;&#x63A8;&#x534E;&#x57CE;&#x51FD;&#x6570;&#x6307;&#x9488;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">someFunc</span><span class="hljs-params">(<span class="hljs-keyword">int</span>&#xFF0C; <span class="hljs-keyword">double</span>)</span></span>;    <span class="hljs-comment">// someFunc&#x662F;&#x4E00;&#x4E2A;&#x51FD;&#x6570;</span>
+                                <span class="hljs-comment">// &#x7C7B;&#x578B;&#x662F;void(int, double)</span>
+
+<span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f1</span><span class="hljs-params">(T param)</span></span>;               <span class="hljs-comment">// &#x5728;f1&#x4E2D; &#x53C2;&#x6570;&#x76F4;&#x63A5;&#x6309;&#x503C;&#x4F20;&#x9012;</span>
+
+<span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f2</span><span class="hljs-params">(T&amp; param)</span></span>;              <span class="hljs-comment">// &#x5728;f2&#x4E2D; &#x53C2;&#x6570;&#x662F;&#x6309;&#x7167;&#x5F15;&#x7528;&#x4F20;&#x9012;</span>
+
+f1(someFunc);                   <span class="hljs-comment">// param&#x88AB;&#x63A8;&#x5BFC;&#x6210;&#x51FD;&#x6570;&#x6307;&#x9488;</span>
+                                <span class="hljs-comment">// &#x7C7B;&#x578B;&#x662F;void(*)(int, double)</span>
+
+f2(someFunc);                   <span class="hljs-comment">// param&#x88AB;&#x63A8;&#x5BFC;&#x6210;&#x51FD;&#x6570;&#x6307;&#x9488;</span>
+                                <span class="hljs-comment">// &#x7C7B;&#x578B;&#x65F6;void(&amp;)(int, double)</span>
+</code></pre>
+<p>&#x8FD9;&#x5728;&#x5B9E;&#x8DF5;&#x4E2D;&#x6781;&#x5C11;&#x6709;&#x4E0D;&#x540C;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x77E5;&#x9053;&#x6570;&#x7EC4;&#x5230;&#x6307;&#x9488;&#x7684;&#x9000;&#x5316;&#xFF0C;&#x6216;&#x8BB8;&#x4F60;&#x4E5F;&#x5C31;&#x4F1A;&#x5C31;&#x77E5;&#x9053;&#x51FD;&#x6570;&#x5230;&#x51FD;&#x6570;&#x6307;&#x9488;&#x7684;&#x9000;&#x5316;&#x3002;</p>
+<p>&#x6240;&#x4EE5;&#x4F60;&#x73B0;&#x5728;&#x77E5;&#x9053;&#x5982;&#x4E0B;&#xFF1A;<code>auto</code>&#x76F8;&#x5173;&#x7684;&#x6A21;&#x677F;&#x63A8;&#x5BFC;&#x6CD5;&#x5219;&#x3002;&#x6211;&#x628A;&#x6700;&#x91CD;&#x8981;&#x7684;&#x90E8;&#x5206;&#x5355;&#x72EC;&#x5728;&#x4E0B;&#x9762;&#x5217;&#x51FA;&#x6765;&#x3002;&#x5728;&#x901A;&#x7528;&#x5F15;&#x7528;&#x4E2D;&#x5BF9;&#x5F85;&#x5DE6;&#x503C;&#x7684;&#x5904;&#x7406;&#x6709;&#x4E00;&#x70B9;&#x6DF7;&#x4E71;&#xFF0C;&#x4F46;&#x662F;&#x6570;&#x7EC4;&#x9000;&#x5316;&#x6210;&#x6307;&#x9488;&#x548C;&#x51FD;&#x6570;&#x9000;&#x5316;&#x6210;&#x51FD;&#x6570;&#x6307;&#x9488;&#x7684;&#x505A;&#x6CD5;&#x66F4;&#x52A0;&#x6DF7;&#x4E71;&#x5462;&#x3002;&#x6709;&#x65F6;&#x5019;&#x4F60;&#x8981;&#x5BF9;&#x4F60;&#x7684;&#x7F16;&#x8BD1;&#x5668;&#x548C;&#x9700;&#x6C42;&#x5927;&#x543C;&#x4E00;&#x58F0;&#xFF0C;&#x201C;&#x544A;&#x8BC9;&#x6211;&#x5230;&#x5E95;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x6210;&#x5565;&#x4E86;&#x554A;&#xFF01;&#x201D;&#x5F53;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x53D1;&#x751F;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53BB;&#x53C2;&#x8003;&#x6761;&#x6B3E;4&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x81F4;&#x529B;&#x4E8E;&#x8BA9;&#x7F16;&#x8BD1;&#x5668;&#x544A;&#x8BC9;&#x4F60;&#x662F;&#x5982;&#x4F55;&#x5904;&#x7406;&#x7684;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x8981;&#x8BB0;&#x4F4F;&#x7684;&#x4E1C;&#x897F;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">&#x5728;&#x6A21;&#x677F;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6709;&#x5F15;&#x7528;&#x7279;&#x6027;&#x7684;&#x53C2;&#x6570;&#x7684;&#x5F15;&#x7528;&#x7279;&#x6027;&#x4F1A;&#x88AB;&#x5FFD;&#x7565;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5728;&#x63A8;&#x5BFC;&#x901A;&#x7528;&#x5F15;&#x7528;&#x53C2;&#x6570;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5DE6;&#x503C;&#x4F1A;&#x88AB;&#x7279;&#x6B8A;&#x5904;&#x7406;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5728;&#x63A8;&#x5BFC;&#x6309;&#x503C;&#x4F20;&#x9012;&#x7684;&#x53C2;&#x6570;&#x65F6;&#x5019;&#xFF0C;<code>const</code>&#x548C;/&#x6216;<code>volatile</code>&#x53C2;&#x6570;&#x4F1A;&#x88AB;&#x89C6;&#x4E3A;&#x975E;<code>const</code>&#x548C;&#x975E;<code>volatile</code></td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5728;&#x6A21;&#x677F;&#x7C7B;&#x578B;&#x63A8;&#x5BFC;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53C2;&#x6570;&#x5982;&#x679C;&#x662F;&#x6570;&#x7EC4;&#x6216;&#x8005;&#x51FD;&#x6570;&#x540D;&#x79F0;&#xFF0C;&#x4ED6;&#x4EEC;&#x4F1A;&#x88AB;&#x9000;&#x5316;&#x6210;&#x6307;&#x9488;&#xFF0C;&#x9664;&#x975E;&#x662F;&#x7528;&#x5728;&#x521D;&#x59CB;&#x5316;&#x5F15;&#x7528;&#x7C7B;&#x578B;</td>
+</tr>
+</tbody>
+</table>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 第一章 类型推导">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="2-Understand-auto-type-deduction.html" class="navigation navigation-next " aria-label="Next page: 条款2：理解auto类型推导">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"条款1：理解模板类型推导","level":"1.5.1","depth":2,"next":{"title":"条款2：理解auto类型推导","level":"1.5.2","depth":2,"path":"DeducingTypes/2-Understand-auto-type-deduction.md","ref":"DeducingTypes/2-Understand-auto-type-deduction.md","articles":[]},"previous":{"title":"第一章 类型推导","level":"1.5","depth":1,"path":"DeducingTypes/README.md","ref":"DeducingTypes/README.md","articles":[{"title":"条款1：理解模板类型推导","level":"1.5.1","depth":2,"path":"DeducingTypes/1-Understand-template-type-deduction.md","ref":"DeducingTypes/1-Understand-template-type-deduction.md","articles":[]},{"title":"条款2：理解auto类型推导","level":"1.5.2","depth":2,"path":"DeducingTypes/2-Understand-auto-type-deduction.md","ref":"DeducingTypes/2-Understand-auto-type-deduction.md","articles":[]},{"title":"条款3：理解decltype","level":"1.5.3","depth":2,"path":"DeducingTypes/3-Understand-decltype.md","ref":"DeducingTypes/3-Understand-decltype.md","articles":[]},{"title":"条款4：知道如何查看类型推导","level":"1.5.4","depth":2,"path":"DeducingTypes/4-Know-how-to-view-deduced-types.md","ref":"DeducingTypes/4-Know-how-to-view-deduced-types.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"DeducingTypes/1-Understand-template-type-deduction.md","mtime":"2020-11-11T15:39:05.175Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-11T15:55:21.177Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

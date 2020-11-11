@@ -1,0 +1,1062 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>条款18：使用std::unique_ptr管理独占资源 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="19-Use-std-shared_ptr-for-shared-ownership-resource-management.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../FromthePublisher/">
+            
+                <a href="../FromthePublisher/">
+            
+                    
+                    出版者的忠告
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../Acknowledgements/">
+            
+                <a href="../Acknowledgements/">
+            
+                    
+                    致谢
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../Introduction/">
+            
+                <a href="../Introduction/">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../DeducingTypes/">
+            
+                <a href="../DeducingTypes/">
+            
+                    
+                    第一章 类型推导
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../DeducingTypes/1-Understand-template-type-deduction.html">
+            
+                <a href="../DeducingTypes/1-Understand-template-type-deduction.html">
+            
+                    
+                    条款1：理解模板类型推导
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../DeducingTypes/2-Understand-auto-type-deduction.html">
+            
+                <a href="../DeducingTypes/2-Understand-auto-type-deduction.html">
+            
+                    
+                    条款2：理解auto类型推导
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../DeducingTypes/3-Understand-decltype.html">
+            
+                <a href="../DeducingTypes/3-Understand-decltype.html">
+            
+                    
+                    条款3：理解decltype
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../DeducingTypes/4-Know-how-to-view-deduced-types.html">
+            
+                <a href="../DeducingTypes/4-Know-how-to-view-deduced-types.html">
+            
+                    
+                    条款4：知道如何查看类型推导
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../auto/">
+            
+                <a href="../auto/">
+            
+                    
+                    第二章 auto关键字
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../auto/5-Prefer-auto-to-explicit-type-declarations.html">
+            
+                <a href="../auto/5-Prefer-auto-to-explicit-type-declarations.html">
+            
+                    
+                    条款5：优先使用auto而非显式类型声明
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../auto/6-Use-the-explicitly-typed-initializer-idiom-when-auto-deduces-undesired-types.html">
+            
+                <a href="../auto/6-Use-the-explicitly-typed-initializer-idiom-when-auto-deduces-undesired-types.html">
+            
+                    
+                    条款6：当auto推导出非预期类型时应当使用显式的类型初始化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../MovingtoModernC++/README.md">
+            
+                <span>
+            
+                    
+                    第三章 使用现代C++
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../MovingtoModernC++/7-Distinguish-between-xxx-when-creating-objects.html">
+            
+                <a href="../MovingtoModernC++/7-Distinguish-between-xxx-when-creating-objects.html">
+            
+                    
+                    条款7：创建对象时区分()和{}
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../MovingtoModernC++/8-Prefer-nullptr-to-0-and-NULL.html">
+            
+                <a href="../MovingtoModernC++/8-Prefer-nullptr-to-0-and-NULL.html">
+            
+                    
+                    条款8：优先使用nullptr而不是0或者NULL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../MovingtoModernC++/9-Prefer-alias-declarations-to-typedefs.html">
+            
+                <a href="../MovingtoModernC++/9-Prefer-alias-declarations-to-typedefs.html">
+            
+                    
+                    条款9：优先使用声明别名而不是typedef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../MovingtoModernC++/10-Prefer-scoped-enum-to-unscoped-enums.html">
+            
+                <a href="../MovingtoModernC++/10-Prefer-scoped-enum-to-unscoped-enums.html">
+            
+                    
+                    条款10：优先使用作用域限制的enmu而不是无作用域的enum
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="../MovingtoModernC++/11-Prefer-deleted-functions-to-private-undefined-ones.html">
+            
+                <a href="../MovingtoModernC++/11-Prefer-deleted-functions-to-private-undefined-ones.html">
+            
+                    
+                    条款11：优先使用delete关键字删除函数而不是private却又不实现的函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6" data-path="../MovingtoModernC++/12-Declare-overriding-functions-override.html">
+            
+                <a href="../MovingtoModernC++/12-Declare-overriding-functions-override.html">
+            
+                    
+                    条款12：使用override关键字声明覆盖的函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.7" data-path="../MovingtoModernC++/13-Prefer-const_iterators-to-iterators.html">
+            
+                <a href="../MovingtoModernC++/13-Prefer-const_iterators-to-iterators.html">
+            
+                    
+                    条款13：优先使用const_iterator而不是iterator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.8" data-path="../MovingtoModernC++/14-Declare-functions-noexcept-if-they-won’t-emit-exceptions.md">
+            
+                <span>
+            
+                    
+                    条款14：使用noexcept修饰不想抛出异常的函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.9" data-path="../MovingtoModernC++/15-Use-constexpr-whenever-possible.md">
+            
+                <span>
+            
+                    
+                    条款15：尽可能的使用constexpr
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.10" data-path="../MovingtoModernC++/16-Make-const-member-functions-thread-safe.md">
+            
+                <span>
+            
+                    
+                    条款16：保证const成员函数线程安全
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.11" data-path="../MovingtoModernC++/17-Understand-special-member-function-generation.md">
+            
+                <span>
+            
+                    
+                    条款17：理解特殊成员函数的生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第四章 智能指针
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.8.1" data-path="18-Use-std-unique_ptr-for-exclusive-ownership-resource-management.html">
+            
+                <a href="18-Use-std-unique_ptr-for-exclusive-ownership-resource-management.html">
+            
+                    
+                    条款18：使用std::unique_ptr管理独占资源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="19-Use-std-shared_ptr-for-shared-ownership-resource-management.html">
+            
+                <a href="19-Use-std-shared_ptr-for-shared-ownership-resource-management.html">
+            
+                    
+                    条款19：使用std::shared_ptr管理共享资源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="20-Use-std-weak_ptr-for-std-shared_ptr-like-pointers-that-can-dangle.html">
+            
+                <a href="20-Use-std-weak_ptr-for-std-shared_ptr-like-pointers-that-can-dangle.html">
+            
+                    
+                    条款20：在std::shared_ptr类似指针可以悬挂时使用std::weak_ptr
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="21-Prefer-std-make_unique-and-std-make_shared-to-direct-use-of-new.html">
+            
+                <a href="21-Prefer-std-make_unique-and-std-make_shared-to-direct-use-of-new.html">
+            
+                    
+                    条款21：优先使用std::make_unique和std::make_shared而不是直接使用new
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="22-When-using-the-Pimpl-Idiom-define-special-member-functions-in-the-implementation-file.html">
+            
+                <a href="22-When-using-the-Pimpl-Idiom-define-special-member-functions-in-the-implementation-file.html">
+            
+                    
+                    条款22：当使用Pimpl的时候在实现文件中定义特殊的成员函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/">
+            
+                <a href="../RvalueReferencesMoveSemanticsandPerfectForwarding/">
+            
+                    
+                    第五章 右值引用、移动语义和完美转发
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/23-Understand-std-move-and-std-forward.html">
+            
+                <a href="../RvalueReferencesMoveSemanticsandPerfectForwarding/23-Understand-std-move-and-std-forward.html">
+            
+                    
+                    条款23：理解std::move和std::forward
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/24-Distinguish-universal-references-from-rvalue-references.html">
+            
+                <a href="../RvalueReferencesMoveSemanticsandPerfectForwarding/24-Distinguish-universal-references-from-rvalue-references.html">
+            
+                    
+                    条款24：区分通用引用和右值引用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/25-Use-std-move-on-rvalue-references-std-forward-on-universal-references.md">
+            
+                <span>
+            
+                    
+                    条款25：在右值引用上使用std::move 在通用引用上使用std::forward
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/26-Avoid-overloading-on-universal-references.md">
+            
+                <span>
+            
+                    
+                    条款26：避免在通用引用上重定义函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/27-Familiarize-yourself-with-alternatives-to-overloading-on-universal-references.md">
+            
+                <span>
+            
+                    
+                    条款27：熟悉通用引用上重定义函数的其他选择
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.6" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/28-Understand-reference-collapsing.md">
+            
+                <span>
+            
+                    
+                    条款28：理解引用折叠
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.7" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/29-Assume-that-move-operations-are-not-present-not-cheap-and-not-used.md">
+            
+                <span>
+            
+                    
+                    条款29：假定移动操作不存在，不廉价，不使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.8" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/30-Familiarize-yourself-with-perfect-forwarding-failure-cases.md">
+            
+                <span>
+            
+                    
+                    条款30：熟悉完美转发和失败的情况
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../LambdaExpressions/README.md">
+            
+                <span>
+            
+                    
+                    第六章 Lambda表达式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../LambdaExpressions/31-Avoid-default-capture-modes.md">
+            
+                <span>
+            
+                    
+                    条款31：避免默认的参数捕捉
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../LambdaExpressions/32-Use-init-capture-to-move-objects-into-closures.md">
+            
+                <span>
+            
+                    
+                    条款32：使用init捕捉来移动对象到闭包
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../LambdaExpressions/33-Use-decltype-on-auto&&-parameters-to-std-forward-them.md">
+            
+                <span>
+            
+                    
+                    条款33：在auto&&参数上使用decltype当std::forward auto&&参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../LambdaExpressions/34-Prefer-lambdas-to-std-bind.md">
+            
+                <span>
+            
+                    
+                    条款34：优先使用lambda而不是std::bind
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../TheConcurrencyAPI/README.md">
+            
+                <span>
+            
+                    
+                    第七章 并发API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../TheConcurrencyAPI/35-Prefer-task-based-programming-to-thread-based.md">
+            
+                <span>
+            
+                    
+                    条款35：优先使用task-based而不是thread-based
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../TheConcurrencyAPI/36-Specify-std-launch-async-if-asynchronicity-is-essential.md">
+            
+                <span>
+            
+                    
+                    条款36：当异步是必要的时声明std::launch::async
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../TheConcurrencyAPI/37-Make-std-threads-unjoinable-on-all-paths.md">
+            
+                <span>
+            
+                    
+                    条款37：使得std::thread在所有的路径下无法join
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../TheConcurrencyAPI/38-Be-aware-of-varying-thread-handle-destructor-behavior.md">
+            
+                <span>
+            
+                    
+                    条款38：注意线程句柄析构的行为
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="../TheConcurrencyAPI/39-Consider-void-futures-for-one-shot-event-communication.md">
+            
+                <span>
+            
+                    
+                    条款39：考虑在一次性事件通信上void的特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.6" data-path="../TheConcurrencyAPI/40-Use-std-atomic-for-concurrency-volatile-for-special-memory.md">
+            
+                <span>
+            
+                    
+                    条款40：在并发时使用std::atomic 在特殊内存上使用volatile
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../Tweaks/README.md">
+            
+                <span>
+            
+                    
+                    第八章 改进
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../Tweaks/41-Consider-pass-by-value-for-copyable-parameters-that-are-cheap-to-move-and-always-copied.md">
+            
+                <span>
+            
+                    
+                    条款41：考虑对拷贝参数按值传递移动廉价，那就尽量拷贝
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../Tweaks/42-Consider-emplacement-instead-of-insertion.md">
+            
+                <span>
+            
+                    
+                    条款42：考虑使用emplace代替insert
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >条款18：使用std::unique_ptr管理独占资源</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="item18">Item18:</h1>
+<p>&#x5F53;&#x4F60;&#x8981;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x667A;&#x80FD;&#x6307;&#x9488;&#x65F6;&#xFF0C;&#x9996;&#x5148;&#x8981;&#x60F3;&#x5230;&#x7684;&#x5E94;&#x8BE5;&#x662F;<code>std::unique_ptr</code>.&#x4E0B;&#x9762;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x5408;&#x7406;&#x7684;&#x5047;&#x8BBE;:&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;<code>std::unique_ptr</code>&#x548C;&#x539F;&#x751F;&#x6307;&#x9488;&#x540C;&#x7B49;&#x5927;&#x5C0F;&#xFF0C;&#x5BF9;&#x4E8E;&#x5927;&#x591A;&#x6570;&#x64CD;&#x4F5C;(&#x5305;&#x62EC;&#x53CD;&#x5F15;&#x7528;)&#xFF0C;&#x5B83;&#x4EEC;&#x6267;&#x884C;&#x7684;&#x5E95;&#x5C42;&#x6307;&#x4EE4;&#x4E5F;&#x4E00;&#x6837;&#x3002;&#x8FD9;&#x5C31;&#x610F;&#x5473;&#x7740;&#xFF0C;&#x5C3D;&#x7BA1;&#x5728;&#x5185;&#x5B58;&#x56DE;&#x6536;&#x76F4;&#x6765;&#x76F4;&#x5F80;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;<code>std::unique_ptr</code>&#x4E5F;&#x8DB3;&#x4EE5;&#x80DC;&#x4EFB;&#x539F;&#x751F;&#x6307;&#x9488;&#x8F7B;&#x5DE7;&#x5FEB;&#x901F;&#x7684;&#x4F7F;&#x7528;&#x8981;&#x6C42;&#x3002;</p>
+<p><code>std::unique_ptr</code>&#x5177;&#x73B0;&#x4E86;&#x72EC;&#x5360;(exclusive ownership)&#x8BED;&#x4E49;,&#x4E00;&#x4E2A;&#x975E;&#x7A7A;&#x7684;<code>std::unique_ptr</code>&#x6C38;&#x8FDC;&#x62E5;&#x6709;&#x5B83;&#x6307;&#x5411;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;move&#x4E00;&#x4E2A;<code>std::unique_ptr</code>&#x4F1A;&#x5C06;&#x6240;&#x6709;&#x6743;&#x4ECE;&#x6E90;&#x6307;&#x9488;&#x8F6C;&#x5411;&#x76EE;&#x7684;&#x6307;&#x9488;(&#x6E90;&#x6307;&#x9488;&#x6307;&#x5411;&#x4E3A;null)&#x3002;&#x62F7;&#x8D1D;&#x4E00;&#x4E2A;<code>std::unique_ptr</code>&#x662F;&#x4E0D;&#x5141;&#x8BB8;&#x7684;&#xFF0C;&#x5047;&#x5982;&#x8BF4;&#x771F;&#x7684;&#x53EF;&#x4EE5;&#x5141;&#x8BB8;&#x62F7;&#x8D1D;<code>std::unique_ptr</code>,&#x90A3;&#x4E48;&#x5C06;&#x4F1A;&#x6709;&#x4E24;&#x4E2A;<code>std::unique_ptr</code>&#x6307;&#x5411;&#x540C;&#x4E00;&#x5757;&#x8D44;&#x6E90;&#x533A;&#x57DF;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x90FD;&#x8BA4;&#x4E3A;&#x5B83;&#x81EA;&#x5DF1;&#x62E5;&#x6709;&#x4E14;&#x53EF;&#x4EE5;&#x6467;&#x6BC1;&#x90A3;&#x5757;&#x8D44;&#x6E90;&#x3002;&#x56E0;&#x6B64;&#xFF0C;<code>std::unique_ptr</code>&#x662F;&#x4E00;&#x4E2A;move-only&#x7C7B;&#x578B;&#x3002;&#x5F53;&#x5B83;&#x9762;&#x4E34;&#x6790;&#x6784;&#x65F6;&#xFF0C;&#x4E00;&#x4E2A;&#x975E;&#x7A7A;&#x7684;<code>std::unique_ptr</code>&#x4F1A;&#x6467;&#x6BC1;&#x5B83;&#x6240;&#x62E5;&#x6709;&#x7684;&#x8D44;&#x6E90;&#x3002;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;<code>std::unique_ptr</code>&#x4F1A;&#x4F7F;&#x7528;delete&#x6765;&#x91CA;&#x653E;&#x5B83;&#x6240;&#x5305;&#x88F9;&#x7684;&#x539F;&#x751F;&#x6307;&#x9488;&#x6307;&#x5411;&#x7684;&#x7A7A;&#x95F4;&#x3002;</p>
+<p><code>std::unique_ptr</code>&#x7684;&#x4E00;&#x4E2A;&#x5E38;&#x89C1;&#x7528;&#x6CD5;&#x662F;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x5DE5;&#x5382;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x7EE7;&#x627F;&#x5C42;&#x7EA7;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x7279;&#x5B9A;&#x7C7B;&#x578B;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x6709;&#x4E00;&#x4E2A;&#x6295;&#x8D44;&#x7C7B;&#x578B;&#x7684;&#x7EE7;&#x627F;&#x94FE;&#x3002;</p>
+<p>[18-1.png]</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">class</span> Investment { ... };    
+<span class="hljs-keyword">class</span> Stock:<span class="hljs-keyword">public</span> Investment { ... };
+<span class="hljs-keyword">class</span> Bond:<span class="hljs-keyword">public</span> Investment { ... };
+<span class="hljs-keyword">class</span> RealEstate:<span class="hljs-keyword">public</span> Investment { ... };
+</code></pre>
+<p>&#x751F;&#x4EA7;&#x8FD9;&#x79CD;&#x5C42;&#x7EA7;&#x5BF9;&#x8C61;&#x7684;&#x5DE5;&#x5382;&#x51FD;&#x6570;&#x901A;&#x5E38;&#x5728;&#x5806;&#x4E0A;&#x9762;&#x5206;&#x914D;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x5E76;&#x4E14;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x6307;&#x5411;&#x5B83;&#x7684;&#x6307;&#x9488;&#x3002;&#x5F53;&#x4E0D;&#x518D;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x65F6;&#xFF0C;&#x8C03;&#x7528;&#x8005;&#x6765;&#x51B3;&#x5B9A;&#x662F;&#x5426;&#x5220;&#x9664;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x3002;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x7EDD;&#x4F73;&#x7684;<code>std::unique_ptr</code>&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;&#x3002;&#x56E0;&#x4E3A;&#x8C03;&#x7528;&#x8005;&#x83B7;&#x5F97;&#x4E86;&#x7531;&#x5DE5;&#x5382;&#x51FD;&#x6570;&#x5206;&#x914D;&#x7684;&#x5BF9;&#x8C61;&#x7684;&#x6240;&#x6709;&#x6743;(&#x5E76;&#x4E14;&#x662F;&#x72EC;&#x5360;&#x6027;&#x7684;)&#xFF0C;&#x800C;&#x4E14;<code>std::unique_ptr</code>&#x5728;&#x81EA;&#x5DF1;&#x5373;&#x5C06;&#x88AB;&#x9500;&#x6BC1;&#x65F6;&#xFF0C;&#x81EA;&#x52A8;&#x9500;&#x6BC1;&#x5B83;&#x6240;&#x6307;&#x5411;&#x7684;&#x7A7A;&#x95F4;&#x3002;&#x4E00;&#x4E2A;&#x4E3A;Investment&#x5C42;&#x7EA7;&#x5BF9;&#x8C61;&#x8BBE;&#x8BA1;&#x7684;&#x5DE5;&#x5382;&#x51FD;&#x6570;&#x53EF;&#x4EE5;&#x58F0;&#x660E;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span>... Ts&gt; 
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">unique_ptr</span>&lt;Investment&gt; makeInvestment(Ts&amp;&amp;... params);<span class="hljs-comment">// return std::unique_ptr</span>
+    <span class="hljs-comment">// to an object created</span>
+    <span class="hljs-comment">// from the given args</span>
+</code></pre>
+<p>&#x8C03;&#x7528;&#x8005;&#x53EF;&#x4EE5;&#x5728;&#x4E00;&#x5904;&#x4EE3;&#x7801;&#x5757;&#x4E2D;&#x4F7F;&#x7528;&#x8FD4;&#x56DE;&#x7684;<code>std::unique_ptr</code>:</p>
+<pre><code class="lang-cpp">{
+    ...
+    <span class="hljs-keyword">auto</span> pInvestment = makeInvestment( arguments ); 
+    <span class="hljs-comment">//pInvestment is of type std::unique_ptr&lt;Investment&gt;</span>
+    ...
+}<span class="hljs-comment">//destroy *pInvestment</span>
+</code></pre>
+<p>&#x4ED6;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5728;&#x62E5;&#x6709;&#x6743;&#x8F6C;&#x79FB;&#x7684;&#x573A;&#x666F;&#x4E2D;&#xFF0C;&#x4F8B;&#x5982;&#x5F53;&#x5DE5;&#x5382;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x7684;<code>std::unique_ptr</code>&#x53EF;&#x4EE5;&#x79FB;&#x52A8;&#x5230;&#x4E00;&#x4E2A;&#x5BB9;&#x5668;&#x4E2D;&#xFF0C;&#x8FD9;&#x4E2A;&#x5BB9;&#x5668;&#x968F;&#x5373;&#x88AB;&#x79FB;&#x52A8;&#x5230;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x6570;&#x636E;&#x6210;&#x5458;&#x4E0A;&#xFF0C;&#x8BE5;&#x5BF9;&#x8C61;&#x968F;&#x540E;&#x5373;&#x88AB;&#x9500;&#x6BC1;&#x3002;&#x5F53;&#x8BE5;&#x5BF9;&#x8C61;&#x88AB;&#x9500;&#x6BC1;&#x540E;&#xFF0C;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;<code>std::unique_ptr</code>&#x6570;&#x636E;&#x6210;&#x5458;&#x4E5F;&#x968F;&#x5373;&#x88AB;&#x9500;&#x6BC1;&#xFF0C;&#x5B83;&#x7684;&#x6790;&#x6784;&#x4F1A;&#x5F15;&#x53D1;&#x5DE5;&#x5382;&#x8FD4;&#x56DE;&#x7684;&#x8D44;&#x6E90;&#x88AB;&#x9500;&#x6BC1;&#x3002;&#x5982;&#x679C;&#x62E5;&#x6709;&#x94FE;&#x56E0;&#x4E3A;&#x5F02;&#x5E38;&#x6216;&#x8005;&#x5176;&#x4ED6;&#x7684;&#x5F02;&#x5E38;&#x63A7;&#x5236;&#x6D41;(&#x5982;&#xFF0C;&#x51FD;&#x6570;&#x8FC7;&#x65E9;&#x8FD4;&#x56DE;&#x6216;&#x8005;for&#x5FAA;&#x73AF;&#x4E2D;&#x7684;break&#x8BED;&#x53E5;)&#x4E2D;&#x65AD;&#xFF0C;&#x6700;&#x7EC8;&#x62E5;&#x6709;&#x8D44;&#x6E90;&#x7684;<code>std::unique_ptr</code>&#x4ECD;&#x4F1A;&#x8C03;&#x7528;&#x5B83;&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;(&#x6CE8;&#x89E3;&#xFF1A;&#x8FD9;&#x6761;&#x89C4;&#x5219;&#x4ECD;&#x6709;&#x4F8B;&#x5916;&#xFF1A;&#x5927;&#x591A;&#x6570;&#x6E90;&#x81EA;&#x4E8E;&#x7A0B;&#x5E8F;&#x7684;&#x975E;&#x6B63;&#x5E38;&#x4E2D;&#x65AD;&#x3002;&#x4E00;&#x4E2A;&#x4ECE;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x4E3B;&#x51FD;&#x6570;(&#x5982;&#x7A0B;&#x5E8F;&#x7684;&#x521D;&#x59CB;&#x7EBF;&#x7A0B;&#x7684;main&#x51FD;&#x6570;)&#x4F20;&#x9012;&#x51FA;&#x6765;&#x7684;&#x5F02;&#x5E38;&#xFF0C;&#x6216;&#x8005;&#x4E00;&#x4E2A;&#x8FDD;&#x80CC;&#x4E86;noexpect&#x89C4;&#x8303;(&#x8BF7;&#x770B;Item 14)&#x7684;&#x5F02;&#x5E38;,&#x672C;&#x5730;&#x5BF9;&#x8C61;&#x4E0D;&#x4F1A;&#x5F97;&#x5230;&#x6790;&#x6784;&#xFF0C;&#x5982;&#x679C;<code>std::abort</code>&#x6216;&#x8005;&#x5176;&#x4ED6;&#x7684;exit&#x51FD;&#x6570;(&#x5982;<code>std::_Exit</code>, <code>std::exit</code>,&#x6216;&#x8005;<code>std::quick_exit</code>)&#x88AB;&#x8C03;&#x7528;&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x4EEC;&#x80AF;&#x5B9A;&#x4E0D;&#x4F1A;&#x88AB;&#x6790;&#x6784;)&#xFF0C;<code>std::unique_ptr</code>&#x7BA1;&#x7406;&#x7684;&#x8D44;&#x6E90;&#x4E5F;&#x56E0;&#x6B64;&#x5F97;&#x5230;&#x91CA;&#x653E;&#x3002;</p>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6790;&#x6784;&#x51FD;&#x6570;&#x4F1A;&#x4F7F;&#x7528;delete&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x5B83;&#x7684;&#x6784;&#x9020;&#x8FC7;&#x7A0B;&#x4E2D;&#x6307;&#x5B9A;&#x7279;&#x5B9A;&#x7684;&#x6790;&#x6784;&#x65B9;&#x6CD5;(custom deleters):&#x5F53;&#x8D44;&#x6E90;&#x88AB;&#x56DE;&#x6536;&#x65F6;&#xFF0C;&#x4F20;&#x5165;&#x7684;&#x7279;&#x5B9A;&#x7684;&#x6790;&#x6784;&#x65B9;&#x6CD5;(&#x51FD;&#x6570;&#x5BF9;&#x8C61;&#xFF0C;&#x6216;&#x8005;&#x662F;&#x7279;&#x5B9A;&#x7684;lambda&#x8868;&#x8FBE;&#x5F0F;)&#x4F1A;&#x88AB;&#x8C03;&#x7528;&#x3002;&#x5BF9;&#x4E8E;&#x6211;&#x4EEC;&#x7684;&#x4F8B;&#x5B50;&#x6765;&#x8BF4;&#xFF0C;&#x5982;&#x679C;&#x88AB;makeInvestment&#x521B;&#x5EFA;&#x7684;&#x5BF9;&#x8C61;&#x4E0D;&#x5E94;&#x8BE5;&#x76F4;&#x63A5;&#x88AB;deleted&#xFF0C;&#x800C;&#x662F;&#x9996;&#x5148;&#x8981;&#x6709;&#x4E00;&#x6761;log&#x8BB0;&#x5F55;&#x4E0B;&#x6765;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x5B9E;&#x73B0;makeInvestment&#xFF08;&#x5F53;&#x4F60;&#x770B;&#x5230;&#x610F;&#x56FE;&#x4E0D;&#x662F;&#x5F88;&#x660E;&#x663E;&#x7684;&#x4EE3;&#x7801;&#x65F6;&#xFF0C;&#x8BF7;&#x6CE8;&#x610F;&#x770B;&#x6CE8;&#x91CA;&#xFF09;</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">auto</span> delInvmt = [](Investment* pInvestment){
+    makeLogEntry(pInvestment);
+    <span class="hljs-keyword">delete</span> pInvestment;
+};<span class="hljs-comment">//custom deleter(a lambda expression)</span>
+<span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span>... Ts&gt;
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">unique_ptr</span>&lt;Investment, <span class="hljs-keyword">decltype</span>(delInvmt)&gt;<span class="hljs-comment">//revised return type</span>
+makeInvestment(Ts&amp;&amp;... params)
+{
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">unique_ptr</span>&lt;Investment, <span class="hljs-keyword">decltype</span>(delInvmt)&gt; pInv(<span class="hljs-literal">nullptr</span>, delInvmt);<span class="hljs-comment">//ptr to be returned</span>
+    <span class="hljs-keyword">if</span> ( <span class="hljs-comment">/* a Stock object should be created */</span> )
+    {
+       pInv.reset(<span class="hljs-keyword">new</span> Stock(<span class="hljs-built_in">std</span>::forward&lt;Ts&gt;(params)...));
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( <span class="hljs-comment">/* a Bond object should be created */</span> )
+    {
+       pInv.reset(<span class="hljs-keyword">new</span> Bond(<span class="hljs-built_in">std</span>::forward&lt;Ts&gt;(params)...));
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( <span class="hljs-comment">/* a RealEstate object should be created */</span> )
+    {
+       pInv.reset(<span class="hljs-keyword">new</span> RealEstate(<span class="hljs-built_in">std</span>::forward&lt;Ts&gt;(params)...));
+    }
+    <span class="hljs-keyword">return</span> pInv;
+}
+</code></pre>
+<p>&#x6211;&#x4E4B;&#x524D;&#x8BF4;&#x8FC7;&#xFF0C;&#x5F53;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x7684;&#x6790;&#x6784;&#x65B9;&#x6CD5;&#x65F6;(&#x5373;&#xFF0C;delete)&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x5047;&#x8BBE;<code>std::unique_ptr</code>&#x5BF9;&#x8C61;&#x7684;&#x5927;&#x5C0F;&#x548C;&#x539F;&#x751F;&#x6307;&#x9488;&#x4E00;&#x6837;&#x3002;&#x5F53;<code>std::unique_ptr</code>&#x7528;&#x5230;&#x4E86;&#x81EA;&#x5B9A;&#x4E49;&#x7684;deleter&#x65F6;&#xFF0C;&#x60C5;&#x51B5;&#x53EF;&#x5C31;&#x4E0D;&#x4E00;&#x6837;&#x4E86;&#x3002;&#x51FD;&#x6570;&#x6307;&#x9488;&#x7C7B;&#x578B;&#x7684;deleter&#x4F1A;&#x4F7F;&#x5F97;<code>std::unique_ptr</code>&#x7684;&#x5927;&#x5C0F;&#x589E;&#x957F;&#x5230;&#x4E00;&#x4E2A;&#x5B57;&#x8282;&#x5230;&#x4E24;&#x4E2A;&#x5B57;&#x8282;&#x3002;&#x5BF9;&#x4E8E;deleters&#x662F;&#x51FD;&#x6570;&#x5BF9;&#x8C61;&#x7684;<code>std::unique_ptr</code>,&#x5927;&#x5C0F;&#x7684;&#x6539;&#x53D8;&#x4F9D;&#x8D56;&#x4E8E;&#x51FD;&#x6570;&#x5BF9;&#x8C61;&#x5185;&#x90E8;&#x8981;&#x5B58;&#x50A8;&#x591A;&#x5C11;&#x72B6;&#x6001;&#x3002;&#x65E0;&#x72B6;&#x6001;&#x7684;&#x51FD;&#x6570;&#x5BF9;&#x8C61;(&#x5982;&#xFF0C;&#x6CA1;&#x6709;captures&#x7684;lambda expressions) &#x4E0D;&#x4F1A;&#x5BFC;&#x81F4;&#x989D;&#x5916;&#x7684;&#x5927;&#x5C0F;&#x5F00;&#x9500;&#x3002;&#x8FD9;&#x5C31;&#x610F;&#x5473;&#x7740;&#x5F53;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;&#x7684;deleter&#x65E2;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x4E3A;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x5BF9;&#x8C61;&#x6216;&#x8005;&#x4E00;&#x4E2A;&#x65E0;&#x6355;&#x83B7;&#x72B6;&#x6001;&#x7684;lambda&#x8868;&#x8FBE;&#x5F0F;&#x65F6;&#xFF0C;lambda&#x662F;&#x7B2C;&#x4E00;&#x4F18;&#x5148;&#x9009;&#x62E9;:</p>
+<pre><code class="lang-cpp"><span class="hljs-keyword">auto</span> delInvmt1 = [](Investment* pInvestment)
+                {    
+                    makeLogEntry(pInvestment);
+                    <span class="hljs-keyword">delete</span> pInvestment;
+                }
+<span class="hljs-comment">//custom deleter as stateless lambda</span>
+<span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span>... Ts&gt;
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">unique_ptr</span>&lt;Investment, <span class="hljs-keyword">decltype</span>(delInvmt1)&gt;
+makeInvestment(Ts&amp;&amp;.. args);<span class="hljs-comment">//return type has size of Investment*</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">delInvmt2</span><span class="hljs-params">(Investment* pInvestment)</span>
+</span>{
+    makeLogEntry(pInvestment);
+    <span class="hljs-keyword">delete</span> pInvestment;
+}
+
+<span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span>... Ts&gt;
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">unique_ptr</span>&lt;Investment,(<span class="hljs-keyword">void</span> *)(Investment*)&gt;
+makeInvestment(Ts&amp;&amp;... params);<span class="hljs-comment">//return type has size of Investment* plus at least size of function pointer!</span>
+</code></pre>
+<p>&#x5E26;&#x6709;&#x8FC7;&#x591A;&#x72B6;&#x6001;&#x7684;&#x51FD;&#x6570;&#x5BF9;&#x8C61;&#x7684;deleters&#x662F;&#x4F7F;&#x5F97;<code>std::unique_ptr</code>&#x7684;&#x5927;&#x5C0F;&#x5F97;&#x5230;&#x663E;&#x8457;&#x7684;&#x589E;&#x52A0;&#x3002;&#x5982;&#x679C;&#x4F60;&#x53D1;&#x73B0;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;&#x7684;deleter&#x4F7F;&#x5F97;&#x4F60;&#x7684;<code>std::unique_ptr</code>&#x5927;&#x5230;&#x65E0;&#x6CD5;&#x63A5;&#x53D7;&#xFF0C;&#x8BF7;&#x8003;&#x8651;&#x91CD;&#x65B0;&#x6539;&#x53D8;&#x4F60;&#x7684;&#x8BBE;&#x8BA1;&#x3002;</p>
+<p><code>std::unique_ptr</code>&#x4F1A;&#x4EA7;&#x751F;&#x4E24;&#x79CD;&#x683C;&#x5F0F;&#xFF0C;&#x4E00;&#x79CD;&#x662F;&#x72EC;&#x7ACB;&#x7684;&#x5BF9;&#x8C61;(std::unique_ptr<t>)&#xFF0C;&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x662F;&#x6570;&#x7EC4;(<code>std::unique_ptr&lt;T[]&gt;</code>).&#x56E0;&#x6B64;&#xFF0C;std::unique_ptr&#x6307;&#x5411;&#x7684;&#x5185;&#x5BB9;&#x4ECE;&#x6765;&#x4E0D;&#x4F1A;&#x4EA7;&#x751F;&#x4EFB;&#x4F55;&#x6B67;&#x4E49;&#x6027;&#x3002;&#x5B83;&#x7684;API&#x662F;&#x4E13;&#x95E8;&#x4E3A;&#x4E86;&#x4F60;&#x4F7F;&#x7528;&#x7684;&#x683C;&#x5F0F;&#x6765;&#x8BBE;&#x8BA1;&#x7684;.&#x4F8B;&#x5982;&#xFF0C;&#x5355;&#x5BF9;&#x8C61;&#x683C;&#x5F0F;&#x4E2D;&#x6CA1;&#x6709;&#x8FC7;&#x7D22;&#x5F15;&#x64CD;&#x4F5C;&#x7B26;(&#x64CD;&#x4F5C;&#x7B26;[]),&#x6570;&#x7EC4;&#x683C;&#x5F0F;&#x5219;&#x6CA1;&#x6709;&#x89E3;&#x5F15;&#x7528;&#x64CD;&#x4F5C;&#x7B26;(&#x64CD;&#x4F5C;&#x7B26;*&#x548C;&#x64CD;&#x4F5C;&#x7B26;-&gt;)</t></p>
+<p><code>std::unique_ptr</code>&#x7684;&#x6570;&#x7EC4;&#x683C;&#x5F0F;&#x5BF9;&#x4F60;&#x6765;&#x8BF4;&#x53EF;&#x80FD;&#x662F;&#x534E;&#x800C;&#x4E0D;&#x5B9E;&#x7684;&#x4E1C;&#x4E1C;&#xFF0C;&#x56E0;&#x4E3A;&#x548C;&#x539F;&#x751F;&#x7684;array&#x76F8;&#x6BD4;&#xFF0C;<code>std::array</code>,<code>std::vector</code>&#x4EE5;&#x53CA;<code>std::string</code>&#x51E0;&#x4E4E;&#x662F;&#x66F4;&#x597D;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x9009;&#x62E9;&#x3002;&#x6211;&#x6240;&#x60F3;&#x5230;&#x7684;&#x552F;&#x4E00;&#x7684;std::unique_ptr<t[]>&#x6709;&#x610F;&#x4E49;&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;&#x662F;&#xFF0C;&#x4F60;&#x4F7F;&#x7528;&#x4E86;C-like API&#x6765;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x6307;&#x5411;&#x5806;&#x5185;&#x5206;&#x914D;&#x7684;&#x6570;&#x7EC4;&#x7684;&#x539F;&#x751F;&#x6307;&#x9488;&#xFF0C;&#x800C;&#x4E14;&#x4F60;&#x50CF;&#x5BF9;&#x4E4B;&#x63A5;&#x7BA1;&#x62E5;&#x6709;&#x6743;&#x3002;</t[]></p>
+<p>C++11&#x4F7F;&#x7528;<code>std::unique_ptr</code>&#x6765;&#x8868;&#x8FF0;&#x72EC;&#x5360;&#x6240;&#x6709;&#x6743;&#x3002;&#x4F46;&#x662F;&#x5B83;&#x7684;&#x4E00;&#x9879;&#x6700;&#x5F15;&#x4EBA;&#x6CE8;&#x76EE;&#x7684;&#x7279;&#x6027;&#x5C31;&#x662F;&#x5B83;&#x53EF;&#x4EE5;&#x8F7B;&#x6613;&#x4E14;&#x6709;&#x6548;&#x7684;&#x8F6C;&#x5316;&#x4E3A;<code>std::shared_ptr</code>:</p>
+<pre><code class="lang-cpp"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">shared_ptr</span>&lt;Investment&gt; sp = makeInvestment(arguments);<span class="hljs-comment">//converts std::unique_ptr to std::shared_ptr</span>
+</code></pre>
+<p>&#x8FD9;&#x5C31;&#x662F;<code>std::unique_ptr</code>&#x5F88;&#x9002;&#x5408;&#x4F5C;&#x4E3A;&#x5DE5;&#x5382;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x503C;&#x7C7B;&#x578B;&#x7684;&#x539F;&#x56E0;&#x3002;&#x5DE5;&#x5382;&#x51FD;&#x6570;&#x4E0D;&#x77E5;&#x9053;&#x8C03;&#x7528;&#x8005;&#x60F3;&#x4F7F;&#x7528;&#x72EC;&#x5360;&#x6027;&#x7684;&#x62E5;&#x6709;&#x8BED;&#x4E49;&#x8FD8;&#x662F;&#x5171;&#x4EAB;&#x5F0F;&#x7684;&#x62E5;&#x6709;&#x8BED;&#x4E49;(&#x5373;<code>std::share_ptr</code>).&#x901A;&#x8FC7;&#x8FD4;&#x56DE;<code>std::unique_ptr</code>,&#x5DE5;&#x5382;&#x51FD;&#x6570;&#x5C06;&#x9009;&#x62E9;&#x6743;&#x79FB;&#x4EA4;&#x7ED9;&#x4E86;&#x8C03;&#x7528;&#x8005;,&#x8C03;&#x7528;&#x8005;&#x5728;&#x9700;&#x8981;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x5C06;<code>std::unique_ptr</code>&#x8F6C;&#x5316;&#x4E3A;&#x5B83;&#x6700;&#x5BCC;&#x6709;&#x7075;&#x6D3B;&#x6027;&#x7684;&#x5144;&#x5F1F;(&#x5982;&#x679C;&#x60F3;&#x4E86;&#x89E3;&#x66F4;&#x591A;&#x5173;&#x4E8E;<code>std::shared_ptr</code>,&#x8BF7;&#x79FB;&#x6B65;Item 19)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x8981;&#x8BB0;&#x4F4F;&#x7684;&#x4E1C;&#x897F;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>std::unique_ptr</code>&#x662F;&#x4E00;&#x4E2A;&#x5177;&#x6709;&#x5F00;&#x9500;&#x5C0F;&#xFF0C;&#x901F;&#x5EA6;&#x5FEB;&#xFF0C;<code>move-only</code>&#x7279;&#x5B9A;&#x7684;&#x667A;&#x80FD;&#x6307;&#x9488;&#xFF0C;&#x4F7F;&#x7528;&#x72EC;&#x5360;&#x62E5;&#x6709;&#x65B9;&#x5F0F;&#x6765;&#x7BA1;&#x7406;&#x8D44;&#x6E90;&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x91CA;&#x653E;&#x8D44;&#x6E90;&#x7531;delete&#x6765;&#x5B8C;&#x6210;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x6765;&#x66FF;&#x4EE3;&#x3002;&#x4F46;&#x662F;&#x5177;&#x6709;&#x4E30;&#x5BCC;&#x72B6;&#x6001;&#x7684;deleters&#x548C;&#x4EE5;&#x51FD;&#x6570;&#x6307;&#x9488;&#x4F5C;&#x4E3A;deleters&#x589E;&#x5927;&#x4E86;<code>std::unique_ptr</code>&#x7684;&#x5B58;&#x50A8;&#x5F00;&#x9500;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5F88;&#x5BB9;&#x6613;&#x5C06;&#x4E00;&#x4E2A;<code>std::unique_ptr</code>&#x8F6C;&#x5316;&#x4E3A;<code>std::shared_ptr</code></td>
+</tr>
+</tbody>
+</table>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 第四章 智能指针">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="19-Use-std-shared_ptr-for-shared-ownership-resource-management.html" class="navigation navigation-next " aria-label="Next page: 条款19：使用std::shared_ptr管理共享资源">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"条款18：使用std::unique_ptr管理独占资源","level":"1.8.1","depth":2,"next":{"title":"条款19：使用std::shared_ptr管理共享资源","level":"1.8.2","depth":2,"path":"SmartPointers/19-Use-std-shared_ptr-for-shared-ownership-resource-management.md","ref":"SmartPointers/19-Use-std-shared_ptr-for-shared-ownership-resource-management.md","articles":[]},"previous":{"title":"第四章 智能指针","level":"1.8","depth":1,"path":"SmartPointers/README.md","ref":"SmartPointers/README.md","articles":[{"title":"条款18：使用std::unique_ptr管理独占资源","level":"1.8.1","depth":2,"path":"SmartPointers/18-Use-std-unique_ptr-for-exclusive-ownership-resource-management.md","ref":"SmartPointers/18-Use-std-unique_ptr-for-exclusive-ownership-resource-management.md","articles":[]},{"title":"条款19：使用std::shared_ptr管理共享资源","level":"1.8.2","depth":2,"path":"SmartPointers/19-Use-std-shared_ptr-for-shared-ownership-resource-management.md","ref":"SmartPointers/19-Use-std-shared_ptr-for-shared-ownership-resource-management.md","articles":[]},{"title":"条款20：在std::shared_ptr类似指针可以悬挂时使用std::weak_ptr","level":"1.8.3","depth":2,"path":"SmartPointers/20-Use-std-weak_ptr-for-std-shared_ptr-like-pointers-that-can-dangle.md","ref":"SmartPointers/20-Use-std-weak_ptr-for-std-shared_ptr-like-pointers-that-can-dangle.md","articles":[]},{"title":"条款21：优先使用std::make_unique和std::make_shared而不是直接使用new","level":"1.8.4","depth":2,"path":"SmartPointers/21-Prefer-std-make_unique-and-std-make_shared-to-direct-use-of-new.md","ref":"SmartPointers/21-Prefer-std-make_unique-and-std-make_shared-to-direct-use-of-new.md","articles":[]},{"title":"条款22：当使用Pimpl的时候在实现文件中定义特殊的成员函数","level":"1.8.5","depth":2,"path":"SmartPointers/22-When-using-the-Pimpl-Idiom-define-special-member-functions-in-the-implementation-file.md","ref":"SmartPointers/22-When-using-the-Pimpl-Idiom-define-special-member-functions-in-the-implementation-file.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"SmartPointers/18-Use-std-unique_ptr-for-exclusive-ownership-resource-management.md","mtime":"2020-11-11T15:39:05.200Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-11T15:55:21.177Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

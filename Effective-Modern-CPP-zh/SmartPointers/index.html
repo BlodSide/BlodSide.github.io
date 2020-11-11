@@ -1,0 +1,980 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>第四章 智能指针 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="18-Use-std-unique_ptr-for-exclusive-ownership-resource-management.html" />
+    
+    
+    <link rel="prev" href="../MovingtoModernC++/17-Understand-special-member-function-generation.md" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../FromthePublisher/">
+            
+                <a href="../FromthePublisher/">
+            
+                    
+                    出版者的忠告
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../Acknowledgements/">
+            
+                <a href="../Acknowledgements/">
+            
+                    
+                    致谢
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../Introduction/">
+            
+                <a href="../Introduction/">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../DeducingTypes/">
+            
+                <a href="../DeducingTypes/">
+            
+                    
+                    第一章 类型推导
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../DeducingTypes/1-Understand-template-type-deduction.html">
+            
+                <a href="../DeducingTypes/1-Understand-template-type-deduction.html">
+            
+                    
+                    条款1：理解模板类型推导
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../DeducingTypes/2-Understand-auto-type-deduction.html">
+            
+                <a href="../DeducingTypes/2-Understand-auto-type-deduction.html">
+            
+                    
+                    条款2：理解auto类型推导
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../DeducingTypes/3-Understand-decltype.html">
+            
+                <a href="../DeducingTypes/3-Understand-decltype.html">
+            
+                    
+                    条款3：理解decltype
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../DeducingTypes/4-Know-how-to-view-deduced-types.html">
+            
+                <a href="../DeducingTypes/4-Know-how-to-view-deduced-types.html">
+            
+                    
+                    条款4：知道如何查看类型推导
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../auto/">
+            
+                <a href="../auto/">
+            
+                    
+                    第二章 auto关键字
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../auto/5-Prefer-auto-to-explicit-type-declarations.html">
+            
+                <a href="../auto/5-Prefer-auto-to-explicit-type-declarations.html">
+            
+                    
+                    条款5：优先使用auto而非显式类型声明
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../auto/6-Use-the-explicitly-typed-initializer-idiom-when-auto-deduces-undesired-types.html">
+            
+                <a href="../auto/6-Use-the-explicitly-typed-initializer-idiom-when-auto-deduces-undesired-types.html">
+            
+                    
+                    条款6：当auto推导出非预期类型时应当使用显式的类型初始化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../MovingtoModernC++/README.md">
+            
+                <span>
+            
+                    
+                    第三章 使用现代C++
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../MovingtoModernC++/7-Distinguish-between-xxx-when-creating-objects.html">
+            
+                <a href="../MovingtoModernC++/7-Distinguish-between-xxx-when-creating-objects.html">
+            
+                    
+                    条款7：创建对象时区分()和{}
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../MovingtoModernC++/8-Prefer-nullptr-to-0-and-NULL.html">
+            
+                <a href="../MovingtoModernC++/8-Prefer-nullptr-to-0-and-NULL.html">
+            
+                    
+                    条款8：优先使用nullptr而不是0或者NULL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../MovingtoModernC++/9-Prefer-alias-declarations-to-typedefs.html">
+            
+                <a href="../MovingtoModernC++/9-Prefer-alias-declarations-to-typedefs.html">
+            
+                    
+                    条款9：优先使用声明别名而不是typedef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../MovingtoModernC++/10-Prefer-scoped-enum-to-unscoped-enums.html">
+            
+                <a href="../MovingtoModernC++/10-Prefer-scoped-enum-to-unscoped-enums.html">
+            
+                    
+                    条款10：优先使用作用域限制的enmu而不是无作用域的enum
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="../MovingtoModernC++/11-Prefer-deleted-functions-to-private-undefined-ones.html">
+            
+                <a href="../MovingtoModernC++/11-Prefer-deleted-functions-to-private-undefined-ones.html">
+            
+                    
+                    条款11：优先使用delete关键字删除函数而不是private却又不实现的函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6" data-path="../MovingtoModernC++/12-Declare-overriding-functions-override.html">
+            
+                <a href="../MovingtoModernC++/12-Declare-overriding-functions-override.html">
+            
+                    
+                    条款12：使用override关键字声明覆盖的函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.7" data-path="../MovingtoModernC++/13-Prefer-const_iterators-to-iterators.html">
+            
+                <a href="../MovingtoModernC++/13-Prefer-const_iterators-to-iterators.html">
+            
+                    
+                    条款13：优先使用const_iterator而不是iterator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.8" data-path="../MovingtoModernC++/14-Declare-functions-noexcept-if-they-won’t-emit-exceptions.md">
+            
+                <span>
+            
+                    
+                    条款14：使用noexcept修饰不想抛出异常的函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.9" data-path="../MovingtoModernC++/15-Use-constexpr-whenever-possible.md">
+            
+                <span>
+            
+                    
+                    条款15：尽可能的使用constexpr
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.10" data-path="../MovingtoModernC++/16-Make-const-member-functions-thread-safe.md">
+            
+                <span>
+            
+                    
+                    条款16：保证const成员函数线程安全
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.11" data-path="../MovingtoModernC++/17-Understand-special-member-function-generation.md">
+            
+                <span>
+            
+                    
+                    条款17：理解特殊成员函数的生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.8" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第四章 智能指针
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="18-Use-std-unique_ptr-for-exclusive-ownership-resource-management.html">
+            
+                <a href="18-Use-std-unique_ptr-for-exclusive-ownership-resource-management.html">
+            
+                    
+                    条款18：使用std::unique_ptr管理独占资源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="19-Use-std-shared_ptr-for-shared-ownership-resource-management.html">
+            
+                <a href="19-Use-std-shared_ptr-for-shared-ownership-resource-management.html">
+            
+                    
+                    条款19：使用std::shared_ptr管理共享资源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="20-Use-std-weak_ptr-for-std-shared_ptr-like-pointers-that-can-dangle.html">
+            
+                <a href="20-Use-std-weak_ptr-for-std-shared_ptr-like-pointers-that-can-dangle.html">
+            
+                    
+                    条款20：在std::shared_ptr类似指针可以悬挂时使用std::weak_ptr
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="21-Prefer-std-make_unique-and-std-make_shared-to-direct-use-of-new.html">
+            
+                <a href="21-Prefer-std-make_unique-and-std-make_shared-to-direct-use-of-new.html">
+            
+                    
+                    条款21：优先使用std::make_unique和std::make_shared而不是直接使用new
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="22-When-using-the-Pimpl-Idiom-define-special-member-functions-in-the-implementation-file.html">
+            
+                <a href="22-When-using-the-Pimpl-Idiom-define-special-member-functions-in-the-implementation-file.html">
+            
+                    
+                    条款22：当使用Pimpl的时候在实现文件中定义特殊的成员函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/">
+            
+                <a href="../RvalueReferencesMoveSemanticsandPerfectForwarding/">
+            
+                    
+                    第五章 右值引用、移动语义和完美转发
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/23-Understand-std-move-and-std-forward.html">
+            
+                <a href="../RvalueReferencesMoveSemanticsandPerfectForwarding/23-Understand-std-move-and-std-forward.html">
+            
+                    
+                    条款23：理解std::move和std::forward
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/24-Distinguish-universal-references-from-rvalue-references.html">
+            
+                <a href="../RvalueReferencesMoveSemanticsandPerfectForwarding/24-Distinguish-universal-references-from-rvalue-references.html">
+            
+                    
+                    条款24：区分通用引用和右值引用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/25-Use-std-move-on-rvalue-references-std-forward-on-universal-references.md">
+            
+                <span>
+            
+                    
+                    条款25：在右值引用上使用std::move 在通用引用上使用std::forward
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/26-Avoid-overloading-on-universal-references.md">
+            
+                <span>
+            
+                    
+                    条款26：避免在通用引用上重定义函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/27-Familiarize-yourself-with-alternatives-to-overloading-on-universal-references.md">
+            
+                <span>
+            
+                    
+                    条款27：熟悉通用引用上重定义函数的其他选择
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.6" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/28-Understand-reference-collapsing.md">
+            
+                <span>
+            
+                    
+                    条款28：理解引用折叠
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.7" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/29-Assume-that-move-operations-are-not-present-not-cheap-and-not-used.md">
+            
+                <span>
+            
+                    
+                    条款29：假定移动操作不存在，不廉价，不使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.8" data-path="../RvalueReferencesMoveSemanticsandPerfectForwarding/30-Familiarize-yourself-with-perfect-forwarding-failure-cases.md">
+            
+                <span>
+            
+                    
+                    条款30：熟悉完美转发和失败的情况
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../LambdaExpressions/README.md">
+            
+                <span>
+            
+                    
+                    第六章 Lambda表达式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../LambdaExpressions/31-Avoid-default-capture-modes.md">
+            
+                <span>
+            
+                    
+                    条款31：避免默认的参数捕捉
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../LambdaExpressions/32-Use-init-capture-to-move-objects-into-closures.md">
+            
+                <span>
+            
+                    
+                    条款32：使用init捕捉来移动对象到闭包
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../LambdaExpressions/33-Use-decltype-on-auto&&-parameters-to-std-forward-them.md">
+            
+                <span>
+            
+                    
+                    条款33：在auto&&参数上使用decltype当std::forward auto&&参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../LambdaExpressions/34-Prefer-lambdas-to-std-bind.md">
+            
+                <span>
+            
+                    
+                    条款34：优先使用lambda而不是std::bind
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../TheConcurrencyAPI/README.md">
+            
+                <span>
+            
+                    
+                    第七章 并发API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../TheConcurrencyAPI/35-Prefer-task-based-programming-to-thread-based.md">
+            
+                <span>
+            
+                    
+                    条款35：优先使用task-based而不是thread-based
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../TheConcurrencyAPI/36-Specify-std-launch-async-if-asynchronicity-is-essential.md">
+            
+                <span>
+            
+                    
+                    条款36：当异步是必要的时声明std::launch::async
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../TheConcurrencyAPI/37-Make-std-threads-unjoinable-on-all-paths.md">
+            
+                <span>
+            
+                    
+                    条款37：使得std::thread在所有的路径下无法join
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../TheConcurrencyAPI/38-Be-aware-of-varying-thread-handle-destructor-behavior.md">
+            
+                <span>
+            
+                    
+                    条款38：注意线程句柄析构的行为
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="../TheConcurrencyAPI/39-Consider-void-futures-for-one-shot-event-communication.md">
+            
+                <span>
+            
+                    
+                    条款39：考虑在一次性事件通信上void的特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.6" data-path="../TheConcurrencyAPI/40-Use-std-atomic-for-concurrency-volatile-for-special-memory.md">
+            
+                <span>
+            
+                    
+                    条款40：在并发时使用std::atomic 在特殊内存上使用volatile
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../Tweaks/README.md">
+            
+                <span>
+            
+                    
+                    第八章 改进
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../Tweaks/41-Consider-pass-by-value-for-copyable-parameters-that-are-cheap-to-move-and-always-copied.md">
+            
+                <span>
+            
+                    
+                    条款41：考虑对拷贝参数按值传递移动廉价，那就尽量拷贝
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../Tweaks/42-Consider-emplacement-instead-of-insertion.md">
+            
+                <span>
+            
+                    
+                    条款42：考虑使用emplace代替insert
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >第四章 智能指针</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="charpter4-&#x667A;&#x80FD;&#x6307;&#x9488;">Charpter4 &#x667A;&#x80FD;&#x6307;&#x9488;</h1>
+<p>&#x8BD7;&#x4EBA;&#x548C;&#x4F5C;&#x66F2;&#x5BB6;&#x559C;&#x6B22;&#x5199;&#x4E00;&#x4E9B;&#x5173;&#x4E8E;love&#x7684;&#x4F5C;&#x54C1;&#xFF0C;&#x4E5F;&#x6709;&#x53EF;&#x80FD;&#x5199;&#x4E00;&#x4E9B;&#x5173;&#x4E8E;&#x8BA1;&#x6570;(counting)&#x7684;&#x4F5C;&#x54C1;,&#x5F88;&#x5C11;&#x6709;&#x4E24;&#x8005;&#x517C;&#x987E;&#x7684;&#x3002;&#x603B;&#x6709;&#x4E9B;&#x4F8B;&#x5916;&#xFF0C;&#x5982;Elizabeth Barrett Browning:&quot;How do I love thee? Let me count the ways&quot;,&#x53C8;&#x5982;Paul Simon:&quot;There must be 50 ways to leave your lover.&quot;,&#x88AB;&#x8FD9;&#x4E9B;&#x8BD7;&#x53E5;&#x542F;&#x53D1;&#xFF0C;&#x6211;&#x4EEC;&#x6765;&#x5C1D;&#x8BD5;&#x5217;&#x4E3E;&#x4E0B;&#x4E3A;&#x4EC0;&#x4E48;&#x539F;&#x751F;&#x6307;&#x9488;(raw pointer)&#x4E0D;&#x90A3;&#x4E48;&#x8BA8;&#x4EBA;&#x559C;&#x6B22;(love)&#x7684;&#x7406;&#x7531;:</p>
+<p>1.&#x4ECE;&#x5B83;&#x7684;&#x58F0;&#x660E;&#x770B;&#x4E0D;&#x51FA;&#x5B83;&#x6307;&#x5411;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x5355;&#x4E2A;&#x7684;&#x5BF9;&#x8C61;&#x8FD8;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;</p>
+<p>2.&#x5F53;&#x4F60;&#x4F7F;&#x7528;&#x5B8C;&#x5B83;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4ECE;&#x5B83;&#x7684;&#x58F0;&#x660E;&#x770B;&#x4E0D;&#x51FA;&#x6765;&#x4F60;&#x662F;&#x5426;&#x5E94;&#x8BE5;&#x628A;&#x5B83;&#x9500;&#x6BC1;&#xFF0C;&#x4F8B;&#x5982;&#xFF0C;&#x5F53;&#x6307;&#x9488;&#x62E5;&#x6709;(owns)&#x5B83;&#x5F53;&#x524D;&#x6307;&#x5411;&#x7684;&#x5BF9;&#x8C61;&#x65F6;</p>
+<p>3.&#x5F53;&#x4F60;&#x786E;&#x5B9A;&#x8981;&#x9500;&#x6BC1;&#x5B83;&#x6307;&#x5411;&#x7684;&#x5185;&#x5BB9;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53C8;&#x8981;&#x72AF;&#x96BE;&#x4E86;&#xFF0C;&#x56E0;&#x4E3A;&#x4F60;&#x4E0D;&#x77E5;&#x9053;&#x8981;&#x4F7F;&#x7528;delete&#xFF0C;&#x8FD8;&#x662F;&#x8981;&#x4F7F;&#x7528;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x9500;&#x6BC1;&#x673A;&#x5236;(&#x5982;&#x5C06;&#x8BE5;&#x6307;&#x9488;&#x4F20;&#x9012;&#x5230;&#x4E00;&#x4E2A;&#x6307;&#x5B9A;&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x91CC;)</p>
+<p>4.&#x5F53;&#x4F60;&#x7EC8;&#x4E8E;&#x8981;&#x4F7F;&#x7528;delete&#x51B3;&#x5B9A;&#x8981;&#x9500;&#x6BC1;&#x5B83;&#x4E86;,&#x56E0;&#x4E3A;&#x7B2C;1&#x6761;&#xFF0C;&#x4F60;&#x53C8;&#x4E0D;&#x77E5;&#x9053;&#x8BE5;&#x4F7F;&#x7528;delete&#x8FD8;&#x662F;delete[],&#x56E0;&#x4E3A;&#x4E00;&#x65E6;&#x4F7F;&#x7528;&#x9519;&#x8BEF;&#xFF0C;&#x7ED3;&#x679C;&#x4F1A;&#x662F;&#x4E0D;&#x786E;&#x5B9A;&#x7684;</p>
+<p>5.&#x6700;&#x540E;&#xFF0C;&#x4F60;&#x7EC8;&#x4E8E;&#x786E;&#x5B9A;&#x4E86;&#x6307;&#x9488;&#x6307;&#x5411;&#x7684;&#x5185;&#x5BB9;&#x662F;&#x5565;&#x4E86;&#xFF0C;&#x4E5F;&#x786E;&#x5B9A;&#x4E86;&#x6539;&#x7528;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x9500;&#x6BC1;&#xFF1B;&#x95EE;&#x9898;&#x53C8;&#x6765;&#x4E86;&#xFF0C;&#x56E0;&#x4E3A;&#x4F60;&#x4E0D;&#x80FD;&#x4FDD;&#x8BC1;&#x5728;&#x4F60;&#x7684;&#x7A0B;&#x5E8F;&#x7684;&#x6BCF;&#x6761;&#x8DEF;&#x5F84;&#x4E2D;&#xFF0C;&#x4F60;&#x7684;&#x9500;&#x6BC1;&#x4EE3;&#x7801;&#x53EA;&#x6267;&#x884C;&#x4E00;&#x6B21;&#xFF0C;&#x4E0D;&#x6267;&#x884C;&#x7684;&#x8BDD;&#x4F1A;&#x9020;&#x6210;&#x5185;&#x5B58;&#x6CC4;&#x9732;&#xFF0C;&#x591A;&#x6267;&#x884C;&#x54EA;&#x6015;&#x4E00;&#x6B21;&#x4F1A;&#x4EA7;&#x751F;&#x4E0D;&#x786E;&#x5B9A;&#x7684;&#x884C;&#x4E3A;</p>
+<p>6.&#x76EE;&#x524D;&#x6CA1;&#x6709;&#x65B9;&#x6CD5;&#x6765;&#x786E;&#x5B9A;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#x662F;&#x60AC;&#x6302;&#x6307;&#x9488;,&#x5373;&#x786E;&#x5B9A;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#x4E0D;&#x518D;&#x62E5;&#x6709;&#x5B83;&#x6307;&#x5411;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x5F53;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#x6307;&#x5411;&#x7684;&#x5BF9;&#x8C61;&#x88AB;&#x9500;&#x6BC1;&#x4E86;&#xFF0C;&#x8BE5;&#x6307;&#x9488;&#x5C31;&#x53D8;&#x6210;&#x4E86;&#x60AC;&#x6302;&#x6307;&#x9488;&#x3002;</p>
+<p>&#x539F;&#x751F;&#x6307;&#x9488;&#x662F;&#x4E00;&#x6B3E;&#x5F88;&#x5F3A;&#x5927;&#x7684;&#x5DE5;&#x5177;&#xFF0C;&#x4F46;&#x662F;&#x4F9D;&#x636E;&#x8FDB;&#x6570;&#x5341;&#x5E74;&#x7684;&#x7ECF;&#x9A8C;&#xFF0C;&#x53EF;&#x4EE5;&#x786E;&#x5B9A;&#x7684;&#x4E00;&#x70B9;&#x662F;:&#x7A0D;&#x6709;&#x4E0D;&#x614E;&#xFF0C;&#x8FD9;&#x4E2A;&#x5DE5;&#x5177;&#x5C31;&#x4F1A;&#x53CD;&#x566C;&#x5B83;&#x7684;&#x4F7F;&#x7528;&#x8005;&#x3002;</p>
+<p>&#x7EC8;&#x4E8E;&#xFF0C;&#x6765;&#x89E3;&#x51B3;&#x4E0A;&#x8FF0;&#x96BE;&#x9898;&#x7684;&#x667A;&#x80FD;&#x6307;&#x9488;&#x51FA;&#x73B0;&#x4E86;&#xFF0C;&#x667A;&#x80FD;&#x6307;&#x9488;&#x8868;&#x73B0;&#x8D77;&#x6765;&#x5F88;&#x50CF;&#x539F;&#x751F;&#x6307;&#x9488;&#xFF0C;&#x5B83;&#x76F8;&#x5F53;&#x4E8E;&#x662F;&#x539F;&#x751F;&#x6307;&#x9488;&#x7684;&#x4E00;&#x5C42;&#x518D;&#x5305;&#x88C5;(wrapper)&#xFF0C;&#x4F46;&#x662F;&#x89C4;&#x907F;&#x4E86;&#x8BB8;&#x591A;&#x4F7F;&#x7528;&#x539F;&#x751F;&#x6307;&#x9488;&#x5E26;&#x6765;&#x7684;&#x9677;&#x9631;&#x3002;&#x4F60;&#x5E94;&#x8BE5;&#x5C3D;&#x91CF;&#x4F7F;&#x7528;&#x667A;&#x80FD;&#x6307;&#x9488;&#xFF0C;&#x5B83;&#x51E0;&#x4E4E;&#x80FD;&#x505A;&#x5230;&#x539F;&#x751F;&#x6307;&#x9488;&#x80FD;&#x505A;&#x5230;&#x7684;&#x6240;&#x6709;&#x529F;&#x80FD;&#xFF0C;&#x5374;&#x5F88;&#x5C11;&#x7ED9;&#x4F60;&#x72AF;&#x9519;&#x7684;&#x673A;&#x4F1A;&#x3002;</p>
+<p>&#x5728;C++11&#x6807;&#x51C6;&#x4E2D;&#x89C4;&#x5B9A;&#x4E86;&#x56DB;&#x4E2A;&#x667A;&#x80FD;&#x6307;&#x9488;:std::auto_ptr, std::unique_ptr, std::shared_ptr, &#x4EE5;&#x53CA;std::weak_ptr.&#x5B83;&#x4EEC;&#x90FD;&#x7528;&#x6765;&#x8BBE;&#x8BA1;&#x8F85;&#x52A9;&#x7BA1;&#x7406;&#x52A8;&#x6001;&#x5206;&#x914D;&#x5BF9;&#x8C61;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF0C;&#x5373;&#xFF0C;&#x786E;&#x4FDD;&#x8FD9;&#x4E9B;&#x5BF9;&#x8C61;&#x5728;&#x6B63;&#x786E;&#x7684;&#x65F6;&#x95F4;(&#x5305;&#x62EC;&#x53D1;&#x751F;&#x5F02;&#x5E38;&#x65F6;)&#x7528;&#x6B63;&#x786E;&#x7684;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x56DE;&#x6536;&#xFF0C;&#x4EE5;&#x786E;&#x4FDD;&#x4E0D;&#x4F1A;&#x4EA7;&#x751F;&#x5185;&#x5B58;&#x6CC4;&#x9732;.</p>
+<p>C++98&#x5C1D;&#x8BD5;&#x7528;std::auto_ptr&#x6765;&#x6807;&#x51C6;&#x5316;&#x540E;&#x6765;&#x6210;&#x4E3A;C++11&#x4E2D;&#x7684;std::unique_ptr&#x7684;&#x884C;&#x4E3A;&#xFF0C;&#x4E3A;&#x4E86;&#x8FBE;&#x5230;&#x76EE;&#x6807;&#xFF0C;move&#x8BED;&#x6CD5;&#x662F;&#x4E0D;&#x53EF;&#x5C11;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#xFF0C;C++98&#x5F53;&#x65F6;&#x8FD8;&#x6CA1;&#x6709;move&#x8BED;&#x6CD5;&#xFF0C;&#x6240;&#x4EE5;&#x505A;&#x4E86;&#x4E2A;&#x59A5;&#x534F;&#x65B9;&#x6848;:&#x5229;&#x7528;&#x62F7;&#x8D1D;&#x64CD;&#x4F5C;&#x6765;&#x6A21;&#x62DF;move.&#x8FD9;&#x5BFC;&#x81F4;&#x4E86;&#x4E00;&#x4E9B;&#x5F88;&#x8BA9;&#x4EBA;&#x5403;&#x60CA;&#x7684;&#x4EE3;&#x7801;(&#x5982;&#x62F7;&#x8D1D;&#x4E00;&#x4E2A;std::auto_ptr&#x4F1A;&#x5C06;&#x5B83;&#x8BBE;&#x7F6E;&#x4E3A;null!)&#x548C;&#x4E00;&#x4E9B;&#x8BA9;&#x4F7F;&#x7528;&#x8005;&#x89C9;&#x5F97;&#x6CAE;&#x4E27;&#x7684;&#x4F7F;&#x7528;&#x9650;&#x5236;(&#x4E0D;&#x80FD;&#x5728;&#x5BB9;&#x5668;&#x4E2D;&#x4F7F;&#x7528;std::auto_ptr)</p>
+<p>std::unique_ptr&#x505A;&#x5230;&#x4E86;std::auto_ptr&#x6240;&#x80FD;&#x505A;&#x5230;&#x7684;&#x6240;&#x6709;&#x4E8B;&#x60C5;&#xFF0C;&#x800C;&#x4E14;&#x5B83;&#x7684;&#x5B9E;&#x73B0;&#x8FD8;&#x66F4;&#x9AD8;&#x6548;&#x3002;</p>
+<p>&#x667A;&#x80FD;&#x6307;&#x9488;&#x7684;API&#x6709;&#x7740;&#x663E;&#x8457;&#x7684;&#x533A;&#x522B;&#xFF0C;&#x4ED6;&#x4EEC;&#x4E4B;&#x95F4;&#x552F;&#x4E00;&#x5171;&#x540C;&#x7684;&#x4E00;&#x70B9;&#x529F;&#x80FD;&#x5C31;&#x662F;&#x9ED8;&#x8BA4;&#x7684;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x3002;&#x56E0;&#x4E3A;&#x8FD9;&#x79CD;API&#x8BE6;&#x7EC6;&#x7684;&#x4ECB;&#x7ECD;&#x6EE1;&#x5927;&#x8857;&#x90FD;&#x662F;&#x554A;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x628A;&#x91CD;&#x70B9;&#x653E;&#x5230;&#x4E86;&#x8FD9;&#x4E9B;API&#x4ECB;&#x7ECD;&#x6240;&#x6CA1;&#x6709;&#x7684;&#x77E5;&#x8BC6;&#xFF0C;&#x5982;:&#x503C;&#x5F97;&#x6CE8;&#x610F;&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;&#xFF0C;&#x8FD0;&#x884C;&#x6027;&#x80FD;&#x5206;&#x6790;&#x7B49;&#x7B49;&#x3002;&#x638C;&#x63E1;&#x8FD9;&#x4E9B;&#x4FE1;&#x606F;&#x4F60;&#x5C31;&#x4E0D;&#x53EA;&#x4F1A;&#x53EF;&#x4EE5;&#x5355;&#x5355;&#x7684;&#x4F7F;&#x7528;&#x5B83;&#x4EEC;&#xFF0C;&#x66F4;&#x662F;&#x5B66;&#x4F1A;&#x4E86;&#x5982;&#x4F55;&#x6709;&#x6548;&#x7684;&#x8FD0;&#x7528;&#x5B83;&#x4EEC;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../MovingtoModernC++/17-Understand-special-member-function-generation.md" class="navigation navigation-prev " aria-label="Previous page: 条款17：理解特殊成员函数的生成">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="18-Use-std-unique_ptr-for-exclusive-ownership-resource-management.html" class="navigation navigation-next " aria-label="Next page: 条款18：使用std::unique_ptr管理独占资源">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"第四章 智能指针","level":"1.8","depth":1,"next":{"title":"条款18：使用std::unique_ptr管理独占资源","level":"1.8.1","depth":2,"path":"SmartPointers/18-Use-std-unique_ptr-for-exclusive-ownership-resource-management.md","ref":"SmartPointers/18-Use-std-unique_ptr-for-exclusive-ownership-resource-management.md","articles":[]},"previous":{"title":"条款17：理解特殊成员函数的生成","level":"1.7.11","depth":2,"path":"MovingtoModernC++/17-Understand-special-member-function-generation.md","ref":"MovingtoModernC++/17-Understand-special-member-function-generation.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"SmartPointers/README.md","mtime":"2020-11-11T15:39:05.202Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-11T15:55:21.177Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
